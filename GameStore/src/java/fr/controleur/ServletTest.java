@@ -23,9 +23,9 @@ public class ServletTest extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-        String page = request.getParameter("page");
         
-        if(page.equals("demarrage"))
+        
+        if(request.getServletPath().equals("/ServletTest"))
         {
             Client client = new Client();
             client.setIdentifiant("Toto");
