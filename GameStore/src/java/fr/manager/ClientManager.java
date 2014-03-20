@@ -30,6 +30,7 @@ public class ClientManager {
     
     public Client getClient(String id)
     {
+        Client client=null;
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
@@ -39,7 +40,7 @@ public class ClientManager {
            if(rs.next())
            {
                
-               Client client = new Client(  rs.getString("IDENTIFIANT"),
+               client = new Client(  rs.getString("IDENTIFIANT"),
                                             rs.getString("MDP"),
                                             rs.getString("MAIL"),
                                             rs.getString("NOM"),
@@ -48,15 +49,7 @@ public class ClientManager {
                                             rs.getString("NAISSANCE"),
                                             rs.getString("SEXE")
                                          );
-             rs.close();
-             connection.close();
-             return client;
            }
-           
-           rs.close();
-           connection.close();
-           
-           return new Client();
            
        } 
        catch(SQLException e)
@@ -64,7 +57,7 @@ public class ClientManager {
            System.out.println("Erreur getClient "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         
-        return new Client();
+        return client;
     }
     
     public boolean addClient(Client client)
