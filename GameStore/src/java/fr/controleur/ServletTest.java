@@ -28,9 +28,6 @@ public class ServletTest extends HttpServlet {
         
         if(request.getServletPath().equals("/ServletTest"))
         {
-            
-           
-            
             Client client = new Client();
             client.setIdentifiant("Toto");
             client.setMail("toto@blague.com");
