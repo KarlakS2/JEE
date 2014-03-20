@@ -1,74 +1,70 @@
+
 package fr.manager;
 
+import fr.entite.Article;
 import fr.entite.Client;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import java.sql.Statement;
 
-/**
- *
- * @author Karlak
- */
-public class ClientManager {
-
+public class ArticleManager {
     private String bdd;
     private String user;
     private String mdp;
-    
-    
-    public ClientManager() {
+
+    public ArticleManager() {
     }
 
-    public ClientManager(String bdd, String user, String mdp) {
+    public ArticleManager(String bdd, String user, String mdp) {
         this.bdd = bdd;
         this.user = user;
         this.mdp = mdp;
     }
     
-    public Client getClient(String id)
+    public Article getArticle(String id)
     {
-        Client client=null;
+        Article article=null;
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "SELECT * FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
+           String sql = "SELECT * FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
            ResultSet rs = s.executeQuery(sql);
            if(rs.next())
            {
                
-               client = new Client(  rs.getString("IDENTIFIANT"),
-                                            rs.getString("MDP"),
-                                            rs.getString("MAIL"),
-                                            rs.getString("NOM"),
-                                            rs.getString("PRENOM"),
-                                            rs.getString("ADRESSE"),
-                                            rs.getString("NAISSANCE"),
-                                            rs.getString("SEXE")
-                                         );
+               article = new Article(  Integer.parseInt(rs.getString("ID")),
+                                             rs.getString("NOM"),
+                                             rs.getString("PRIX"),
+                                             rs.getString("DESCRIPTION"),
+                                             rs.getString("URLIMAGE")
+                                             );
+           
            }
+           
+           rs.close();
+           connection.close();
            
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur getClient "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur getArticle "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         
-        return client;
+        return article;
     }
     
-    public boolean addClient(Client client)
+    public boolean addArticle(Article article)
     {
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "INSERT INTO CLIENT(IDENTIFIANT,MDP,MAIL,NOM,PRENOM,ADRESSE,NAISSANCE,SEXE)"
+           String sql = "INSERT INTO ARTICLE(ID,NOM,PRIX,DESCRIPTION,URLIMAGE)"
                         + " VALUES "
-                        + client.toStringSQL();
+                        + article.toStringSQL();
            
            s.executeUpdate(sql);
            s.close();
@@ -78,19 +74,19 @@ public class ClientManager {
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur addClient "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur addArticle "+e.getLocalizedMessage()+":"+e.getMessage());
        }
        
        return false;
     }
     
-    public boolean deleteClient(String id)
+    public boolean deleteArticle(String id)
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "DELETE FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
+           String sql = "DELETE FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
            
            s.executeUpdate(sql);
            s.close();
@@ -100,19 +96,19 @@ public class ClientManager {
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur deleteClient "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur deleteArticle "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         
        return false;
     }
     
-    public boolean presenceClient(String id)
+    public boolean presenceArticle(String id)
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "SELECT * FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
+           String sql = "SELECT * FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
            ResultSet rs = s.executeQuery(sql);
            if(rs.next())
            {
@@ -129,9 +125,8 @@ public class ClientManager {
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur presenceClient "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur presenceArticle "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         return false;
     }
-    
 }

@@ -71,6 +71,10 @@ public class Article {
         return "Article{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", description=" + description + ", urlImage=" + urlImage + '}';
     }
     
+    public String toStringSQL() {
+        return "('" + id + "','" + nom + "','" + prix + "','" + description + "','" + urlImage + "')";
+    }
+    
     
     
 }
