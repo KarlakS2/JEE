@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/logo.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/articles.css" />
+    <link rel="stylesheet" href="css/categories.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Store</title>
@@ -31,6 +32,7 @@
                 }
                 else
                 {
+                    out.println("<a href=\"./connexion\">Se connecter</a>");
                 }   
              %>
         </div>
