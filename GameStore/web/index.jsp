@@ -8,6 +8,13 @@
 
 <!DOCTYPE html>
 <html>
+    
+    <%
+        if(request.getParameter("first_coming")!=null)
+        {
+            response.sendRedirect("/first_coming");
+        }
+    %>
     <link rel="stylesheet" href="css/logo.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/articles.css" />
@@ -37,16 +44,11 @@
              %>
         </div>
         </div>
-        
-        
         </header>
-        
-        
         
              <jsp:include page="categories/categories.jsp" flush="true"/>
         
         <section><div  class="Articles">Articles</div></section>
-        
         
     </body>
     <footer>
