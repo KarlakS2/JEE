@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 mars 2014, 10:46:27
+    Author     : Valdanial
+*/
+
+.Categories
+{
+    background-color: green;
+    float: left;
+}
+
+.element_menu
+{
+border: 2px solid black;
+margin-bottom: 20px;
+margin-left: 10px;
+}
+.element_menu h3
+{
+text-align: center;
+}
+.element_menu a
+{
+color: rgb(99,14,1);
+padding: 5px;
+text-decoration: none;
+}
+.element_menu a:hover
+{
+    color: black;
+}
