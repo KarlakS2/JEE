@@ -72,7 +72,7 @@ public class Article {
     }
     
     public String toStringSQL() {
-        return "('" + id + "','" + nom + "','" + prix + "','" + description + "','" + urlImage + "')";
+        return "('" + nom + "','" + prix + "','" + description + "','" + urlImage + "')";
     }
     
     

@@ -23,14 +23,14 @@ public class ArticleManager {
         this.mdp = mdp;
     }
     
-    public Article getArticle(String id)
+    public Article getArticle(int id)
     {
         Article article=null;
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "SELECT * FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
+           String sql = "SELECT * FROM ARTICLE WHERE ID="+id+"";
            ResultSet rs = s.executeQuery(sql);
            if(rs.next())
            {
@@ -62,7 +62,7 @@ public class ArticleManager {
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "INSERT INTO ARTICLE(ID,NOM,PRIX,DESCRIPTION,URLIMAGE)"
+           String sql = "INSERT INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE)"
                         + " VALUES "
                         + article.toStringSQL();
            
@@ -80,13 +80,13 @@ public class ArticleManager {
        return false;
     }
     
-    public boolean deleteArticle(String id)
+    public boolean deleteArticle(int id)
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "DELETE FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
+           String sql = "DELETE FROM ARTICLE WHERE ID="+id+"";
            
            s.executeUpdate(sql);
            s.close();
@@ -102,13 +102,13 @@ public class ArticleManager {
        return false;
     }
     
-    public boolean presenceArticle(String id)
+    public boolean presenceArticle(int id)
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            Statement s = connection.createStatement();
            
-           String sql = "SELECT * FROM ARTICLE WHERE IDENTIFIANT='"+id+"'";
+           String sql = "SELECT * FROM ARTICLE WHERE ID="+id+"";
            ResultSet rs = s.executeQuery(sql);
            if(rs.next())
            {
