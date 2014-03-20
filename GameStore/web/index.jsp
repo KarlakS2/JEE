@@ -51,7 +51,7 @@
     </body>
     <footer>
         
-        <form action="ServletTesteur" method="post">
+        <form action="ServletTest" method="post">
             <input type="submit" value="ServletTest">
         </form>
     </footer>
