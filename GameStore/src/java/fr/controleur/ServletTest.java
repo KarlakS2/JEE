@@ -4,6 +4,7 @@ import fr.entite.Article;
 import fr.entite.Categorie;
 import fr.entite.Client;
 import fr.entite.Commande;
+import fr.manager.ArticleManager;
 import fr.manager.ClientManager;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,16 +24,16 @@ public class ServletTest extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-        String page = request.getParameter("page");
         
-        if(page.equals("demarrage"))
+        
+        if(request.getServletPath().equals("/ServletTest"))
         {
             Client client = new Client();
             client.setIdentifiant("Toto");
             client.setMail("toto@blague.com");
             client.setSexe("Homme");
             Article article = new Article();
-            article.setDescription("Ceci est la description de l'article");
+            article.setDescription("Ceci est la description de larticle");
             article.setPrix("100€");
             Categorie categorie = new Categorie();
             categorie.setId(500);
@@ -49,6 +50,7 @@ public class ServletTest extends HttpServlet {
             out.println(commande);
             out.println("<br/><br/>");
             
+             out.println("--------------TEST CLIENTMANAGER--------------");
             
             out.println("J'ajoute un client à la BDD");
             ClientManager clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
@@ -66,6 +68,25 @@ public class ServletTest extends HttpServlet {
             out.println("Je supprime le client Toto");
             clientManager.deleteClient("Toto");
             
+            out.println("<br/><br/>");
+            out.println("--------------TEST ARTICLEMANAGER--------------");
+            
+            
+            out.println("J'ajoute un article à la BDD");
+            ArticleManager articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+            articleManager.addArticle(article);
+            
+            out.println("<br/><br/>");
+            out.println("L'article n°1 est il present dans la BDD ? reponse : "+articleManager.presenceArticle(1));
+            
+            out.println("<br/><br/>");
+            out.println("Je recupere l'article n°1");
+            Article a = articleManager.getArticle(1);
+            out.println(a);
+            
+            out.println("<br/><br/>");
+            out.println("Je supprime l'article n°1");
+            articleManager.deleteArticle(1);
         }
             
             
