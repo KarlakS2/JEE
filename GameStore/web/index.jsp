@@ -49,15 +49,34 @@
             <jsp:include page="categories/categories.jsp" flush="true"/>
         
             <%    
-                switch(request.getParameter("type_page"))
+                String type_page = request.getParameter("type_page");
+                if(type_page.equals("accueil"))
                 {
-                    case "accueil": out.println("<jsp:include page=\"contenu/accueil.jsp\" flush=\"true\"/>"); break;
-                    case "connexion": out.println("<jsp:include page=\"session/connexion.jsp\" flush=\"true\"/>"); break;
-                    case "inscription": out.println("<jsp:include page=\"session/inscription.jsp\" flush=\"true\"/>"); break;
-                    case "panier": out.println("<jsp:include page=\"session/panier.jsp\" flush=\"true\"/>"); break;
-                    case "acces_restreint": out.println("<jsp:include page=\"session/acces_restreint.jsp\" flush=\"true\"/>"); break;
-                    case "articles": out.println("<jsp:include page=\"session/articles.jsp\" flush=\"true\"/>"); break;
-                    
+                    out.println("<jsp:include page=\"contenu/accueil.jsp\" flush=\"true\"/>");
+                }
+                else if(type_page.equals("connexion"))
+                {
+                    out.println("<jsp:include page=\"session/connexion.jsp\" flush=\"true\"/>");
+                }
+                else if(type_page.equals("inscription"))
+                {
+                    out.println("<jsp:include page=\"session/inscription.jsp\" flush=\"true\"/>");
+                }
+                else if(type_page.equals("panier"))
+                {
+                    out.println("<jsp:include page=\"session/panier.jsp\" flush=\"true\"/>");
+                }
+                else if(type_page.equals("acces_restreint"))
+                {
+                    out.println("<jsp:include page=\"session/acces_restreint.jsp\" flush=\"true\"/>");
+                }
+                else if(type_page.equals("articles"))
+                {
+                    out.println("<jsp:include page=\"session/articles.jsp\" flush=\"true\"/>");
+                }
+                else
+                {
+                    response.sendRedirect("/page_not_found.jsp");
                 }
             %>
         
