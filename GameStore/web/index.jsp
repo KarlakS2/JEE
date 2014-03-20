@@ -46,9 +46,20 @@
         </div>
         </header>
         
-             <jsp:include page="categories/categories.jsp" flush="true"/>
+            <jsp:include page="categories/categories.jsp" flush="true"/>
         
-        <section><div  class="Articles">Articles</div></section>
+            <%    
+                switch(request.getParameter("type_page"))
+                {
+                    case "accueil": out.println("<jsp:include page=\"contenu/accueil.jsp\" flush=\"true\"/>"); break;
+                    case "connexion": out.println("<jsp:include page=\"session/connexion.jsp\" flush=\"true\"/>"); break;
+                    case "inscription": out.println("<jsp:include page=\"session/inscription.jsp\" flush=\"true\"/>"); break;
+                    case "panier": out.println("<jsp:include page=\"session/panier.jsp\" flush=\"true\"/>"); break;
+                    case "acces_restreint": out.println("<jsp:include page=\"session/acces_restreint.jsp\" flush=\"true\"/>"); break;
+                    case "articles": out.println("<jsp:include page=\"session/articles.jsp\" flush=\"true\"/>"); break;
+                    
+                }
+            %>
         
     </body>
     <footer>

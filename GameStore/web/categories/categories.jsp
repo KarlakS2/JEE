@@ -4,6 +4,7 @@
     Author     : Valdanial
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,9 +17,12 @@
            <h3>Catégories</h3>
            
            <%
-               
+               List<String> liste_categories = (List<String>) request.getAttribute("categories");
+               for(String s: liste_categories)
+               {
+                   out.println("<li><a href=\"/categorie="+s+"\">Index</a></li>");
+               }
            %>
-           <li><a href="index.jsp">Index</a></li>
         </div>
     </nav>
 </html>
