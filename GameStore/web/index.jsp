@@ -49,4 +49,10 @@
         
         
     </body>
+    <footer>
+        
+        <form action="ServletTest" method="post">
+            <input type="submit" value="ServletTest">
+        </form>
+    </footer>
 </html>

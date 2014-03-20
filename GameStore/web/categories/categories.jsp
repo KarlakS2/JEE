@@ -13,7 +13,11 @@
     </head>
     <nav class="Categories" >
         <div class="element_menu">
-           <h3>Catégories</h3>        
+           <h3>Catégories</h3>
+           
+           <%
+               
+           %>
            <li><a href="index.jsp">Index</a></li>
         </div>
     </nav>
