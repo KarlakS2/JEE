@@ -4,6 +4,7 @@ import fr.entite.Article;
 import fr.entite.Categorie;
 import fr.entite.Client;
 import fr.entite.Commande;
+import fr.manager.ClientManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class ServletTest extends HttpServlet {
             Client client = new Client();
             client.setIdentifiant("Toto");
             client.setMail("toto@blague.com");
-            client.setSexe(1);
+            client.setSexe("Homme");
             Article article = new Article();
             article.setDescription("Ceci est la description de l'article");
             article.setPrix("100€");
@@ -47,6 +48,23 @@ public class ServletTest extends HttpServlet {
             out.println("Test de la commande :");
             out.println(commande);
             out.println("<br/><br/>");
+            
+            
+            out.println("J'ajoute un client à la BDD");
+            ClientManager clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
+            clientManager.addClient(client);
+            
+            out.println("<br/><br/>");
+            out.println("Toto est il present dans la BDD ? reponse : "+clientManager.presenceClient("Toto"));
+            
+            out.println("<br/><br/>");
+            out.println("Je recupere le client Toto");
+            Client c = clientManager.getClient("Toto");
+            out.println(c);
+            
+            out.println("<br/><br/>");
+            out.println("Je supprime le client Toto");
+            clientManager.deleteClient("Toto");
             
         }
             

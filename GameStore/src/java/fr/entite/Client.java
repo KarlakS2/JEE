@@ -13,7 +13,7 @@ public class Client {
     private String prenom;
     private String adresse;
     private String naissance;
-    private int sexe; // 0 = homme , 1= femme
+    private String sexe; // 0 = homme , 1= femme
     
     public Client()
     {
@@ -24,7 +24,7 @@ public class Client {
         prenom = "non defini";
         adresse = "non defini";
         naissance = "non defini";
-        sexe = 0;
+        sexe = "non defini";
     }
     
     public Client(   String pid,
@@ -34,7 +34,7 @@ public class Client {
                      String pprenom,
                      String padresse,
                      String pnaissance,
-                     int psexe)
+                     String psexe)
     {
         identifiant = pid;
         mdp =pmdp;
@@ -102,17 +102,21 @@ public class Client {
         this.naissance = naissance;
     }
 
-    public int getSexe() {
+    public String getSexe() {
         return sexe;
     }
 
-    public void setSexe(int sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
 
     @Override
     public String toString() {
         return "Client{" + "identifiant=" + identifiant + ", mail=" + mail + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", naissance=" + naissance + ", sexe=" + sexe + '}';
+    }
+    
+    public String toStringSQL() {
+        return "('"+ identifiant + "','" + mdp +"','" + mail + "','" + nom + "','" + prenom + "','" + adresse + "','" + naissance + "','" + sexe + "')";
     }
     
     

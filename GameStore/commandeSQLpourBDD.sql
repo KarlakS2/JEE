@@ -11,7 +11,7 @@ CREATE TABLE "CLIENT"
 (
     "IDENTIFIANT" VARCHAR(100) not null primary key,
     "MDP" VARCHAR(100) not null,
-    "MAIL" VARCHAR(100) not null,
+    "MAIL" VARCHAR(100) not null unique,
     "NOM" VARCHAR(100) not null,
     "PRENOM" VARCHAR(100) not null,
     "ADRESSE" VARCHAR(100) not null,
@@ -29,7 +29,7 @@ CREATE TABLE "ADMIN"
 (
     "IDENTIFIANT" VARCHAR(100) not null primary key,
     "MDP" VARCHAR(100) not null,
-    "MAIL" VARCHAR(100) not null
+    "MAIL" VARCHAR(100) not null unique
 );
 
 CREATE TABLE "COMMANDE"
