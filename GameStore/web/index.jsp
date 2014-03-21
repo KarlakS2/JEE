@@ -51,25 +51,25 @@
         <jsp:include page="categories/categories.jsp"/>
             <div class="Contenu">
                 <c:choose>
-                    <c:when test="${param.type_page=='accueil'}">
+                    <c:when test="${requestScope.type_page=='accueil'}">
                         <jsp:include page="contenu/accueil.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='inscription'}">
+                    <c:when test="${requestScope.type_page=='inscription'}">
                         <jsp:include page="session/inscription.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='connexion'}">
+                    <c:when test="${requestScope.type_page=='connexion'}">
                         <jsp:include page="session/connexion.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='panier'}">
+                    <c:when test="${requestScope.type_page=='panier'}">
                         <jsp:include page="session/panier.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='accueil'}">
+                    <c:when test="${requestScope.type_page=='accueil'}">
                         <jsp:include page="contenu/accueil.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='acces_restreint'}">
+                    <c:when test="${requestScope.type_page=='acces_restreint'}">
                         <jsp:include page="session/acces_restreint.jsp"/>
                     </c:when>
-                    <c:when test="${param.type_page=='articles'}">
+                    <c:when test="${requestScope.type_page=='articles'}">
                         <jsp:include page="contenu/articles.jsp"/>
                     </c:when>
                     <c:otherwise>

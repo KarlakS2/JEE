@@ -42,12 +42,12 @@ public class ServletControleur extends HttpServlet {
     private CategorieManager categorieManager;
     private ArticleManager articleManager;
     
-   /* @Override
+   /*@Override
     public void init(ServletConfig config) throws ServletException{
-        categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+       /* categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
-        /*try{
+        try{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         }
         catch( ClassNotFoundException e){
@@ -62,22 +62,29 @@ public class ServletControleur extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-
-        
+       
         categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
         
+        try{
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        }
+        catch( ClassNotFoundException e){
+            System.out.println("ERREUR Driver => "+e.getMessage());  
+        }
+        
         String page = request.getServletPath();
         HttpSession session = request.getSession(true);
         session.setAttribute("first_coming", 0);
-        
-        if(page.equals("/first_coming") || session.getAttribute("first_coming").equals(0)){
+      System.out.println("coucou");
+        if(page.equals("/controleur/first_coming") || session.getAttribute("first_coming").equals(0)){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
            session.setAttribute("categories", categories);
            session.setAttribute("first_coming", "nope");
-            response.getWriter().print("Salut");
+            session.setAttribute("type_page","accueil");
             request.setAttribute("type_page","accueil");
+            System.out.println("WAZA");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);       
             
         }else if(page.equals("/connexion")){ //vérification présence dans bdd + affichage page perso
@@ -134,7 +141,9 @@ public class ServletControleur extends HttpServlet {
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else{
-            response.getWriter().print(session.getAttribute("first_coming"));
+            System.out.println("ici ?");
+            
+           // response.getWriter().print(session.getAttribute("first_coming"));
             /*
             if(page.contains("/categories")){
                 String nom_categorie = request.getParameter("nom_categorie");
