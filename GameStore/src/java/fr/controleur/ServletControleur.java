@@ -86,7 +86,7 @@ public class ServletControleur extends HttpServlet {
             request.setAttribute("type_page","accueil");
             System.out.println("WAZA");
             
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);       
+            request.getRequestDispatcher("/index.jsp").forward(request, response);       
             
         }else if(page.equals("/controleur/connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
@@ -97,23 +97,24 @@ public class ServletControleur extends HttpServlet {
                 }else{
                     request.setAttribute("type_page","inscription");
                 }
-               getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+               request.getRequestDispatcher("/index.jsp").forward(request,response);
                 
             }else{
                 request.setAttribute("type_page","inscription");
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             }
         }else if(page.equals("/controleur/categorie")){
             
                 String nom_categorie = request.getParameter("nom_categorie");
-                System.out.println("COUCOU!!!");
+                System.out.println("COUCOU!!!"); System.out.println(nom_categorie);
                 ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
                 
                 
-                request.setAttribute("type-page","articles");
+                session.setAttribute("type_page","articles");
                 request.setAttribute("liste_articles",articles);
 
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                //request.getRequestDispatcher("/index.jsp").forward(request, response);
+                response.sendRedirect("/GameStore/index.jsp");
             
             
         }else if(page.equals("/controleur/inscription")){ //ajout d'un client à la bdd
@@ -126,26 +127,26 @@ public class ServletControleur extends HttpServlet {
                 Connexion connexion = new Connexion();
                 connexion.verifConnexion(request, response, clientManager);
                 
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             }else{
                 request.setAttribute("type_page","inscription");
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             }
             
             
         }else if(page.equals("/controleur/recherche")){ //affichage de la page associé à la requete
             request.setAttribute("recherche", request.getParameter("recherche"));
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else if(page.equals("/controleur/panier")){
             request.setAttribute("","");
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else if(page.equals("/ajout_article")){
            
             
             request.setAttribute("","");
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else{            
             response.getWriter().print(session.getAttribute("first_coming"));
@@ -159,9 +160,9 @@ public class ServletControleur extends HttpServlet {
                 request.setAttribute("type-page","categorie");
                 request.setAttribute("liste_articles",articles);
 
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             }else{*/
-                getServletContext().getRequestDispatcher("/page_not_found.jsp").forward(request, response);
+                request.getRequestDispatcher("/page_not_found.jsp").forward(request, response);
             //}
         }
            // 
