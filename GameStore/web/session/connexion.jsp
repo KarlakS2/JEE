@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/connexion.css" />
 <html>
        
-       <form action="ServletControleur" method="post">
+       <form action="/controleur/valider_connexion" method="post">
            <label for="identifiant"></label>
            <input type="text" name="identifiant" id="identifiant" placeholder="Identifiant"/>
            <label for="mdp"></label></br>
