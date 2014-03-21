@@ -37,9 +37,8 @@ public class ServletTest extends HttpServlet {
             client.setSexe("Homme");
             Article article = new Article();
             article.setDescription("Ceci est la description de larticle");
-            article.setPrix("100€");
+            article.setPrix(100);
             Categorie categorie = new Categorie();
-            categorie.setId(500);
             categorie.setNom("MaCategorie");
             article.setCategorie(categorie);
             Commande commande = new Commande (5,client,article);
@@ -85,7 +84,7 @@ public class ServletTest extends HttpServlet {
             
             out.println("<br/><br/>");
             out.println("Je recupere la categorie 1");
-            Categorie cat = categorieManager.getCategorie(1);
+            Categorie cat = categorieManager.getCategorie("MaCategorie");
             out.println(cat);
             
             out.println("<br/><br/>");
@@ -93,10 +92,7 @@ public class ServletTest extends HttpServlet {
             ArrayList<Categorie> listeCategorie = categorieManager.getAllCategorie();
             out.println("Il y a "+listeCategorie.size()+" categorie(s)");
             
-            out.println("<br/><br/>");
-            out.println("Je supprime l'article n°4");
-            categorieManager.deleteCategorie(4);
-            out.println("<br/><br/>");
+            
             out.println("--------------TEST ARTICLEMANAGER--------------<br/>");
             
             
@@ -115,7 +111,7 @@ public class ServletTest extends HttpServlet {
             
             out.println("<br/><br/>");
             out.println("Je recupere tous les articles de la categorie n°1<br/>");
-            ArrayList<Article> listeArticle = articleManager.getAllArticleByCategorie(1);
+            ArrayList<Article> listeArticle = articleManager.getAllArticleByCategorie("MaCategorie");
             out.println("Il y a "+listeArticle.size()+" article(s)");
             
             out.println("<br/><br/>");

@@ -50,32 +50,6 @@ public class CategorieManager {
        return false;
     }
     
-    public Categorie getCategorie(int id)
-    {
-        Categorie categorie=null;
-        try{
-           Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           PreparedStatement s = connection.prepareStatement("SELECT * FROM CATEGORIE WHERE ID=?");
-           s.setInt(1, id);
-           ResultSet rs = s.executeQuery();
-           if(rs.next())
-           {
-               categorie = new Categorie(  Integer.parseInt(rs.getString("ID")),
-                                             rs.getString("NOM")
-                                        );
-           }
-           
-           rs.close();
-           connection.close();
-           
-       } 
-       catch(SQLException e)
-       {
-           System.out.println("Erreur getCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
-       }
-        return categorie;
-    }
-    
     public Categorie getCategorie(String nom)
     {
         Categorie categorie=null;
@@ -86,7 +60,7 @@ public class CategorieManager {
            ResultSet rs = s.executeQuery();
            if(rs.next())
            {
-               categorie = new Categorie(  Integer.parseInt(rs.getString("ID")),
+               categorie = new Categorie(  
                                              rs.getString("NOM")
                                         );
            }
@@ -112,7 +86,7 @@ public class CategorieManager {
             
             while(rs.next())
            {
-              Categorie categorie = new Categorie(  Integer.parseInt(rs.getString("ID")),
+              Categorie categorie = new Categorie( 
                                              rs.getString("NOM")
                                         );
               resultat.add(categorie);
@@ -129,15 +103,15 @@ public class CategorieManager {
         return resultat;
     }
     
-    public Boolean deleteCategorie(int id)
+    public Boolean deleteCategorie(String nom)
     {
         
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
            
-           String sql = "DELETE FROM CATEGORIE WHERE ID=?";
+           String sql = "DELETE FROM CATEGORIE WHERE NOM=?";
            PreparedStatement s = connection.prepareStatement(sql);
-           s.setInt(1, id);
+           s.setString(1, nom);
            
            
            s.executeUpdate();
