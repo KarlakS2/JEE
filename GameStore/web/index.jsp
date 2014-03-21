@@ -12,7 +12,7 @@
     <%
         if(session.getAttribute("first_coming")==null)
         {
-            response.sendRedirect("./controleur/first_coming");
+            //response.sendRedirect("./controleur/first_coming");
         }
     %>
     <link rel="stylesheet" href="css/logo.css" />
