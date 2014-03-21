@@ -7,20 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% 
-    /*if(session.getAttribute("nom_utilisateur")!=null)
-    {
-        String sortie = "<p>Connecte en tant que ";
-        sortie+=session.getAttribute("nom_utilisateur");
-        sortie+="</p></br>";
-        sortie+="<a href=./controleur/deconnexion>Se deconnecter</a>";
-        out.println(sortie);
-    }
-    else
-    {
-        out.println("<a href=\"./controleur/connexion\">Se connecter</a>");
-    }   */
-%>
+
 
 <div class="Menu">
     <c:choose>

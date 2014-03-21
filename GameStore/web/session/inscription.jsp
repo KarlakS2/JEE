@@ -11,7 +11,7 @@
     <form action="/GameStore/controleur/valider_connexion">
         <label>Nom d'utilisateur:</label> <input class="element_formulaire" type='text' name='user' placeholder="Nom d'utilisateur" required></br>
         <label>Mot de passe:</label> <input class="element_formulaire" type='password' name='password' placeholder="Mot de passe" required></br>
-        <label>Email:</label> <input class="element_formulaire" type='email' name='password' placeholder="Adresse email" required></br>
+        <label>Email:</label> <input class="element_formulaire" type='email' name='email' placeholder="Adresse email" required></br>
         <label>Nom:</label> <input class="element_formulaire" type='text' name='nom' placeholder="Nom"></br>
         <label>Prénom:</label> <input class="element_formulaire" type='text' name='prenom' placeholder="Prénom"></br>
         <label>Date de naissance:</label>
@@ -55,6 +55,8 @@
             
         </select>
         </br>
+        
+        <label>Adresse</label> <input class="element_formulaire" type='text' name='adresse' placeholder="Adresse"></br>
         <label>Sexe:</label><input class="element_formulaire" type='radio' name='sexe' value="H" checked id="sexe_homme"> <label for="sexe_homme">Homme</label></br>
         <input class="element_formulaire" type='radio' name='sexe' id="sexe_femme"> <label for="sexe_femme">Femme</label>
         <input type ="submit" class="element_formulaire" value="Terminer l'inscription">

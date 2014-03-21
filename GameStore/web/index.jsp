@@ -28,7 +28,7 @@
         </header>
              
         <jsp:include page="categories/categories.jsp"/>
-        <div class="Contenu"><p><c:out value="${sessionScope.type_page}"/></p>
+        <div class="Contenu">
             <c:if test="${not empty sessionScope.type_page}">
                 <c:choose>
                     <c:when test="${sessionScope.type_page=='accueil'}">

@@ -4,6 +4,7 @@
     Author     : Valdanial
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="fr.entite.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,27 +14,14 @@
         <div class="element_menu">
            <h3>Catégories</h3>
            
-           <%
-               List<Categorie> liste_categories = (List<Categorie>) session.getAttribute("categories");
-               if(liste_categories!=null)
-               {
-                   out.println("<ul>");
-                    for(Categorie c: liste_categories)
-                    {
-                        out.println("<a href=\"/GameStore/controleur/categorie/?nom_categorie="+c.getNom()+"\"><div class='inner'>"+c.getNom()+"</div></a>");
-                    }
-                    out.println("</ul>");
-               }
-           %>
            <ul>
            <c:forEach var="categorie" items="${sessionScope.categories}">
-                <h3>
+                
                     <a href="/GameStore/controleur/categorie/?nom_categorie=${categorie.getNom()}">
-                        <div class='inner'></div>
-                    </a>
-                </h3>
-           </ul>
+                        <div class='inner'>${categorie.getNom()}</div>
+                    </a>   
             </c:forEach>  
-        </div>
-    </nav>
-
+               </ul>         
+        
+        </nav>
+    </div>
