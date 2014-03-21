@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -83,11 +83,11 @@ public class ServletControleur extends HttpServlet {
            session.setAttribute("categories", categories);
             session.setAttribute("type_page","accueil");
             
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/connexion")){
             session.setAttribute("type_page","connexion");
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
@@ -98,11 +98,11 @@ public class ServletControleur extends HttpServlet {
                 }else{
                     session.setAttribute("type_page","inscription");
                 }
-               response.sendRedirect("/GameStore/index.jsp");
+               redirigerVersJSP(response);
                 
             }else{
                 session.setAttribute("type_page","inscription");
-                response.sendRedirect("/GameStore/index.jsp");
+                redirigerVersJSP(response);
             }
         }else if(page.equals("/controleur/categorie")){
             
@@ -114,12 +114,12 @@ public class ServletControleur extends HttpServlet {
                 session.setAttribute("liste_articles",articles);
 
                 //request.getRequestDispatcher("/index.jsp").forward(request, response);
-                response.sendRedirect("/GameStore/index.jsp");
+                redirigerVersJSP(response);
             
             
         }else if(page.equals("/controleur/inscription")){
             session.setAttribute("type_page","inscription");
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
         }else if(page.equals("/controleur/valider_inscription")){ //ajout d'un client à la bdd
             
             
@@ -131,32 +131,61 @@ public class ServletControleur extends HttpServlet {
                 
                 connexion.verifConnexion(request, response, clientManager);
                 session.setAttribute("type_page","accueil");
-                response.sendRedirect("/GameStore/index.jsp");
+                redirigerVersJSP(response);
             }else{
                 session.setAttribute("type_page","inscription");
-                response.sendRedirect("/GameStore/index.jsp");
+                redirigerVersJSP(response);
             }
             
             
         }else if(page.equals("/controleur/recherche")){ //affichage de la page associé à la requete
             session.setAttribute("recherche", request.getParameter("recherche"));
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/panier")){
             session.setAttribute("","");
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/ajout_article")){
            
             
             session.setAttribute("","");
-            response.sendRedirect("/GameStore/index.jsp");
+            redirigerVersJSP(response);
             
-        }else{            
+        }
+        else if(page.equals("/controleur/accueil"))
+        {
+            session.setAttribute("type_page","accueil");
+            redirigerVersJSP(response);
+        }
+        else if(page.contains("/controleur/article"))
+        {
+            session.setAttribute("type_page","article");
+            redirigerVersJSP(response);
+        }
+        else if(page.contains("/controleur/ajouter_panier"))
+        {
+            String article = request.getParameter("nom_article");
+            
+            session.setAttribute("type_page","article");
+            redirigerVersJSP(response);
+        }
+        else{            
             
             response.sendRedirect("/GameStore/page_not_found.jsp");
         }
  
+    }
+    
+    private void redirigerVersJSP(HttpServletResponse resp)
+    {
+        try{
+        resp.sendRedirect("/GameStore/index.jsp");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

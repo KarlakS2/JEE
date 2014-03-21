@@ -9,15 +9,16 @@
 <%@page import="fr.entite.Article"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <ul>
         <c:forEach var="article" items="${sessionScope.liste_articles}">
-            <img class="miniature_article" src="${article.getUrlImage()}"></img>
-            <a href="/GameStore/controleur/ajouter_panier?nom_article=${article.getNom()}" class="lien_ajout_panier">
-                Ajouter au panier
+            <a href="/GameStore/controleur/article?nom_article=${article.getNom()}">
+                <img class="miniature_article" src="${article.getUrlImage()}"></img>
             </a>
-                <h3>
-                    <c:out value="${article.getNom()}"/>
+            <a href="/GameStore/controleur/ajouter_panier?nom_article=${article.getNom()}">
+                <div class="icone_panier"/></div>
+            </a>
+                <h3 class="prix_article">
+                    <c:out value="${article.getPrix()}"/>€
                 </h3>
                 
         </c:forEach>  
