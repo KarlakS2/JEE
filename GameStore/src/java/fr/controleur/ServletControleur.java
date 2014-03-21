@@ -8,8 +8,10 @@ package fr.controleur;
 
 import fr.entite.Client;
 import fr.entite.Categorie;
+import fr.entite.Article;
 import fr.manager.ClientManager;
 import fr.manager.CategorieManager;
+import fr.manager.ArticleManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +39,15 @@ public class ServletControleur extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private ClientManager clientManager;
-    public CategorieManager categorieManager;
+    private CategorieManager categorieManager;
+    private ArticleManager articleManager;
     
-    @Override
+   /* @Override
     public void init(ServletConfig config) throws ServletException{
         categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
-        try{
+        articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        /*try{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         }
         catch( ClassNotFoundException e){
@@ -51,18 +55,28 @@ public class ServletControleur extends HttpServlet {
         }
         super.init(config); 
 
-    }
+    }*/
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+
+        
+        categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        
         String page = request.getServletPath();
         HttpSession session = request.getSession(true);
         session.setAttribute("first_coming", 0);
         
-        if(page.equals("/first_coming")){
+        if(page.equals("/first_coming") || session.getAttribute("first_coming").equals(0)){
+            ArrayList<Categorie> categories = categorieManager.getAllCategorie();
+           session.setAttribute("categories", categories);
+           session.setAttribute("first_coming", "nope");
+            response.getWriter().print("Salut");
             request.setAttribute("type_page","accueil");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);       
             
@@ -75,7 +89,7 @@ public class ServletControleur extends HttpServlet {
                 }else{
                     request.setAttribute("type_page","inscription");
                 }
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+               getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
                 
             }else{
                 request.setAttribute("type_page","inscription");
@@ -91,8 +105,19 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/inscription")){ //ajout d'un client à la bdd
             
             request.setAttribute("type_page","accueil");
-            Inscription inscription = new Inscription(request,response,clientManager);
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            Inscription inscription = new Inscription();
+            
+            if(inscription.inscrireClient(request, response, clientManager)){
+                request.setAttribute("type_page","accueil");
+                Connexion connexion = new Connexion();
+                connexion.verifConnexion(request, response, clientManager);
+                
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            }else{
+                request.setAttribute("type_page","inscription");
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            
             
         }else if(page.equals("/recherche")){ //affichage de la page associé à la requete
             request.setAttribute("recherche", request.getParameter("recherche"));
@@ -102,9 +127,27 @@ public class ServletControleur extends HttpServlet {
             request.setAttribute("","");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
+        }else if(page.equals("/ajout_article")){
+           
+            
+            request.setAttribute("","");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            
         }else{
-            getServletContext().getRequestDispatcher("/page_not_found.jsp").forward(request, response);
+            response.getWriter().print(session.getAttribute("first_coming"));
+            /*
+            if(page.contains("/categories")){
+                String nom_categorie = request.getParameter("nom_categorie");
+                
+                request.setAttribute("type-page","categorie");
+                request.setAttribute("categorie",categorieManager.getCategorie(nom_categorie));
+
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            }else{
+            }*/
         }
+           // getServletContext().getRequestDispatcher("page_not_found.jsp").forward(request, response);
+
         // envoyer une liste de noms de catégories à Vue => Mathieu, I need a function which returns a list of things of the table "categorie"
     }
 
