@@ -28,7 +28,7 @@ public class Connexion {
    public boolean verifConnexion(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
        boolean connecte = false;
         Client client = null;
-        client = clientManager.getClient(request.getParameter("id"));
+        client = clientManager.getClient(request.getParameter("identifiant"));
         String nomUtilisateur = client.getNom();
         HttpSession session = request.getSession(true);
         

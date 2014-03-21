@@ -86,8 +86,13 @@ public class ServletControleur extends HttpServlet {
             
             response.sendRedirect("/GameStore/index.jsp");
             
-        }else if(page.equals("/controleur/connexion")){ //vérification présence dans bdd + affichage page perso
+        }else if(page.equals("/controleur/connexion")){
+            session.setAttribute("type_page","connexion");
+            response.sendRedirect("/GameStore/index.jsp");
+            
+        }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
+                System.out.println("C'eeeeeeeeest moiiiiiii");
                 Connexion connexion = new Connexion();
                 
                 if(connexion.verifConnexion(request, response, clientManager)){
