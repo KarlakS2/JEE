@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <%
-        if(session.getAttribute("first_coming")==null)
+        if(session.getAttribute("first_coming").equals(0))
         {
             //response.sendRedirect("/first_coming");
         }

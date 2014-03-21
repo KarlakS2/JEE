@@ -4,8 +4,18 @@
     Author     : Valdanial
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="fr.entite.Article"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <section><div  class="Articles">Articles</div></section>
-</html>
+<ul>
+    <li>
+        <%
+            for(Article article: (List<Article>)request.getAttribute("liste_articles"))
+            {
+                out.println("<img src=\""+article.getUrlImage()+"\"></img>");
+            }
+        %>
+        
+    </li>
+</ul>
