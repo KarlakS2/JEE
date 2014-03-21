@@ -20,12 +20,13 @@ import javax.servlet.http.HttpSession;
  * @author Haynner
  */
 public class Connexion {
-    private boolean connecte = false;
     private String champ_mdp = "mdp";
     
-   public Connexion(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager)
-            throws ServletException, IOException {
-       
+   public Connexion(){
+   }
+   
+   public boolean verifConnexion(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
+       boolean connecte = false;
         Client client = null;
         client = clientManager.getClient(request.getParameter("id"));
         String nomUtilisateur = client.getNom();
@@ -33,23 +34,15 @@ public class Connexion {
         
         if(client != null){
             if(client.getMdp().equals(request.getParameter(champ_mdp))){
+                
                 connecte = true;
-                session.setAttribute("sessionClient",client);
-                session.setAttribute("nom_utilisateur",nomUtilisateur);    
+                session.setAttribute("user_compte",client);    
             }
                        
         }else{
-            session.setAttribute("sessionClient",null);
-            session.setAttribute("nom_utilisateur",null);
-        }
-
-        request.setAttribute("client", client);
-        request.setAttribute("nom_utilisateur", nomUtilisateur);
-        
-        
+            session.setAttribute("user_compte",null);
+            connecte = false;
+        }        
+        return connecte;
     }
-   
-   public boolean getConnecte(){
-       return this.connecte;
-   }
 }

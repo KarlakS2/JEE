@@ -68,8 +68,9 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
-                Connexion connexion = new Connexion(request, response, clientManager);
-                if(connexion.getConnecte()){
+                Connexion connexion = new Connexion();
+                
+                if(connexion.verifConnexion(request, response, clientManager)){
                     request.setAttribute("type_page","accueil");
                 }else{
                     request.setAttribute("type_page","inscription");
