@@ -5,19 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri= "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 
 <!DOCTYPE html>
 <html>
     <%
-        if(request.getParameter("first_coming")!=null)
+        if(session.getAttribute("first_coming")==null)
         {
-            response.sendRedirect("/first_coming");
+            //response.sendRedirect("/first_coming");
         }
     %>
     <link rel="stylesheet" href="css/logo.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/articles.css" />
     <link rel="stylesheet" href="css/categories.css" />
+    <link rel="stylesheet" href="css/contenu.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Store</title>
@@ -44,46 +46,36 @@
         </div>
         </div>
         </header>
-        
-            <jsp:include page="categories/categories.jsp" flush="true"/>
-        
-            <%    
-                String type_page = request.getParameter("type_page");
-                if(type_page==null)
-                {
-                    out.println("C'est null");
-                }
-                else if(type_page.equals("accueil"))
-                {
-                    out.println("<jsp:include page=\"contenu/accueil.jsp\" flush=\"true\"/>");
-                }
-                else if(type_page.equals("connexion"))
-                {
-                    out.println("<jsp:include page=\"session/connexion.jsp\" flush=\"true\"/>");
-                }
-                else if(type_page.equals("inscription"))
-                {
-                    out.println("<jsp:include page=\"session/inscription.jsp\" flush=\"true\"/>");
-                }
-                else if(type_page.equals("panier"))
-                {
-                    out.println("<jsp:include page=\"session/panier.jsp\" flush=\"true\"/>");
-                }
-                else if(type_page.equals("acces_restreint"))
-                {
-                    out.println("<jsp:include page=\"session/acces_restreint.jsp\" flush=\"true\"/>");
-                }
-                else if(type_page.equals("articles"))
-                {
-                    out.println("<jsp:include page=\"session/articles.jsp\" flush=\"true\"/>");
-                }
-                else
-                {
-                    response.sendRedirect("/page_not_found.jsp");
-                }
-            %>
-            
-            
+             
+        <jsp:include page="categories/categories.jsp"/>
+            <div class="Contenu">
+                <c:choose>
+                    <c:when test="${param.type_page=='accueil'}">
+                        <jsp:include page="contenu/accueil.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='inscription'}">
+                        <jsp:include page="session/inscription.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='connexion'}">
+                        <jsp:include page="session/connexion.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='panier'}">
+                        <jsp:include page="session/panier.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='accueil'}">
+                        <jsp:include page="contenu/accueil.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='acces_restreint'}">
+                        <jsp:include page="session/acces_restreint.jsp"/>
+                    </c:when>
+                    <c:when test="${param.type_page=='articles'}">
+                        <jsp:include page="contenu/articles.jsp"/>
+                    </c:when>
+                    <c:otherwise>
+                        <jsp:include page="page_not_found.jsp"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>       
             <footer>
         
         <form action="ServletTest" method="post">

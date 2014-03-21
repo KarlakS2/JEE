@@ -4,20 +4,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 20 mars 2014, 09:36:06
+    Created on : 21 mars 2014, 10:29:07
     Author     : Valdanial
 */
 
-header
+.Contenu
 {
-    background-color: blue;
-    min-height: 102px;
-    height: min-content;
-    top: 0%;
+    display: inline-block;
 }
-
-#Logo
-{
-    position:absolute;
-}
-

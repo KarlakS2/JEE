@@ -7,11 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Game Store</title>
-    </head>
+
     <nav class="Categories" >
         <div class="element_menu">
            <h3>Catégories</h3>
@@ -22,10 +18,10 @@
                {
                     for(String s: liste_categories)
                     {
-                        out.println("<li><a href=\"/categorie="+s+"\">Index</a></li>");
+                        out.println("<li><a href=\"/categorie/="+s+"\">Index</a></li>");
                     }
                }
            %>
         </div>
     </nav>
-</html>
+
