@@ -8,9 +8,7 @@
 <!DOCTYPE html>
 <html>
     
-        <%
-        session.setAttribute("first_coming",0);
-        %>
-    <jsp:forward page="/controleur/first_coming/FUCKYOU"/>
+       
+    fuc
        
 </html>

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -42,9 +42,9 @@ public class ServletControleur extends HttpServlet {
     private CategorieManager categorieManager;
     private ArticleManager articleManager;
     
-   /*@Override
+   @Override
     public void init(ServletConfig config) throws ServletException{
-       /* categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
         try{
@@ -55,7 +55,7 @@ public class ServletControleur extends HttpServlet {
         }
         super.init(config); 
 
-    }*/
+    }
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -63,7 +63,7 @@ public class ServletControleur extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
        
-        categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        /*categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
         
@@ -72,13 +72,13 @@ public class ServletControleur extends HttpServlet {
         }
         catch( ClassNotFoundException e){
             System.out.println("ERREUR Driver => "+e.getMessage());  
-        }
+        }*/
         
         String page = request.getServletPath();
         HttpSession session = request.getSession(true);
-        session.setAttribute("first_coming", 0);
+        //session.setAttribute("first_coming", 0);
       System.out.println(page);
-        if(page.equals("/controleur/first_coming") || session.getAttribute("first_coming").equals(0)){
+        if(page.equals("/controleur/")){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
            session.setAttribute("categories", categories);
            session.setAttribute("first_coming", "nope");
