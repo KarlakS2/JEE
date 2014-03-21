@@ -24,11 +24,13 @@ public class Inscription{
     public Inscription(){
         
     }
-    
-    public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
-    Client client = new Client(request.getParameter("id"),request.getParameter("mdp"),request.getParameter("mail"),request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("adresse"),request.getParameter("date_de_naissance"),request.getParameter("sexe"));
-        clientManager.addClient(client);
         
+    public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
+    
+       String date_naissance = request.getParameter("jour_naissance")+" "+request.getParameter("mois_naissance")+" "+request.getParameter("annee_naissance");
+
+        Client client = new Client(request.getParameter("identifiant"),request.getParameter("mdp"),request.getParameter("mail"),request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("adresse"),date_naissance,request.getParameter("sexe"));
+        clientManager.addClient(client);
         return true;
     }
 
