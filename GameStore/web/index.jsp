@@ -9,12 +9,7 @@
 
 <!DOCTYPE html>
 <html>
-    <%
-        if(session.getAttribute("first_coming")==null)
-        {
-            //response.sendRedirect("./controleur/first_coming");
-        }
-    %>
+
     <link rel="stylesheet" href="css/logo.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/articles.css" />
