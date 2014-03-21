@@ -25,6 +25,15 @@
                     out.println("</ul>");
                }
            %>
+           <ul>
+           <c:forEach var="categorie" items="${sessionScope.categories}">
+                <h3>
+                    <a href="/GameStore/controleur/categorie/?nom_categorie=${categorie.getNom()}">
+                        <div class='inner'></div>
+                    </a>
+                </h3>
+           </ul>
+            </c:forEach>  
         </div>
     </nav>
 

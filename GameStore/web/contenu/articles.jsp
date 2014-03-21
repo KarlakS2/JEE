@@ -10,11 +10,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <ul>
-    
         <c:forEach var="article" items="${sessionScope.liste_articles}">
-            <img src="<c:out value="${article.getUrlImage()}"/>"></img>
-        </c:forEach>
-        
-        
-    
+            <img class="miniature_article" src="<c:out value="${article.getUrlImage()}"/>"></img>
+                <h3>
+                    <c:out value="${article.getNom()}"/>
+                </h3>
+                
+        </c:forEach>  
 </ul>
