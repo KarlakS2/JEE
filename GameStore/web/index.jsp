@@ -28,33 +28,35 @@
         </header>
              
         <jsp:include page="categories/categories.jsp"/>
-            <div class="Contenu">
+        <div class="Contenu"><p><c:out value="${sessionScope.type_page}"/></p>
+            <c:if test="${not empty sessionScope.type_page}">
                 <c:choose>
-                    <c:when test="${requestScope.type_page=='accueil'}">
+                    <c:when test="${sessionScope.type_page=='accueil'}">
                         <jsp:include page="contenu/accueil.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='inscription'}">
+                    <c:when test="${sessionScope.type_page=='inscription'}">
                         <jsp:include page="session/inscription.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='connexion'}">
+                    <c:when test="${sessionScope.type_page=='connexion'}">
                         <jsp:include page="session/connexion.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='panier'}">
+                    <c:when test="${sessionScope.type_page=='panier'}">
                         <jsp:include page="session/panier.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='accueil'}">
+                    <c:when test="${sessionScope.type_page=='accueil'}">
                         <jsp:include page="contenu/accueil.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='acces_restreint'}">
+                    <c:when test="${sessionScope.type_page=='acces_restreint'}">
                         <jsp:include page="session/acces_restreint.jsp"/>
                     </c:when>
-                    <c:when test="${requestScope.type_page=='articles'}">
+                    <c:when test="${sessionScope.type_page=='articles'}">
                         <jsp:include page="contenu/articles.jsp"/>
                     </c:when>
                     <c:otherwise>
                         <jsp:include page="page_not_found.jsp"/>
                     </c:otherwise>
                 </c:choose>
+            </c:if>
             </div>       
             <footer>
         

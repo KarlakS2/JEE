@@ -4,18 +4,17 @@
     Author     : Valdanial
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="fr.entite.Article"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <ul>
-    <li>
-        <%
-            for(Article article: (List<Article>)request.getAttribute("liste_articles"))
-            {
-                out.println("<img src=\""+article.getUrlImage()+"\"></img>");
-            }
-        %>
+    
+        <c:forEach var="article" items="${sessionScope.liste_articles}">
+            <img src="<c:out value="${article.getUrlImage()}"/>"></img>
+        </c:forEach>
         
-    </li>
+        
+    
 </ul>
