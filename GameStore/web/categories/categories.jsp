@@ -18,9 +18,12 @@
            
            <%
                List<String> liste_categories = (List<String>) request.getAttribute("categories");
-               for(String s: liste_categories)
+               if(liste_categories!=null)
                {
-                   out.println("<li><a href=\"/categorie="+s+"\">Index</a></li>");
+                    for(String s: liste_categories)
+                    {
+                        out.println("<li><a href=\"/categorie="+s+"\">Index</a></li>");
+                    }
                }
            %>
         </div>

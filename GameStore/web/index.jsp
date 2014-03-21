@@ -8,7 +8,6 @@
 
 <!DOCTYPE html>
 <html>
-    
     <%
         if(request.getParameter("first_coming")!=null)
         {
@@ -25,7 +24,7 @@
     </head>
     <body>
         <header>
-            <img src="image/logo.png" class="Logo"></img>
+            <img src="image/logo.png" class="Logo" id="Logo"></img>
         <div class="Menu" >Menu
         <div class="Connexion" >
             <% 
@@ -50,7 +49,11 @@
         
             <%    
                 String type_page = request.getParameter("type_page");
-                if(type_page.equals("accueil"))
+                if(type_page==null)
+                {
+                    out.println("C'est null");
+                }
+                else if(type_page.equals("accueil"))
                 {
                     out.println("<jsp:include page=\"contenu/accueil.jsp\" flush=\"true\"/>");
                 }
@@ -79,12 +82,14 @@
                     response.sendRedirect("/page_not_found.jsp");
                 }
             %>
-        
-    </body>
-    <footer>
+            
+            
+            <footer>
         
         <form action="ServletTest" method="post">
             <input type="submit" value="ServletTest">
         </form>
-    </footer>
+            </footer>
+    </body>
+    
 </html>
