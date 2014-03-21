@@ -7,12 +7,12 @@ package fr.entite;
 public class Article {
     private int id;
     private String nom;
-    private String prix;
+    private int prix;
     private String description;
     private String urlImage;
     private Categorie categorie;
 
-    public Article(int id, String nom, String prix, String description, String urlImage, Categorie categorie) {
+    public Article(int id, String nom, int prix, String description, String urlImage, Categorie categorie) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -24,7 +24,7 @@ public class Article {
     public Article() {
         this.id = 0;
         this.nom = "non defnini";
-        this.prix = "non defnini";
+        this.prix = 0;
         this.description = "non defnini";
         this.urlImage = "non defnini";
         this.categorie = new Categorie();
@@ -57,11 +57,11 @@ public class Article {
         this.nom = nom;
     }
 
-    public String getPrix() {
+    public int getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 

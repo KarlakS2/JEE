@@ -37,10 +37,10 @@ public class ArticleManager {
                CategorieManager cm = new CategorieManager(bdd,user,mdp);
                article = new Article(        rs.getInt("ID"),
                                              rs.getString("NOM"),
-                                             rs.getString("PRIX"),
+                                             rs.getInt("PRIX"),
                                              rs.getString("DESCRIPTION"),
                                              rs.getString("URLIMAGE"),
-                                             cm.getCategorie(rs.getInt("CATEGORIE_ID"))
+                                             cm.getCategorie(rs.getString("CATEGORIE"))
                                              );
            
            }
@@ -61,16 +61,16 @@ public class ArticleManager {
     {
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           String sql = "INSERT INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE_ID)"
+           String sql = "INSERT INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)"
                         + " VALUES "
                         + "(?,?,?,?,?)";
            PreparedStatement s = connection.prepareStatement(sql);
            
            s.setString(1, article.getNom());
-           s.setString(2, article.getPrix());
+           s.setInt(2, article.getPrix());
            s.setString(3, article.getDescription());
            s.setString(4, article.getUrlImage());
-           s.setInt(5, article.getCategorie().getId());
+           s.setString(5, article.getCategorie().getNom());
            
            s.executeUpdate();
            s.close();
@@ -137,13 +137,13 @@ public class ArticleManager {
         return false;
     }
     
-    public ArrayList<Article> getAllArticleByCategorie(int id)
+    public ArrayList<Article> getAllArticleByCategorie(String nom)
     {
         ArrayList<Article> resultat = new ArrayList<Article>();
         try{
             Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           PreparedStatement s = connection.prepareStatement("SELECT * FROM ARTICLE WHERE CATEGORIE_ID=?");
-           s.setInt(1, id);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ARTICLE WHERE CATEGORIE=?");
+           s.setString(1, nom);
            ResultSet rs = s.executeQuery();
             
             while(rs.next())
@@ -151,10 +151,10 @@ public class ArticleManager {
               CategorieManager cm = new CategorieManager(bdd,user,mdp);
               Article article = new Article( rs.getInt("ID"),
                                              rs.getString("NOM"),
-                                             rs.getString("PRIX"),
+                                             rs.getInt("PRIX"),
                                              rs.getString("DESCRIPTION"),
                                              rs.getString("URLIMAGE"),
-                                             cm.getCategorie(rs.getInt("CATEGORIE_ID"))
+                                             cm.getCategorie(rs.getString("CATEGORIE"))
                                              );
               resultat.add(article);
            }

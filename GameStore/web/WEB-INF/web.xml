@@ -15,7 +15,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletControleur</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/controleur/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

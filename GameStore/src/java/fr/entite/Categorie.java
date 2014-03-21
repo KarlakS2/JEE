@@ -5,25 +5,14 @@ package fr.entite;
  * @author Karlak
  */
 public class Categorie {
-    private int id;
     private String nom;
 
     public Categorie() {
-        this.id = 0;
         this.nom = "non defini";
     }
 
-    public Categorie(int id, String nom) {
-        this.id = id;
+    public Categorie(String nom) {
         this.nom = nom;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -36,7 +25,7 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Categorie{" + "id=" + id + ", nom=" + nom + '}';
+        return "Categorie{, nom=" + nom + '}';
     }
     
     

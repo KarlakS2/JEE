@@ -19,13 +19,17 @@ import fr.manager.ClientManager;
  * @author Haynner
  */
 
-public class Inscription extends HttpServlet {
+public class Inscription{
 
-    protected Inscription(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
-        response.setContentType("text/html;charset=UTF-8");
+    public Inscription(){
         
-        Client client = new Client(request.getParameter("id"),request.getParameter("mdp"),request.getParameter("mail"),request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("adresse"),request.getParameter("date_de_naissance"),request.getParameter("sexe"));
+    }
+    
+    public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
+    Client client = new Client(request.getParameter("id"),request.getParameter("mdp"),request.getParameter("mail"),request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("adresse"),request.getParameter("date_de_naissance"),request.getParameter("sexe"));
         clientManager.addClient(client);
+        
+        return true;
     }
 
 }
