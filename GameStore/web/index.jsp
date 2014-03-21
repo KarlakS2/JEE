@@ -10,9 +10,9 @@
 <!DOCTYPE html>
 <html>
     <%
-        if(session.getAttribute("first_coming").equals(0))
+        if(session.getAttribute("first_coming")==null)
         {
-            //response.sendRedirect("/first_coming");
+            response.sendRedirect("/controleur/first_coming");
         }
     %>
     <link rel="stylesheet" href="css/logo.css" />
@@ -36,12 +36,12 @@
                     String sortie = "<p>Connecte en tant que ";
                     sortie+=session.getAttribute("nom_utilisateur");
                     sortie+="</p></br>";
-                    sortie+="<a href=./deconnexion>Se deconnecter</a>";
+                    sortie+="<a href=./controleur/deconnexion>Se deconnecter</a>";
                     out.println(sortie);
                 }
                 else
                 {
-                    out.println("<a href=\"./connexion\">Se connecter</a>");
+                    out.println("<a href=\"./controleur/connexion\">Se connecter</a>");
                 }   
              %>
         </div>

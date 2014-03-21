@@ -19,7 +19,7 @@
                {
                     for(Categorie c: liste_categories)
                     {
-                        out.println("<li><a href=\"/categorie/?nom_categorie="+c.getNom()+"\">Index</a></li>");
+                        out.println("<li><a href=\"/controleur/categorie/?nom_categorie="+c.getNom()+"\">Index</a></li>");
                     }
                }
            %>
