@@ -23,7 +23,7 @@ public class AdministrateurManager {
         this.mdp = mdp;
     }
    
-    public boolean addAdmin(Administrateur admin)
+    public boolean addAdministrateur(Administrateur admin)
     {
         
         try{
@@ -40,12 +40,11 @@ public class AdministrateurManager {
            s.executeUpdate();
            s.close();
            connection.close();
-           return true;
-                      
+           return true;         
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur addArticle "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur addAdministrateur "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         return false;
     }
