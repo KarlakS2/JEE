@@ -81,27 +81,25 @@ public class ServletControleur extends HttpServlet {
         if(page.equals("/controleur/")){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
            session.setAttribute("categories", categories);
-           session.setAttribute("first_coming", "nope");
-           session.setAttribute("first_coming", 1);
-            request.setAttribute("type_page","accueil");
+            session.setAttribute("type_page","accueil");
             System.out.println("WAZA");
             
-            request.getRequestDispatcher("/index.jsp").forward(request, response);       
+            response.sendRedirect("/GameStore/index.jsp");
             
         }else if(page.equals("/controleur/connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
                 
                 if(connexion.verifConnexion(request, response, clientManager)){
-                    request.setAttribute("type_page","accueil");
+                    session.setAttribute("type_page","accueil");
                 }else{
-                    request.setAttribute("type_page","inscription");
+                    session.setAttribute("type_page","inscription");
                 }
-               request.getRequestDispatcher("/index.jsp").forward(request,response);
+               response.sendRedirect("/GameStore/index.jsp");
                 
             }else{
-                request.setAttribute("type_page","inscription");
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                session.setAttribute("type_page","inscription");
+                response.sendRedirect("/GameStore/index.jsp");
             }
         }else if(page.equals("/controleur/categorie")){
             
@@ -111,7 +109,7 @@ public class ServletControleur extends HttpServlet {
                 
                 
                 session.setAttribute("type_page","articles");
-                request.setAttribute("liste_articles",articles);
+                session.setAttribute("liste_articles",articles);
 
                 //request.getRequestDispatcher("/index.jsp").forward(request, response);
                 response.sendRedirect("/GameStore/index.jsp");
@@ -119,55 +117,40 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/controleur/inscription")){ //ajout d'un client à la bdd
             
-            request.setAttribute("type_page","accueil");
+            session.setAttribute("type_page","accueil");
             Inscription inscription = new Inscription();
             
             if(inscription.inscrireClient(request, response, clientManager)){
-                request.setAttribute("type_page","accueil");
+                session.setAttribute("type_page","accueil");
                 Connexion connexion = new Connexion();
                 connexion.verifConnexion(request, response, clientManager);
                 
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                response.sendRedirect("/GameStore/index.jsp");
             }else{
-                request.setAttribute("type_page","inscription");
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                session.setAttribute("type_page","inscription");
+                response.sendRedirect("/GameStore/index.jsp");
             }
             
             
         }else if(page.equals("/controleur/recherche")){ //affichage de la page associé à la requete
-            request.setAttribute("recherche", request.getParameter("recherche"));
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            session.setAttribute("recherche", request.getParameter("recherche"));
+            response.sendRedirect("/GameStore/index.jsp");
             
         }else if(page.equals("/controleur/panier")){
-            request.setAttribute("","");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            session.setAttribute("","");
+            response.sendRedirect("/GameStore/index.jsp");
             
         }else if(page.equals("/ajout_article")){
            
             
-            request.setAttribute("","");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            session.setAttribute("","");
+            response.sendRedirect("/GameStore/index.jsp");
             
         }else{            
-            response.getWriter().print(session.getAttribute("first_coming"));
-            /*System.out.println("COUCOUAVANT!!!");
-            if(page.contains("/controleur/categorie")){
-                String nom_categorie = request.getParameter("nom_categorie");
-                System.out.println("COUCOU!!!");
-                ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
-                
-                
-                request.setAttribute("type-page","categorie");
-                request.setAttribute("liste_articles",articles);
-
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-            }else{*/
-                request.getRequestDispatcher("/page_not_found.jsp").forward(request, response);
-            //}
+            
+            response.sendRedirect("/GameStore/page_not_found.jsp");
         }
-           // 
-
-        // envoyer une liste de noms de catégories à Vue => Mathieu, I need a function which returns a list of things of the table "categorie"
+ 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
