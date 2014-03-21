@@ -76,6 +76,32 @@ public class CategorieManager {
         return categorie;
     }
     
+    public Categorie getCategorie(String nom)
+    {
+        Categorie categorie=null;
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM CATEGORIE WHERE NOM=?");
+           s.setString(1, nom);
+           ResultSet rs = s.executeQuery();
+           if(rs.next())
+           {
+               categorie = new Categorie(  Integer.parseInt(rs.getString("ID")),
+                                             rs.getString("NOM")
+                                        );
+           }
+           
+           rs.close();
+           connection.close();
+           
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur getCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        return categorie;
+    }
+    
     public ArrayList<Categorie> getAllCategorie()
     {
         ArrayList<Categorie> resultat = new ArrayList<Categorie>();
