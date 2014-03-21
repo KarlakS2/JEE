@@ -5,6 +5,7 @@ import fr.entite.Administrateur;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -47,5 +48,54 @@ public class AdministrateurManager {
            System.out.println("Erreur addArticle "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         return false;
+    }
+    
+    public Administrateur getAdmin(String id)
+    {
+        Administrateur admin=null;
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ADMINISTRATEUR WHERE IDENTIFIANT=?");
+           s.setString(1, id);
+           
+           ResultSet rs = s.executeQuery();
+           if(rs.next())
+           {
+               
+               admin = new Administrateur(  rs.getString("IDENTIFIANT"),
+                                            rs.getString("MDP"),
+                                            rs.getString("MAIL")
+                                         );
+           }
+           
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur getAdministrateur "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        
+        return admin;
+    }
+    
+    public boolean deleteAdministrateur(String id)
+    {
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           String sql = "DELETE FROM ADMINISTRATEUR WHERE IDENTIFIANT=?";
+           PreparedStatement s = connection.prepareStatement(sql);
+           s.setString(1,id);
+           
+           s.executeUpdate();
+           s.close();
+           connection.close();
+           return true;
+                      
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur deleteAdministrateur "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        
+       return false;
     }
 }
