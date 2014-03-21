@@ -86,9 +86,14 @@ public class ServletTest extends HttpServlet {
             //out.println("L'article n°1 est il present dans la BDD ? reponse : "+categorieManager.presenceArticle(3));
             
             out.println("<br/><br/>");
-            out.println("Je recupere l'article n°3");
+            out.println("Je recupere la categorie 1");
             Categorie cat = categorieManager.getCategorie(1);
             out.println(cat);
+            
+            out.println("<br/><br/>");
+            out.println("Je recupere toutes les categories<br/>");
+            ArrayList<Categorie> listeCategorie = categorieManager.getAllCategorie();
+            out.println("Il y a "+listeCategorie.size()+" categorie(s)");
             
           //  out.println("<br/><br/>");
           //  out.println("Je supprime l'article n°4");

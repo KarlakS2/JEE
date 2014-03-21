@@ -1,11 +1,14 @@
 package fr.manager;
 
+import fr.entite.Article;
 import fr.entite.Categorie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -71,6 +74,33 @@ public class CategorieManager {
            System.out.println("Erreur getCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         return categorie;
+    }
+    
+    public ArrayList<Categorie> getAllCategorie()
+    {
+        ArrayList<Categorie> resultat = new ArrayList<Categorie>();
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           Statement s = connection.createStatement();
+           ResultSet rs = s.executeQuery("SELECT * FROM CATEGORIE");
+            
+            while(rs.next())
+           {
+              Categorie categorie = new Categorie(  Integer.parseInt(rs.getString("ID")),
+                                             rs.getString("NOM")
+                                        );
+              resultat.add(categorie);
+           }
+            
+            rs.close();
+            connection.close();     
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur getAllArticleByCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        
+        return resultat;
     }
     
 }
