@@ -12,7 +12,7 @@
     <%
         if(session.getAttribute("first_coming")==null)
         {
-            response.sendRedirect("/controleur/first_coming");
+            response.sendRedirect("./controleur/first_coming");
         }
     %>
     <link rel="stylesheet" href="css/logo.css" />
@@ -27,7 +27,7 @@
     </head>
     <body>
         <header>
-            <a href="/controleur/accueil"><img src="image/logo.png" class="Logo" id="Logo"></img></a>
+            <a href="./controleur/accueil"><img src="image/logo.png" class="Logo" id="Logo"></img></a>
         
              <jsp:include page="session/espace_perso.jsp"/>
         </header>
