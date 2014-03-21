@@ -103,12 +103,18 @@ public class ServletControleur extends HttpServlet {
                 request.setAttribute("type_page","inscription");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
-        }else if(page.equals("/controleur/categories")){
+        }else if(page.equals("/controleur/categorie")){
             
-            ArrayList<Categorie> categories = categorieManager.getAllCategorie();
-            request.setAttribute("categories",categories);
-            request.setAttribute("type_page",categories);
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                String nom_categorie = request.getParameter("nom_categorie");
+                System.out.println("COUCOU!!!");
+                ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
+                
+                
+                request.setAttribute("type-page","articles");
+                request.setAttribute("liste_articles",articles);
+
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            
             
         }else if(page.equals("/controleur/inscription")){ //ajout d'un client à la bdd
             
@@ -143,7 +149,7 @@ public class ServletControleur extends HttpServlet {
             
         }else{            
             response.getWriter().print(session.getAttribute("first_coming"));
-            System.out.println("COUCOUAVANT!!!");
+            /*System.out.println("COUCOUAVANT!!!");
             if(page.contains("/controleur/categorie")){
                 String nom_categorie = request.getParameter("nom_categorie");
                 System.out.println("COUCOU!!!");
@@ -154,9 +160,9 @@ public class ServletControleur extends HttpServlet {
                 request.setAttribute("liste_articles",articles);
 
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }else{
+            }else{*/
                 getServletContext().getRequestDispatcher("/page_not_found.jsp").forward(request, response);
-            }
+            //}
         }
            // 
 
