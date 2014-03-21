@@ -77,17 +77,18 @@ public class ServletControleur extends HttpServlet {
         String page = request.getServletPath();
         HttpSession session = request.getSession(true);
         session.setAttribute("first_coming", 0);
-      System.out.println("coucou");
+      System.out.println(page);
         if(page.equals("/controleur/first_coming") || session.getAttribute("first_coming").equals(0)){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
            session.setAttribute("categories", categories);
            session.setAttribute("first_coming", "nope");
-            session.setAttribute("type_page","accueil");
+           session.setAttribute("first_coming", 1);
             request.setAttribute("type_page","accueil");
             System.out.println("WAZA");
+            
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);       
             
-        }else if(page.equals("/connexion")){ //vérification présence dans bdd + affichage page perso
+        }else if(page.equals("/controleur/connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
                 
@@ -102,14 +103,14 @@ public class ServletControleur extends HttpServlet {
                 request.setAttribute("type_page","inscription");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
-        }else if(page.equals("/categories")){
+        }else if(page.equals("/controleur/categories")){
             
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
             request.setAttribute("categories",categories);
             request.setAttribute("type_page",categories);
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
-        }else if(page.equals("/inscription")){ //ajout d'un client à la bdd
+        }else if(page.equals("/controleur/inscription")){ //ajout d'un client à la bdd
             
             request.setAttribute("type_page","accueil");
             Inscription inscription = new Inscription();
@@ -126,11 +127,11 @@ public class ServletControleur extends HttpServlet {
             }
             
             
-        }else if(page.equals("/recherche")){ //affichage de la page associé à la requete
+        }else if(page.equals("/controleur/recherche")){ //affichage de la page associé à la requete
             request.setAttribute("recherche", request.getParameter("recherche"));
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
-        }else if(page.equals("/panier")){
+        }else if(page.equals("/controleur/panier")){
             request.setAttribute("","");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
@@ -140,22 +141,24 @@ public class ServletControleur extends HttpServlet {
             request.setAttribute("","");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
-        }else{
-            System.out.println("ici ?");
-            
-           // response.getWriter().print(session.getAttribute("first_coming"));
-            /*
-            if(page.contains("/categories")){
+        }else{            
+            response.getWriter().print(session.getAttribute("first_coming"));
+            System.out.println("COUCOUAVANT!!!");
+            if(page.contains("/controleur/categorie")){
                 String nom_categorie = request.getParameter("nom_categorie");
+                System.out.println("COUCOU!!!");
+                ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
+                
                 
                 request.setAttribute("type-page","categorie");
-                request.setAttribute("categorie",categorieManager.getCategorie(nom_categorie));
+                request.setAttribute("liste_articles",articles);
 
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }else{
-            }*/
+                getServletContext().getRequestDispatcher("/page_not_found.jsp").forward(request, response);
+            }
         }
-           // getServletContext().getRequestDispatcher("page_not_found.jsp").forward(request, response);
+           // 
 
         // envoyer une liste de noms de catégories à Vue => Mathieu, I need a function which returns a list of things of the table "categorie"
     }
