@@ -4,6 +4,7 @@
     Author     : Valdanial
 --%>
 
+<%@page import="fr.entite.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +14,12 @@
            <h3>Catégories</h3>
            
            <%
-               List<String> liste_categories = (List<String>) request.getAttribute("categories");
+               List<Categorie> liste_categories = (List<Categorie>) session.getAttribute("categories");
                if(liste_categories!=null)
                {
-                    for(String s: liste_categories)
+                    for(Categorie c: liste_categories)
                     {
-                        out.println("<li><a href=\"/categorie/="+s+"\">Index</a></li>");
+                        out.println("<li><a href=\"/categorie/?nom_categorie="+c.getNom()+"\">Index</a></li>");
                     }
                }
            %>
