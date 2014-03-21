@@ -7,6 +7,7 @@ import fr.entite.Commande;
 import fr.manager.ArticleManager;
 import fr.manager.CategorieManager;
 import fr.manager.ClientManager;
+import fr.manager.CommandeManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -70,9 +71,9 @@ public class ServletTest extends HttpServlet {
             Client c = clientManager.getClient("Toto");
             out.println(c);
             
-            out.println("<br/><br/>");
+           /* out.println("<br/><br/>");
             out.println("Je supprime le client Toto");
-            clientManager.deleteClient("Toto");
+            clientManager.deleteClient("Toto");*/
             
             out.println("<br/><br/>");
             out.println("--------------TEST CATEGORIEMANAGER--------------<br/>");
@@ -120,6 +121,29 @@ public class ServletTest extends HttpServlet {
             out.println("<br/><br/>");
             out.println("Je supprime l'article n°4");
             articleManager.deleteArticle(4);
+            
+            out.println("<br/><br/>");
+            
+            out.println("--------------TEST COMMANDEMANAGER--------------<br/>");
+            
+            
+            out.println("J'ajoute une commande à la BDD<br/>");
+            CommandeManager commandeManager = new CommandeManager("jdbc:derby://localhost:1527/GameStore","game","store");
+            Commande com = new Commande();
+            com.setClient(c);
+            com.setArticle(a);
+            out.println(com);
+           commandeManager.addCommande(com);
+           
+            
+            out.println("<br/><br/>");
+            out.println("Je recupere la commande n°2");
+            Commande com2 = commandeManager.getCommande(2);
+            out.println(com2);
+            
+            out.println("<br/><br/>");
+            out.println("Je supprime l'article n°1");
+            articleManager.deleteArticle(1);
             
             out.println("<br/><br/>");
             
