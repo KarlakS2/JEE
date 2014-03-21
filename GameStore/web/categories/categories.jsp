@@ -17,10 +17,12 @@
                List<Categorie> liste_categories = (List<Categorie>) session.getAttribute("categories");
                if(liste_categories!=null)
                {
+                   out.println("<ul>");
                     for(Categorie c: liste_categories)
                     {
-                        out.println("<li><a href=\"/controleur/categorie/?nom_categorie="+c.getNom()+"\">Index</a></li>");
+                        out.println("<a href=\"/controleur/categorie/?nom_categorie="+c.getNom()+"\"><div class=\"inner\">"+c.getNom()+"</div></a>");
                     }
+                    out.println("</ul>");
                }
            %>
         </div>
