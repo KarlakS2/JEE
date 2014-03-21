@@ -27,25 +27,9 @@
     </head>
     <body>
         <header>
-            <img src="image/logo.png" class="Logo" id="Logo"></img>
-        <div class="Menu" >Menu
-        <div class="Connexion" >
-            <% 
-                if(session.getAttribute("nom_utilisateur")!=null)
-               {
-                    String sortie = "<p>Connecte en tant que ";
-                    sortie+=session.getAttribute("nom_utilisateur");
-                    sortie+="</p></br>";
-                    sortie+="<a href=./controleur/deconnexion>Se deconnecter</a>";
-                    out.println(sortie);
-                }
-                else
-                {
-                    out.println("<a href=\"./controleur/connexion\">Se connecter</a>");
-                }   
-             %>
-        </div>
-        </div>
+            <a href="/controleur/accueil"><img src="image/logo.png" class="Logo" id="Logo"></img></a>
+        
+             <jsp:include page="session/espace_perso.jsp"/>
         </header>
              
         <jsp:include page="categories/categories.jsp"/>
