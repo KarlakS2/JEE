@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Connexion {
     private String champ_mdp = "mdp";
+    private String champ_id = "identifiant";
     
    public Connexion(){
    }
@@ -28,8 +29,7 @@ public class Connexion {
    public boolean verifConnexion(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
        boolean connecte = false;
         Client client = null;
-        client = clientManager.getClient(request.getParameter("identifiant"));
-        String nomUtilisateur = client.getNom();
+        client = clientManager.getClient(champ_id);
         HttpSession session = request.getSession(true);
         
         if(client != null){

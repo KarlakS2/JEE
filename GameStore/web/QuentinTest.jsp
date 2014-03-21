@@ -1,88 +1,62 @@
 <%-- 
-    Document   : index
-    Created on : 20 mars 2014, 09:23:21
+    Document   : inscription.jsp
+    Created on : 20 mars 2014, 15:54:57
     Author     : Valdanial
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri= "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-
 <!DOCTYPE html>
-<html>
-    <%
-        if(session.getAttribute("first_coming").equals(0))
-        {
-            response.sendRedirect("/first_coming");
-        }
-    %>
-    <link rel="stylesheet" href="css/logo.css" />
-    <link rel="stylesheet" href="css/menu.css" />
-    <link rel="stylesheet" href="css/articles.css" />
-    <link rel="stylesheet" href="css/categories.css" />
-    <link rel="stylesheet" href="css/contenu.css" />
-    <link rel="stylesheet" href="css/inscription.css" />
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Game Store</title>
-    </head>
-    <body>
-        <header>
-            <img src="image/logo.png" class="Logo" id="Logo"></img>
-        <div class="Menu" >Menu
-        <div class="Connexion" >
-            <% 
-                if(session.getAttribute("nom_utilisateur")!=null)
-               {
-                    String sortie = "<p>Connecte en tant que ";
-                    sortie+=session.getAttribute("nom_utilisateur");
-                    sortie+="</p></br>";
-                    sortie+="<a href=./deconnexion>Se deconnecter</a>";
-                    out.println(sortie);
-                }
-                else
-                {
-                    out.println("<a href=\"./connexion\">Se connecter</a>");
-                }   
-             %>
-        </div>
-        </div>
-        </header>
-             
-        <jsp:include page="categories/categories.jsp"/>
-            <div class="Contenu">
-                <c:choose>
-                    <c:when test="${param.type_page=='accueil'}">
-                        <jsp:include page="contenu/accueil.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='inscription'}">
-                        <jsp:include page="session/inscription.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='connexion'}">
-                        <jsp:include page="session/connexion.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='panier'}">
-                        <jsp:include page="session/panier.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='accueil'}">
-                        <jsp:include page="contenu/accueil.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='acces_restreint'}">
-                        <jsp:include page="session/acces_restreint.jsp"/>
-                    </c:when>
-                    <c:when test="${param.type_page=='articles'}">
-                        <jsp:include page="contenu/articles.jsp"/>
-                    </c:when>
-                    <c:otherwise>
-                        <jsp:include page="page_not_found.jsp"/>
-                    </c:otherwise>
-                </c:choose>
-            </div>       
-            <footer>
+<div id="Formulaire">
+    <form action="/GameStore/controleur/valider_inscription">
+        <label>Nom d'utilisateur:</label> <input class="element_formulaire" type='text' name='identifiant' placeholder="Nom d'utilisateur" required></br>
+        <label>Mot de passe:</label> <input class="element_formulaire" type='password' name='mdp' placeholder="Mot de passe" required></br>
+        <label>Email:</label> <input class="element_formulaire" type='email' name='mail' placeholder="Adresse email" required></br>
+        <label>Nom:</label> <input class="element_formulaire" type='text' name='nom' placeholder="Nom"></br>
+        <label>Prénom:</label> <input class="element_formulaire" type='text' name='prenom' placeholder="Prénom"></br>
+        <label>Date de naissance:</label>
         
-        <form action="ServletTest" method="post">
-            <input type="submit" value="ServletTest">
-        </form>
-            </footer>
-    </body>
-    
-</html>
+        <label for="jour_naissance">Jour</label>
+        <select name='jour_naissance' id="jour_naissance">
+        
+            <c:forEach var="i" begin="1" end="31" step="1">
+                
+                <option value=<c:out value="${i}"/>><c:out value="${i}"/></option>}
+            </c:forEach>
+            
+        </select>
+        
+        <label for="mois_naissance">Mois</label>
+        <select name='mois_naissance' id="mois_naissance">
+        
+                <option value="1">Janvier</option>}
+                <option value="2">Février</option>}
+                <option value="3">Mars</option>}
+                <option value="4">Avril</option>}
+                <option value="5">Mai</option>}
+                <option value="6">Juin</option>}
+                <option value="7">Juillet</option>}
+                <option value="8">Août</option>}
+                <option value="9">Septembre</option>}
+                <option value="10">Octobre</option>}
+                <option value="11">Novembre</option>}
+                <option value="12">Décembre</option>}
+                
+            
+        </select>
+        
+        <label for="annee_naissance">Année</label>
+        <select name='annee_naissance' id="annee_naissance">
+        
+            <c:forEach var="i" begin="1900" end="2014" step="1">
+                
+                <option value=<c:out value="${i}"/>><c:out value="${i}"/></option>}
+            </c:forEach>
+            
+        </select>
+        </br>
+        <label>Sexe:</label><input class="element_formulaire" type='radio' name='sexe' value="H" checked id="sexe_homme"> <label for="sexe_homme">Homme</label></br>
+        <input class="element_formulaire" type='radio' name='sexe' id="sexe_femme"> <label for="sexe_femme">Femme</label>
+        <input type ="submit" class="element_formulaire" value="Terminer l'inscription">
+    </form>
+</div>

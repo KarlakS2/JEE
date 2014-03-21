@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -82,7 +82,6 @@ public class ServletControleur extends HttpServlet {
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
            session.setAttribute("categories", categories);
             session.setAttribute("type_page","accueil");
-            System.out.println("WAZA");
             
             response.sendRedirect("/GameStore/index.jsp");
             
@@ -92,7 +91,6 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
-                System.out.println("C'eeeeeeeeest moiiiiiii");
                 Connexion connexion = new Connexion();
                 
                 if(connexion.verifConnexion(request, response, clientManager)){
@@ -109,7 +107,6 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/controleur/categorie")){
             
                 String nom_categorie = request.getParameter("nom_categorie");
-                System.out.println("COUCOU!!!"); System.out.println(nom_categorie);
                 ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
                 
                 
@@ -120,16 +117,20 @@ public class ServletControleur extends HttpServlet {
                 response.sendRedirect("/GameStore/index.jsp");
             
             
-        }else if(page.equals("/controleur/inscription")){ //ajout d'un client à la bdd
+        }else if(page.equals("/controleur/inscription")){
+            session.setAttribute("type_page","inscription");
+            response.sendRedirect("/GameStore/index.jsp");
+        }else if(page.equals("/controleur/valider_inscription")){ //ajout d'un client à la bdd
             
-            session.setAttribute("type_page","accueil");
+            
             Inscription inscription = new Inscription();
             
             if(inscription.inscrireClient(request, response, clientManager)){
                 session.setAttribute("type_page","accueil");
                 Connexion connexion = new Connexion();
-                connexion.verifConnexion(request, response, clientManager);
                 
+                connexion.verifConnexion(request, response, clientManager);
+                session.setAttribute("type_page","accueil");
                 response.sendRedirect("/GameStore/index.jsp");
             }else{
                 session.setAttribute("type_page","inscription");
