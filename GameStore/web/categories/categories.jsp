@@ -20,7 +20,7 @@
                    out.println("<ul>");
                     for(Categorie c: liste_categories)
                     {
-                        out.println("<a href=\"/controleur/categorie/?nom_categorie="+c.getNom()+"\"><div class=\"inner\">"+c.getNom()+"</div></a>");
+                        out.println("<a href=\"./controleur/categorie/?nom_categorie="+c.getNom()+"\"><div class=\"inner\">"+c.getNom()+"</div></a>");
                     }
                     out.println("</ul>");
                }
