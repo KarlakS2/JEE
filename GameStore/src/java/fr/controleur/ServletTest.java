@@ -5,9 +5,11 @@ import fr.entite.Categorie;
 import fr.entite.Client;
 import fr.entite.Commande;
 import fr.manager.ArticleManager;
+import fr.manager.CategorieManager;
 import fr.manager.ClientManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,7 @@ public class ServletTest extends HttpServlet {
             Categorie categorie = new Categorie();
             categorie.setId(500);
             categorie.setNom("MaCategorie");
+            article.setCategorie(categorie);
             Commande commande = new Commande (5,client,article);
             
             out.println("Test du client :");
@@ -49,8 +52,11 @@ public class ServletTest extends HttpServlet {
             out.println("Test de la commande :");
             out.println(commande);
             out.println("<br/><br/>");
+            out.println("Test de la commande :");
+            out.println(categorie);
+            out.println("<br/><br/>");
             
-             out.println("--------------TEST CLIENTMANAGER--------------");
+             out.println("--------------TEST CLIENTMANAGER--------------<br/>");
             
             out.println("J'ajoute un client à la BDD");
             ClientManager clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
@@ -69,11 +75,31 @@ public class ServletTest extends HttpServlet {
             clientManager.deleteClient("Toto");
             
             out.println("<br/><br/>");
-            out.println("--------------TEST ARTICLEMANAGER--------------");
+            out.println("--------------TEST CATEGORIEMANAGER--------------<br/>");
+            
+            
+            out.println("J'ajoute une categorie à la BDD");
+            CategorieManager categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+            categorieManager.addCategorie(categorie);
+            
+            //out.println("<br/><br/>");
+            //out.println("L'article n°1 est il present dans la BDD ? reponse : "+categorieManager.presenceArticle(3));
+            
+            out.println("<br/><br/>");
+            out.println("Je recupere l'article n°3");
+            Categorie cat = categorieManager.getCategorie(1);
+            out.println(cat);
+            
+          //  out.println("<br/><br/>");
+          //  out.println("Je supprime l'article n°4");
+          //  articleManager.deleteArticle(4);
+            out.println("<br/><br/>");
+            out.println("--------------TEST ARTICLEMANAGER--------------<br/>");
             
             
             out.println("J'ajoute un article à la BDD");
             ArticleManager articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+            article.setCategorie(cat);
             articleManager.addArticle(article);
             
             out.println("<br/><br/>");
@@ -85,8 +111,16 @@ public class ServletTest extends HttpServlet {
             out.println(a);
             
             out.println("<br/><br/>");
+            out.println("Je recupere tous les articles de la categorie n°1<br/>");
+            ArrayList<Article> listeArticle = articleManager.getAllArticleByCategorie(1);
+            out.println("Il y a "+listeArticle.size()+" article(s)");
+            
+            out.println("<br/><br/>");
             out.println("Je supprime l'article n°4");
             articleManager.deleteArticle(4);
+            
+            out.println("<br/><br/>");
+            
         }
             
             

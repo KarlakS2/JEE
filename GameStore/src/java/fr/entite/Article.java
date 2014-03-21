@@ -10,20 +10,35 @@ public class Article {
     private String prix;
     private String description;
     private String urlImage;
+    private Categorie categorie;
 
-    public Article(int id, String nom, String prix, String description, String urlImage) {
+    public Article(int id, String nom, String prix, String description, String urlImage, Categorie categorie) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.description = description;
         this.urlImage = urlImage;
+        this.categorie = categorie;
     }
+
     public Article() {
         this.id = 0;
-        this.nom = "non defini";
-        this.prix = "non defini";
-        this.description = "non defini";
-        this.urlImage = "non defini";
+        this.nom = "non defnini";
+        this.prix = "non defnini";
+        this.description = "non defnini";
+        this.urlImage = "non defnini";
+        this.categorie = new Categorie();
+    }
+
+    
+    
+    
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     public int getId() {
@@ -68,8 +83,10 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", description=" + description + ", urlImage=" + urlImage + '}';
+        return "Article{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", description=" + description + ", urlImage=" + urlImage + ", categorie=" + categorie + '}';
     }
+
+    
     
     public String toStringSQL() {
         return "('" + nom + "','" + prix + "','" + description + "','" + urlImage + "')";
