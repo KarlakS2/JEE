@@ -2,12 +2,11 @@
 package fr.manager;
 
 import fr.entite.Article;
-import fr.entite.Client;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ArticleManager {
     private String bdd;
@@ -28,10 +27,9 @@ public class ArticleManager {
         Article article=null;
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
-           
-           String sql = "SELECT * FROM ARTICLE WHERE ID="+id+"";
-           ResultSet rs = s.executeQuery(sql);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ARTICLE WHERE ID=?");
+           s.setInt(1, id);
+           ResultSet rs = s.executeQuery();
            if(rs.next())
            {
                
@@ -60,13 +58,17 @@ public class ArticleManager {
     {
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
-           
            String sql = "INSERT INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE)"
                         + " VALUES "
-                        + article.toStringSQL();
+                        + "(?,?,?,?)";
+           PreparedStatement s = connection.prepareStatement(sql);
            
-           s.executeUpdate(sql);
+           s.setString(1, article.getNom());
+           s.setString(2, article.getPrix());
+           s.setString(3, article.getDescription());
+           s.setString(4, article.getUrlImage());
+           
+           s.executeUpdate();
            s.close();
            connection.close();
            return true;
@@ -84,11 +86,13 @@ public class ArticleManager {
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
            
-           String sql = "DELETE FROM ARTICLE WHERE ID="+id+"";
+           String sql = "DELETE FROM ARTICLE WHERE ID=?";
+           PreparedStatement s = connection.prepareStatement(sql);
+           s.setInt(1, id);
            
-           s.executeUpdate(sql);
+           
+           s.executeUpdate();
            s.close();
            connection.close();
            return true;
@@ -106,10 +110,9 @@ public class ArticleManager {
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
-           
-           String sql = "SELECT * FROM ARTICLE WHERE ID="+id+"";
-           ResultSet rs = s.executeQuery(sql);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ARTICLE WHERE ID=?");
+           s.setInt(1, id);
+           ResultSet rs = s.executeQuery();
            if(rs.next())
            {
              rs.close();

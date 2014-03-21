@@ -77,16 +77,16 @@ public class ServletTest extends HttpServlet {
             articleManager.addArticle(article);
             
             out.println("<br/><br/>");
-            out.println("L'article n°1 est il present dans la BDD ? reponse : "+articleManager.presenceArticle(1));
+            out.println("L'article n°1 est il present dans la BDD ? reponse : "+articleManager.presenceArticle(3));
             
             out.println("<br/><br/>");
-            out.println("Je recupere l'article n°1");
-            Article a = articleManager.getArticle(1);
+            out.println("Je recupere l'article n°3");
+            Article a = articleManager.getArticle(3);
             out.println(a);
             
             out.println("<br/><br/>");
-            out.println("Je supprime l'article n°1");
-            articleManager.deleteArticle(1);
+            out.println("Je supprime l'article n°4");
+            articleManager.deleteArticle(4);
         }
             
             

@@ -4,6 +4,7 @@ import fr.entite.Client;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -33,10 +34,10 @@ public class ClientManager {
         Client client=null;
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM CLIENT WHERE IDENTIFIANT=?");
+           s.setString(1, id);
            
-           String sql = "SELECT * FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
-           ResultSet rs = s.executeQuery(sql);
+           ResultSet rs = s.executeQuery();
            if(rs.next())
            {
                
@@ -64,13 +65,21 @@ public class ClientManager {
     {
        try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
-           
            String sql = "INSERT INTO CLIENT(IDENTIFIANT,MDP,MAIL,NOM,PRENOM,ADRESSE,NAISSANCE,SEXE)"
                         + " VALUES "
-                        + client.toStringSQL();
+                        + "(?,?,?,?,?,?,?,?)";
+           PreparedStatement s = connection.prepareStatement(sql);
            
-           s.executeUpdate(sql);
+           s.setString(1, client.getIdentifiant());
+           s.setString(2, client.getMdp());
+           s.setString(3, client.getMail());
+           s.setString(4, client.getNom());
+           s.setString(5, client.getPrenom());
+           s.setString(6, client.getAdresse());
+           s.setString(7, client.getNaissance());
+           s.setString(8, client.getSexe());
+           
+           s.executeUpdate();
            s.close();
            connection.close();
            return true;
@@ -88,11 +97,11 @@ public class ClientManager {
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
+           String sql = "DELETE FROM CLIENT WHERE IDENTIFIANT=?";
+           PreparedStatement s = connection.prepareStatement(sql);
+           s.setString(1,id);
            
-           String sql = "DELETE FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
-           
-           s.executeUpdate(sql);
+           s.executeUpdate();
            s.close();
            connection.close();
            return true;
@@ -110,10 +119,9 @@ public class ClientManager {
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           Statement s = connection.createStatement();
-           
-           String sql = "SELECT * FROM CLIENT WHERE IDENTIFIANT='"+id+"'";
-           ResultSet rs = s.executeQuery(sql);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM CLIENT WHERE IDENTIFIANT=?");
+           s.setString(1, id);
+           ResultSet rs = s.executeQuery();
            if(rs.next())
            {
              rs.close();
