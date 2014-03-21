@@ -97,10 +97,34 @@ public class CategorieManager {
        } 
        catch(SQLException e)
        {
-           System.out.println("Erreur getAllArticleByCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
+           System.out.println("Erreur getAllCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
        }
         
         return resultat;
+    }
+    
+    public Boolean deleteCategorie(int id)
+    {
+        
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           
+           String sql = "DELETE FROM CATEGORIE WHERE ID=?";
+           PreparedStatement s = connection.prepareStatement(sql);
+           s.setInt(1, id);
+           
+           
+           s.executeUpdate();
+           s.close();
+           connection.close();
+           return true;
+                      
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur deleteCategorie "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        return false;
     }
     
 }

@@ -82,9 +82,6 @@ public class ServletTest extends HttpServlet {
             CategorieManager categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
             categorieManager.addCategorie(categorie);
             
-            //out.println("<br/><br/>");
-            //out.println("L'article n°1 est il present dans la BDD ? reponse : "+categorieManager.presenceArticle(3));
-            
             out.println("<br/><br/>");
             out.println("Je recupere la categorie 1");
             Categorie cat = categorieManager.getCategorie(1);
@@ -95,9 +92,9 @@ public class ServletTest extends HttpServlet {
             ArrayList<Categorie> listeCategorie = categorieManager.getAllCategorie();
             out.println("Il y a "+listeCategorie.size()+" categorie(s)");
             
-          //  out.println("<br/><br/>");
-          //  out.println("Je supprime l'article n°4");
-          //  articleManager.deleteArticle(4);
+            out.println("<br/><br/>");
+            out.println("Je supprime l'article n°4");
+            categorieManager.deleteCategorie(4);
             out.println("<br/><br/>");
             out.println("--------------TEST ARTICLEMANAGER--------------<br/>");
             
