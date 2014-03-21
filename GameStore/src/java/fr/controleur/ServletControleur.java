@@ -6,15 +6,20 @@
 
 package fr.controleur;
 
+import fr.entite.Client;
+import fr.entite.Categorie;
+import fr.manager.ClientManager;
+import fr.manager.CategorieManager;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import fr.manager.ClientManager;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Haynner
@@ -31,18 +36,21 @@ public class ServletControleur extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private ClientManager client;
-            
+    private ClientManager clientManager;
+    public CategorieManager categorieManager;
     
+    @Override
     public void init(ServletConfig config) throws ServletException{
-        
-        client = new ClientManager();
+        categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         try{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         }
         catch( ClassNotFoundException e){
             System.out.println("ERREUR Driver => "+e.getMessage());  
         }
+        super.init(config); 
+
     }
     
     
@@ -51,33 +59,47 @@ public class ServletControleur extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String page = request.getServletPath();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("first_coming", 0);
         
-        if(page.equals("")){   //redirection vers mainpage
-            //String nom_page = "index";
-            //request.setAttribute("nom_page", nom_page);
-            getServletContext().getRequestDispatcher("/mainpage.jsp").forward(request, response);       
+        if(page.equals("/first_coming")){
+            request.setAttribute("type_page","accueil");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);       
             
         }else if(page.equals("/connexion")){ //vérification présence dans bdd + affichage page perso
-            if(client.presenceClient(request.getParameter("identifiant"))){
-                getServletContext().getRequestDispatcher("/Connexion").forward(request, response);
+            if(clientManager.presenceClient(request.getParameter("identifiant"))){
+                Connexion connexion = new Connexion(request, response, clientManager);
+                if(connexion.getConnecte()){
+                    request.setAttribute("type_page","accueil");
+                }else{
+                    request.setAttribute("type_page","inscription");
+                }
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
                 
             }else{
-                //String resultat = "incorrect";
-                //request.setAttribute("resultat", resultat);
-                getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
+                request.setAttribute("type_page","inscription");
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
-        }else if(page.equals("/profil")){
-            getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
+        }else if(page.equals("/categories")){
+            
+            ArrayList<Categorie> categories = categorieManager.getAllCategorie();
+            request.setAttribute("categories",categories);
+            request.setAttribute("type_page",categories);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else if(page.equals("/inscription")){ //ajout d'un client à la bdd
-            getServletContext().getRequestDispatcher("/Inscription").forward(request, response);
+            
+            request.setAttribute("type_page","accueil");
+            Inscription inscription = new Inscription(request,response,clientManager);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else if(page.equals("/recherche")){ //affichage de la page associé à la requete
             request.setAttribute("recherche", request.getParameter("recherche"));
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else if(page.equals("/panier")){
-            
+            request.setAttribute("","");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             
         }else{
             getServletContext().getRequestDispatcher("/page_not_found.jsp").forward(request, response);
