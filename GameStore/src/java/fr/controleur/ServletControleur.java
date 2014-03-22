@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin","/connexion_admin","/ajouter_article","/ajouter_categorie","/ajouter_administrateur","/supprimer_categorie","/controleur/valider_commande"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin","/connexion_admin","/ajouter_article","/ajouter_categorie","/ajouter_administrateur","/supprimer_categorie","/controleur/valider_commande","/controleur/desinscription"})
 public class ServletControleur extends HttpServlet {
     ArrayList<Categorie> categories =null;
     ArrayList<Article> articles = null;
@@ -112,12 +112,14 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/controleur/valider_commande")){
             
-            String client = (String)session.getAttribute("user_compte");
+            Client client = (Client)session.getAttribute("user_compte");
             if(client != null){
                 //ajout commande à la bdd
-               // for(each panier.getListeArticle)
-               // Commande nCommande = new Commande(0,session.getAttribute("user_compte",article));
-                session.setAttribute("type_page","commandes"); // commande effectuée
+                for(Article article : panier.getListeArticle()){
+                    Commande nCommande = new Commande(0,client,article);
+                    commandeManager.addCommande(nCommande);
+                }
+                session.setAttribute("type_page","commande_effectuee"); // commande effectuée
                 redirigerVersJSP(response);
             }else{
                 session.setAttribute("type_page","connexion");
@@ -180,6 +182,14 @@ public class ServletControleur extends HttpServlet {
                 redirigerVersJSP(response);
             }
             
+            
+        }else if(page.equals("/controleur/desinscription")){
+                
+            Client client = (Client)session.getAttribute("user_compte");
+            clientManager.deleteClient(client.getIdentifiant());
+            commandeManager.deleteCommandeByClient(client.getIdentifiant());
+            session.setAttribute("type_page","accueil");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/panier")){
                 
