@@ -17,6 +17,11 @@
             <a href=".././controleur/accueil">
                 <div id="Logo"></div>
                 <div id="reste_du_header">
+                    <c:choose>
+                    <c:when test="${sessionScope.administrateur==true}">
+                        <button value="deconnexion" type="submit"/>
+                    </c:when>
+                    </c:choose>
                 </div>
             </a>
     </header>
