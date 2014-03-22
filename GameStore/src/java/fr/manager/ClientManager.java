@@ -142,4 +142,31 @@ public class ClientManager {
         return false;
     }
     
+    public boolean presenceClientByMail(String mail)
+    {
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM CLIENT WHERE MAIL=?");
+           s.setString(1, mail);
+           ResultSet rs = s.executeQuery();
+           if(rs.next())
+           {
+             rs.close();
+             connection.close();
+             return true;
+           }
+           
+           rs.close();
+           connection.close();
+           
+           return false;
+           
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur presenceClient "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        return false;
+    }
+    
 }
