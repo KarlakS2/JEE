@@ -37,11 +37,11 @@
                         <TH> Annuler </TH> 
                     </TR>
                     
-                    <c:forEach var="commande" items="${requestScope.commande}">  
+                    <c:forEach var="commande" items="${sessionScope.commandes}">  
                         <TR> 
-                            <TD> <c:out value="${requestScope.commande.getId()}"/> </TD> 
-                            <TD> <c:out value="${requestScope.commande.getArticle().getNom()}"/> </TD> 
-                            <TD> <c:out value="${requestScope.commande.getClient.getNom()}"/> </TD> 
+                            <TD> <c:out value="${commande.getId()}"/> </TD> 
+                            <TD> <c:out value="${commande.getArticle().getNom()}"/> </TD> 
+                            <TD> <c:out value="${commande.getClient.getNom()}"/> </TD> 
                             <TD> 
                             <a href="/GameStore/controleur/enlever_commande?id_commande=${requestScope.commande.getId()}">
                             <div class="icone_delete"></div></a> 
