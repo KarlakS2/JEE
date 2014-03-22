@@ -12,7 +12,7 @@
 <div id="bloc_liste_articles">
     <table class="table_pres">
         <tr><th colspan="9">
-            <h3 id="titre_liste_articles">Catégorie: ${sessionScope.liste_articles.get(0).getCategorie().getNom()}</h3>
+            <h3 id="titre_liste_articles">Catégorie: ${sessionScope.categorie.getNom()}</h3>
         </th></tr>
             <tr>
                 
