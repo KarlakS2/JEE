@@ -17,11 +17,7 @@
             <a href=".././controleur/accueil">
                 <div id="Logo"></div>
                 <div id="reste_du_header">
-                    <c:choose>
-                    <c:when test="${sessionScope.administrateur==true}">
-                        <a href="/GameStore/controleur/deconnexion"><button value="deconnexion" type="submit">Deconnexion</button></a>
-                    </c:when>
-                    </c:choose>
+                    
                 </div>
             </a>
     </header>
@@ -30,7 +26,9 @@
         
                 <c:choose>
                     <c:when test="${sessionScope.administrateur==true}">
+                        
         <h1>Bienvenue sur la page d'administration!</h1>
+        <a href="/GameStore/controleur/deconnexion"><button value="deconnexion" type="submit">Deconnexion</button></a>
         
         
         <form action="/GameStore/ajouter_categorie" method="post">
