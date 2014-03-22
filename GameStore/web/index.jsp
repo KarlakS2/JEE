@@ -27,7 +27,10 @@
                 <div id="Logo"></div>
             </a>
             <div id="reste_du_header">
-             <jsp:include page="session/espace_perso.jsp"/>
+                <div id="header_gauche"></div>
+                <div id="header_droite">
+                    <jsp:include page="session/espace_perso.jsp"/>
+                </div>
             </div>
         </header>
              
@@ -67,9 +70,7 @@
             </div>       
             <footer>
         
-        <form action="ServletTest" method="post">
-            <input type="submit" value="ServletTest">
-        </form>
+        
             </footer>
     </body>
     

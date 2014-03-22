@@ -9,7 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<div id="conteneur_categories">
     <nav class="Categories" >
         <div class="element_menu">
            <h3>Catégories</h3>
@@ -22,6 +22,6 @@
                     </a>   
             </c:forEach>  
                </ul>         
-        
+        </div>
         </nav>
-    </div>
+</div>

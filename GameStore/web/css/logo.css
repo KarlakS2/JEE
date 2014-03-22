@@ -17,7 +17,7 @@ header
 
 #reste_du_header
 {
-    min-width: 500px;
+    min-width: 1000px;
     width: 100%;
     background-image: url("/GameStore/image/banniere.png");
     display: inline-block;
