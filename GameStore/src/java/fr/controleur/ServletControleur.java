@@ -177,7 +177,7 @@ public class ServletControleur extends HttpServlet {
                 
                 session.setAttribute("type_page","articles");
                 session.setAttribute("liste_articles",articles);
-
+                session.setAttribute("categorie",nom_categorie);
                 //request.getRequestDispatcher("/index.jsp").forward(request, response);
                 redirigerVersJSP(response);
             
