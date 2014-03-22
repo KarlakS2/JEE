@@ -25,7 +25,11 @@
                 <td>${sessionScope.panier.getNombreArticle(element_panier)}</td>
                 <td>${element_panier.getPrix()}€</td>
                 <td>${sessionScope.panier.getPrixParArticle(element_panier)}€</td>
-                <td></td>
+                <td>
+                    <a href="/GameStore/controleur/ajouter_article?nom_article=${element_panier.getNom()}">+</a>
+                    <a href="/GameStore/controleur/diminuer_article?nom_article=${element_panier.getNom()}">-</a>
+                    <a href="/GameStore/controleur/enlever_article?nom_article=${element_panier.getNom()}">x</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
