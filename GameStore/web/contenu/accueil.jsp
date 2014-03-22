@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 
     <body>
-        <h1>Accueil</h1>
+        Bonjour, bienvenue sur GameStore!
+        </br>
+        Vous pouvez naviguer dans les catégories du menu à gauche pour constituer votre panier.
     </body>
 
