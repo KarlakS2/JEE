@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -120,13 +120,14 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/controleur/inscription")){
             session.setAttribute("type_page","inscription");
             redirigerVersJSP(response);
+            
         }else if(page.equals("/controleur/valider_inscription")){ //ajout d'un client à la bdd
             
             
             Inscription inscription = new Inscription();
             
             if(inscription.inscrireClient(request, response, clientManager)){
-                session.setAttribute("type_page","accueil");
+                
                 Connexion connexion = new Connexion();
                 
                 connexion.verifConnexion(request, response, clientManager);

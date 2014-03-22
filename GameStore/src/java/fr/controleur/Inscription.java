@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import fr.entite.Client;
 import fr.manager.ClientManager;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,17 +22,46 @@ import fr.manager.ClientManager;
 
 public class Inscription{
 
+    
+    
+    
     public Inscription(){
         
     }
         
     public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
     
-       String date_naissance = request.getParameter("jour_naissance")+" "+request.getParameter("mois_naissance")+" "+request.getParameter("annee_naissance");
+        String identifiant = request.getParameter("user");
+        String mdp = request.getParameter("password");
+        String email = request.getParameter("email");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String adresse = request.getParameter("adresse");
+        String sexe = request.getParameter("sexe");
+        String date_naissance = request.getParameter("jour_naissance")+" "+request.getParameter("mois_naissance")+" "+request.getParameter("annee_naissance");
+        HttpSession session = request.getSession();
 
-        Client client = new Client(request.getParameter("identifiant"),request.getParameter("mdp"),request.getParameter("mail"),request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("adresse"),date_naissance,request.getParameter("sexe"));
-        clientManager.addClient(client);
-        return true;
+        Client client = new Client(identifiant,mdp,email,nom,prenom,adresse,date_naissance,sexe);
+        System.out.println("hello");
+        if(!clientManager.presenceClient(identifiant)){
+            if(!clientManager.presenceClientByMail(email)){
+                System.out.println("hello2");
+                if(clientManager.addClient(client)){
+                    session.setAttribute("inscription","un champ ne convient pas");
+                    return true;
+                }else{
+                    session.setAttribute("inscription","");
+                    return false;
+                }
+            }else{
+                session.setAttribute("inscription","email déjà associé à un compte");
+                return false;
+            }
+        }else{
+            System.out.println("bye");
+            session.setAttribute("inscription","identifiant déjà utilisé");
+            return false;
+        }       
     }
 
 }
