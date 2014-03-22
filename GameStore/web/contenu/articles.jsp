@@ -9,6 +9,7 @@
 <%@page import="fr.entite.Article"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<div id="bloc_liste_articles">
 <ul>
         <c:forEach var="article" items="${sessionScope.liste_articles}">
             <a href="/GameStore/controleur/article?id_article=${article.getId()}">
@@ -23,5 +24,6 @@
                 
         </c:forEach>  
 </ul>
+</div>
 
     

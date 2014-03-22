@@ -62,6 +62,9 @@
                     <c:when test="${sessionScope.type_page=='article'}">
                         <jsp:include page="contenu/article.jsp"/>
                     </c:when>
+                    <c:when test="${sessionScope.type_page=='profil'}">
+                        <jsp:include page="session/profil.jsp"/>
+                    </c:when>
                     <c:otherwise>
                         <jsp:include page="page_not_found.jsp"/>
                     </c:otherwise>

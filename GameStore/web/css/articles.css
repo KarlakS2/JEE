@@ -8,6 +8,12 @@ and open the template in the editor.
     Author     : Valdanial
 */
 
+#bloc_liste_articles
+{
+    display: inline-block;
+    margin: auto auto;
+}
+
 .miniature_article
 {
    display: inline-block;
