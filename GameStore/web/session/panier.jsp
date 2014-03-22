@@ -26,17 +26,17 @@
                 <td>${element_panier.getPrix()}€</td>
                 <td>${sessionScope.panier.getPrixParArticle(element_panier)}€</td>
                 <td>
-                    <a href="/GameStore/controleur/ajouter_article?nom_article=${element_panier.getNom()}">
+                    <a href="/GameStore/controleur/ajouter_article?id_article=${element_panier.getId()}">
                         <div class="icone_add">
                             
                         </div>
                     </a>
-                    <a href="/GameStore/controleur/diminuer_article?nom_article=${element_panier.getNom()}">
+                    <a href="/GameStore/controleur/diminuer_article?id_article=${element_panier.getId()}">
                         <div class="icone_minus">
                             
                         </div>
                     </a>
-                    <a href="/GameStore/controleur/enlever_article?nom_article=${element_panier.getNom()}">
+                    <a href="/GameStore/controleur/enlever_article?id_article=${element_panier.getId()}">
                         <div class="icone_delete">
                             
                         </div>

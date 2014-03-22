@@ -11,10 +11,10 @@
 <!DOCTYPE html>
 <ul>
         <c:forEach var="article" items="${sessionScope.liste_articles}">
-            <a href="/GameStore/controleur/article?nom_article=${article.getNom()}">
+            <a href="/GameStore/controleur/article?id_article=${article.getId()}">
                 <img class="miniature_article" src="${article.getUrlImage()}"></img>
             </a>
-            <a href="/GameStore/controleur/ajouter_panier?nom_article=${article.getNom()}">
+            <a href="/GameStore/controleur/ajouter_panier?id_article=${article.getId()}">
                 <div class="icone_panier"/></div>
             </a>
                 <h3 class="prix_article">
