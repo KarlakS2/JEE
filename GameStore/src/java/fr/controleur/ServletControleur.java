@@ -62,21 +62,9 @@ public class ServletControleur extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-       
-        /*categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
-        clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
-        articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
-        
-        try{
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        }
-        catch( ClassNotFoundException e){
-            System.out.println("ERREUR Driver => "+e.getMessage());  
-        }*/
-        
         String page = request.getServletPath();
         HttpSession session = request.getSession(true);
-        //session.setAttribute("first_coming", 0);
+
       System.out.println(page);
         if(page.equals("/controleur/")){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
@@ -154,38 +142,31 @@ public class ServletControleur extends HttpServlet {
             
             
             
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
-        }else if(page.equals("/controleur/panier")){
-            
-            
-            
-            session.setAttribute("","");
-            redirigerVersJSP(response);
-            
-        }else if(page.equals("/controleur/panier")){
+        }else if(page.equals("/controleur/ajouter_article")){
             
             
             
             session.setAttribute("","");
             redirigerVersJSP(response);
             
-        }else if(page.equals("/controleur/panier")){
+        }else if(page.equals("/controleur/diminuer_article")){
             
             
             
             session.setAttribute("","");
             redirigerVersJSP(response);
             
-        }else if(page.equals("/ajout_article")){
-           
+        }else if(page.equals("/controleur/enlever_article")){
+            
+            
             
             session.setAttribute("","");
             redirigerVersJSP(response);
             
-        }
-        else if(page.equals("/controleur/accueil"))
+        }else if(page.equals("/controleur/accueil"))
         {
             session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
