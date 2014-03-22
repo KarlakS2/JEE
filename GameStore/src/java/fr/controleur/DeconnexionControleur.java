@@ -20,6 +20,6 @@ public class DeconnexionControleur {
     public void deconnecte(HttpSession session){
         session.setAttribute("user_compte",null);  
         session.setAttribute("nom_utilisateur",null);
-        session.setAttribute("administrateur", null);
+        session.setAttribute("administrateur", false);
     }
 }
