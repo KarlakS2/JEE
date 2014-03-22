@@ -16,6 +16,9 @@
     <body>
         <c:choose>
             <c:when test="${sessionScope.user_compte!=null}">
+                <div id="bloc_panier">   
+                <h1 id="titre_panier">Mes Commandes</h1>
+                
                 <table class="table_pres">
                     <tr>
                        <th>Numéro commande</th>
@@ -39,6 +42,7 @@
                      </c:forEach> 
                      
                 </table>
+                </div>
             </c:when> 
             <c:otherwise>
                 

@@ -15,6 +15,11 @@
         
         <c:choose>
             <c:when test="${sessionScope.user_compte!=null}">
+                <div id="bloc_panier">   
+
+                <h1 id="titre_panier">Mon profil</h1>
+                
+                
                 <p>Indentifiant : <c:out value="${sessionScope.user_compte.getIdentifiant()}"></c:out></p>
                 <p>E-mail : <c:out value="${sessionScope.user_compte.getMail()}"></c:out></p>
                 <br/>
@@ -25,6 +30,7 @@
                 <p>Sexe : <c:out value="${sessionScope.user_compte.getSexe()}"></c:out></p>
 
                 <a href="/GameStore/controleur/Desinscription"><button type="submit">Se désinscrire</button></a>
+                </div>
             </c:when> 
             <c:otherwise>
                 
