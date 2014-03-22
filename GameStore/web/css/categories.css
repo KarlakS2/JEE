@@ -48,6 +48,11 @@ text-align: center;
     color: black;
 }
 
+.inner div
+{
+    margin-left: 3px;
+}
+
 #conteneur_categories
 {
     height:100%;

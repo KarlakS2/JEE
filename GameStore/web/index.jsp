@@ -70,7 +70,9 @@
             </div>       
             <footer>
         
-        
+                <form action="/GameStore/controleur/admin">
+                    <input type="submit" value="Admin"/>
+                </form>
             </footer>
     </body>
     

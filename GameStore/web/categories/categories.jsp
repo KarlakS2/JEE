@@ -18,7 +18,7 @@
            <c:forEach var="categorie" items="${sessionScope.categories}">
                 
                     <a href="/GameStore/controleur/categorie/?nom_categorie=${categorie.getNom()}">
-                        <div class='inner'>${categorie.getNom()}</div>
+                        <div class='inner'><div>${categorie.getNom()}</div></div>
                     </a>   
             </c:forEach>  
                </ul>         

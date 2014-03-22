@@ -13,9 +13,32 @@ and open the template in the editor.
     text-align: center;
 }
 
+#table_panier tr td
+{
+    background-color: #A7D6FF
+}
+
+#table_panier tr th
+{
+    min-width: 100px;
+    background-color: #97C6FF
+}
+
+#table_panier tr td:hover
+{
+    background-color: #8FCEDF
+}
+
+
 #titre_panier
 {
-    margin-left: auto;
+    text-align: center;
+}
+
+#bloc_panier
+{
+    margin-left: 20px;
+    margin-top: 15px;
 }
 
 .icone_add
@@ -52,4 +75,22 @@ and open the template in the editor.
 .icone_delete:hover
 {
     background-image: url("/GameStore/image/delete_hover.png");
+}
+
+.image_jeu_panier
+{
+    float: left;
+}
+
+.bloc_image_jeu_panier
+{
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.panier_nom_article
+{
+    width: 100%;
+    height: 100%;
 }
