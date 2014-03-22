@@ -9,17 +9,18 @@
 <!DOCTYPE html>
 
 <div id="bloc_article">
+    <table id="table_article">
+        <tr>
+            <td>               
+                <h1>${sessionScope.article.getNom()}</h1>
+                <a href="${sessionScope.article.getUrlImage()}">
+                    <img src="${sessionScope.article.getUrlImage()}"/>
+                </a>                
+            </td>
+            <td>               
+                    <p>${sessionScope.article.getDescription()}</p>
+            </td>
+        </tr>
     
-    <div id="fiche_article_partie_gauche">
-        <h1>${sessionScope.article.getNom()}</h1>
-        <a href="${sessionScope.article.getUrlImage()}">
-            <img src="${sessionScope.article.getUrlImage()}"/>
-        </a>
-    </div>
-        
-    <div id="fiche_article_partie_droite">
-        <p>${sessionScope.article.getDescription()}</p>
-    </div>
-    
-
+    </table>
 </div>

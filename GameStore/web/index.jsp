@@ -68,12 +68,12 @@
                 </c:choose>
             </c:if>
             </div>       
-            <footer>
+            
+    </body>
+    <footer>
         
                 <form action="/GameStore/controleur/admin">
                     <input type="submit" value="Admin"/>
                 </form>
             </footer>
-    </body>
-    
 </html>
