@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -106,7 +106,7 @@ public class ServletControleur extends HttpServlet {
             
                 String nom_categorie = request.getParameter("nom_categorie");
                 ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
-                
+                ArrayList<Article> liste_articles = articleManager.getAllArticleByCategorie(nom_categorie);
                 
                 session.setAttribute("type_page","articles");
                 session.setAttribute("liste_articles",articles);
@@ -175,17 +175,19 @@ public class ServletControleur extends HttpServlet {
         }
         else if(page.contains("/controleur/article"))
         {
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            session.setAttribute("article", article);
             session.setAttribute("type_page","article");
             redirigerVersJSP(response);
-        }
-        else if(page.contains("/controleur/ajouter_panier"))
-        {
-            String article = request.getParameter("nom_article");
             
-            session.setAttribute("type_page","article");
+        }else if(page.equals("/controleur/ajouter_panier")){
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
-        }
-        else{            
+            
+        }else{            
             
             response.sendRedirect("/GameStore/page_not_found.jsp");
         }
