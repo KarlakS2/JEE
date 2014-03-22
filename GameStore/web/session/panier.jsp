@@ -12,7 +12,7 @@
     
     <div id="bloc_panier">
         <h1 id="titre_panier">Mon panier</h1>
-        <table id="table_panier">
+        <table id="table_panier" class="table_pres">
             <tr>
                <th>Nom du jeu</th>
                <th>Quantité</th>

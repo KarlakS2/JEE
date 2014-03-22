@@ -17,6 +17,9 @@
             <a href=./controleur/panier>Mon Panier</a>
             <a href=./controleur/commandes>Mes Commandes</a>
             <a href=./controleur/deconnexion>Se deconnecter</a>
+            <c:if test="${sessionScope.administrateur==true}">
+                <a href=./controleur/admin>Espace Administrateur</a>
+            </c:if>
         </c:when>
         <c:otherwise>
             <a href=./controleur/panier>Mon Panier</a>

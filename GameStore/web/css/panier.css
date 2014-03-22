@@ -29,6 +29,26 @@ and open the template in the editor.
     background-color: #8FCEDF
 }
 
+.table_pres tr
+{
+    text-align: center;
+}
+
+.table_pres tr td
+{
+    background-color: #A7D6FF
+}
+
+.table_pres tr th
+{
+    background-color: #97C6FF
+}
+
+.table_pres tr td:hover
+{
+    background-color: #8FCEDF
+}
+
 
 
 #titre_panier
@@ -38,6 +58,7 @@ and open the template in the editor.
 
 #bloc_panier
 {
+    display:inline-block;
     margin-left: 20px;
     margin-top: 15px;
 }

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/contenu.css" />
     <link rel="stylesheet" href="css/inscription.css" />
     <link rel="stylesheet" href="css/panier.css" />
+    <link rel="stylesheet" href="css/article.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Store</title>
@@ -65,6 +66,9 @@
                     <c:when test="${sessionScope.type_page=='profil'}">
                         <jsp:include page="session/profil.jsp"/>
                     </c:when>
+                    <c:when test="${sessionScope.type_page=='commande'}">
+                        <jsp:include page="session/commande.jsp"/>
+                    </c:when>
                     <c:otherwise>
                         <jsp:include page="page_not_found.jsp"/>
                     </c:otherwise>
@@ -75,8 +79,5 @@
     </body>
     <footer>
         
-                <form action="/GameStore/controleur/admin">
-                    <input type="submit" value="Admin"/>
-                </form>
             </footer>
 </html>
