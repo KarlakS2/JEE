@@ -6,12 +6,15 @@
 
 package fr.controleur;
 
-import fr.entite.Client;
-import fr.entite.Categorie;
 import fr.entite.Article;
-import fr.manager.ClientManager;
-import fr.manager.CategorieManager;
+import fr.entite.Categorie;
+import fr.entite.Client;
+import fr.entite.Commande;
+import fr.manager.AdministrateurManager;
 import fr.manager.ArticleManager;
+import fr.manager.CategorieManager;
+import fr.manager.ClientManager;
+import fr.manager.CommandeManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +45,8 @@ public class ServletControleur extends HttpServlet {
     private ClientManager clientManager;
     private CategorieManager categorieManager;
     private ArticleManager articleManager;
+    private AdministrateurManager administrateurManager;
+    private CommandeManager commandeManager;
     private Panier panier;
     
    @Override
@@ -49,6 +54,8 @@ public class ServletControleur extends HttpServlet {
         categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        administrateurManager = new AdministrateurManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        commandeManager = new CommandeManager("jdbc:derby://localhost:1527/GameStore","game","store");
         panier = new Panier();
         
         try{
@@ -68,15 +75,16 @@ public class ServletControleur extends HttpServlet {
         
         String page = request.getServletPath(); 
         HttpSession session = request.getSession(true);
-        
+        categories = categorieManager.getAllCategorie();
+            
+        session.setAttribute("panier", panier);
+            
+        session.setAttribute("categories", categories);
                 
       System.out.println(page);
         if(page.equals("/controleur/")){
-            categories = categorieManager.getAllCategorie();
             
-            session.setAttribute("panier", panier);
             
-            session.setAttribute("categories", categories);
             session.setAttribute("type_page","accueil");
             
             redirigerVersJSP(response);
@@ -91,6 +99,18 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/commandes")){
+            ArrayList<Commande> commandes = null;
+            if(session.getAttribute("nom_utilisateur") != null){
+                commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
+                session.setAttribute("liste_commandes",commandes);
+            }else{
+            }
+            
+            session.setAttribute("type_page","commandes");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/commandes")){
+            
             
             session.setAttribute("type_page","commandes");
             redirigerVersJSP(response);
@@ -198,13 +218,26 @@ public class ServletControleur extends HttpServlet {
             
             redirigerVersJSP(response);
             
-        }else if(page.equals("")){
+        }else if(page.equals("/controleur/admin")){
           
             session.setAttribute("type_page","admin");
             redirigerVersJSP(response);
             
-        }else if(page.equals("")){ //ajouter bdd
-            
+        }else if(page.equals("/controleur/connexion_admin")){ 
+            if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
+                Connexion connexion = new Connexion();
+                
+                if(connexion.verifConnexionAdmin(request, response, administrateurManager)){
+                    session.setAttribute("type_page","accueil");
+                }else{
+                    session.setAttribute("type_page","inscription");
+                }
+               redirigerVersJSP(response);
+                
+            }else{
+                session.setAttribute("type_page","inscription");
+                redirigerVersJSP(response);
+            }
             
             
         }else if(page.equals("")){

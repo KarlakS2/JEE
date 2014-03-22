@@ -97,4 +97,32 @@ public class AdministrateurManager {
         
        return false;
     }
+    
+    public boolean presenceAdministrateur(String id)
+    {
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ADMIN WHERE IDENTIFIANT=?");
+           s.setString(1, id);
+           ResultSet rs = s.executeQuery();
+           if(rs.next())
+           {
+             rs.close();
+             connection.close();
+             return true;
+           }
+           
+           rs.close();
+           connection.close();
+           
+           return false;
+           
+       } 
+        
+       catch(SQLException e)
+       {
+           System.out.println("Erreur presenceAdmibistrateur "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        return false;
+    }
 }
