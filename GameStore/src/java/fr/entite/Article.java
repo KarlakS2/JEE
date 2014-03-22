@@ -98,6 +98,13 @@ public class Article {
         Article a = (Article)obj;
         return this.id==a.getId();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + this.id;
+        return hash;
+    }
     
     
     
