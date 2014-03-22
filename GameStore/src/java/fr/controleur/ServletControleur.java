@@ -30,10 +30,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin","/connexion_admin","/ajouter_article","/ajouter_categorie","/ajouter_administrateur","/supprimer_categorie","/controleur/valider_commande","/controleur/desinscription"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/enlever_commande","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin","/connexion_admin","/ajouter_article","/ajouter_categorie","/ajouter_administrateur","/supprimer_categorie","/controleur/valider_commande","/controleur/desinscription"})
 public class ServletControleur extends HttpServlet {
     ArrayList<Categorie> categories =null;
     ArrayList<Article> articles = null;
+    ArrayList<Commande> commandes = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -81,7 +82,11 @@ public class ServletControleur extends HttpServlet {
         session.setAttribute("panier", panier);
             
         session.setAttribute("categories", categories);
-                
+        if(session.getAttribute("nom_utilisateur") != null){
+                commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
+                session.setAttribute("commandes",commandes);
+        }
+        
       System.out.println(page);
         if(page.equals("/controleur/")){
             
@@ -100,12 +105,8 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/commandes")){
-            ArrayList<Commande> commandes = null;
-            if(session.getAttribute("nom_utilisateur") != null){
-                commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
-                session.setAttribute("commandes",commandes);
-            }else{
-            }
+            
+            
             
             session.setAttribute("type_page","commande");
             redirigerVersJSP(response);
@@ -128,6 +129,15 @@ public class ServletControleur extends HttpServlet {
             }
             
             
+        }else if(page.equals("/controleur/enlever_commande")){
+ 
+            commandeManager.deleteCommande(Integer.parseInt(request.getParameter("id_commande")));
+            if(session.getAttribute("nom_utilisateur") != null){
+                commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
+                session.setAttribute("commandes",commandes);
+            }
+            session.setAttribute("type_page","commande");
+            redirigerVersJSP(response);
         }else if(page.equals("/controleur/deconnexion")){
             DeconnexionControleur deco = new DeconnexionControleur();
             deco.deconnecte(session);
@@ -144,6 +154,15 @@ public class ServletControleur extends HttpServlet {
                     session.setAttribute("type_page","inscription");
                 }
                redirigerVersJSP(response);
+                
+            }else if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
+                Connexion connexion = new Connexion();
+                if(connexion.verifConnexionAdmin(request, response, administrateurManager)){
+                    response.sendRedirect("/GameStore/admin/index.jsp");
+                }else{
+                    session.setAttribute("type_page","inscription");
+                    redirigerVersJSP(response);
+                }
                 
             }else{
                 session.setAttribute("type_page","inscription");
@@ -170,7 +189,7 @@ public class ServletControleur extends HttpServlet {
             
             Inscription inscription = new Inscription();
             
-            if(inscription.inscrireClient(request, response, clientManager)){
+            if(inscription.inscrireClient(request, response, clientManager, administrateurManager)){
                 
                 Connexion connexion = new Connexion();
                 
@@ -269,22 +288,29 @@ public class ServletControleur extends HttpServlet {
             response.sendRedirect("/GameStore/admin/index.jsp");
             
         }else if(page.equals("/ajouter_article")){
-            String nom = request.getParameter("nomArticle");
-            int prix = Integer.parseInt(request.getParameter("prixArticle"));
-            String description = request.getParameter("descriptionArticle");
-            String url = request.getParameter("imageArticle");
-            Categorie NomCategorie = categorieManager.getCategorie(request.getParameter("categorieArticle"));
-            Article nouvelArticle = new Article(0,nom,prix,description,url,NomCategorie);
-            articleManager.addArticle(nouvelArticle);
-            
+            try{
+                String nom = request.getParameter("nomArticle");
+                int prix = Integer.parseInt(request.getParameter("prixArticle"));
+                String description = request.getParameter("descriptionArticle");
+                String url = request.getParameter("imageArticle");
+                Categorie NomCategorie = categorieManager.getCategorie(request.getParameter("nomCategorie"));
+
+                Article nouvelArticle = new Article(0,nom,prix,description,url,NomCategorie);
+                articleManager.addArticle(nouvelArticle);
+            }catch(Exception e){
+                response.sendRedirect("/GameStore/admin/index.jsp");
+            }
             response.sendRedirect("/GameStore/admin/index.jsp");
-            
         }else if(page.equals("/ajouter_administrateur")){
             String id = request.getParameter("identifiantAdmin");
             String mdp = request.getParameter("mdpAdmin");
             String mail = request.getParameter("mailAdmin");
-            Administrateur admin = new Administrateur(id,mdp,mail);
-            administrateurManager.addAdministrateur(admin);
+            if(!clientManager.presenceClient(id) && !administrateurManager.presenceAdministrateur(id)){
+                Administrateur admin = new Administrateur(id,mdp,mail);
+                administrateurManager.addAdministrateur(admin);
+            }else{
+                //message : id déjà utilisé
+            }
             
             response.sendRedirect("/GameStore/admin/index.jsp");
         }else if(page.equals("/supprimer_categorie")){
