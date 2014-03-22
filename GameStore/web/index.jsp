@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/categories.css" />
     <link rel="stylesheet" href="css/contenu.css" />
     <link rel="stylesheet" href="css/inscription.css" />
+    <link rel="stylesheet" href="css/panier.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Store</title>
