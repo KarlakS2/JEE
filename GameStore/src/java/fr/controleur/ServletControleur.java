@@ -89,7 +89,7 @@ public class ServletControleur extends HttpServlet {
         
       System.out.println(page);
         if(page.equals("/controleur/")){
-            
+            session.setAttribute("administrateur", false);
             
             session.setAttribute("type_page","accueil");
             
