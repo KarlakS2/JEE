@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article"})
 public class ServletControleur extends HttpServlet {
     ArrayList<Categorie> categories =null;
     ArrayList<Article> articles = null;
@@ -157,21 +157,21 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_article")){
-            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.addArticle(article);
             
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/diminuer_article")){
-            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.reduceArticle(article);      
             
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/enlever_article")){
-            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.deleteArticle(article);
             
             session.setAttribute("type_page","panier");
