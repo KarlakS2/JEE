@@ -9,8 +9,8 @@
 <!DOCTYPE html>
 <div id="Formulaire">
     <form action="/GameStore/controleur/valider_inscription">
-        <label>Nom d'utilisateur:</label> <input class="element_formulaire" type='text' name='user' placeholder="Nom d'utilisateur" required></br>
-        <label>Mot de passe:</label> <input class="element_formulaire" type='password' name='password' placeholder="Mot de passe" required></br>
+        <label>Nom d'utilisateur:</label> <input class="element_formulaire" type='text' name='identifiant' placeholder="Nom d'utilisateur" required></br>
+        <label>Mot de passe:</label> <input class="element_formulaire" type='password' name='mdp' placeholder="Mot de passe" required></br>
         <label>Email:</label> <input class="element_formulaire" type='email' name='email' placeholder="Adresse email" required></br>
         <label>Nom:</label> <input class="element_formulaire" type='text' name='nom' placeholder="Nom"></br>
         <label>Prénom:</label> <input class="element_formulaire" type='text' name='prenom' placeholder="Prénom"></br>

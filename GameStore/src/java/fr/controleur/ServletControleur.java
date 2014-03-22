@@ -134,6 +134,7 @@ public class ServletControleur extends HttpServlet {
                 session.setAttribute("type_page","accueil");
                 redirigerVersJSP(response);
             }else{
+                
                 session.setAttribute("type_page","inscription");
                 redirigerVersJSP(response);
             }

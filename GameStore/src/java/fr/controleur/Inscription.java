@@ -31,8 +31,8 @@ public class Inscription{
         
     public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
     
-        String identifiant = request.getParameter("user");
-        String mdp = request.getParameter("password");
+        String identifiant = request.getParameter("identifiant");
+        String mdp = request.getParameter("mdp");
         String email = request.getParameter("email");
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
