@@ -239,10 +239,26 @@ public class ServletControleur extends HttpServlet {
             }
             
             
-        }else if(page.equals("")){
+        }else if(page.equals("/ajouter_categorie")){
             
+            Categorie categorie = categorieManager.getCategorie(request.getParameter("nomCategorie"));
+            if(categorie == null){
+                Categorie nouvelleCategorie = new Categorie(request.getParameter("nomCategorie"));
+                categorieManager.addCategorie(nouvelleCategorie);
+            }else{
+                
+            }
+            response.sendRedirect("/GameStore/admin/index.jsp");
             
+        }else if(page.equals("/ajouter_article")){
             
+        
+        }else if(page.equals("/ajouter_categorie")){
+        
+        
+        }else if(page.equals("/ajouter_categorie")){
+        
+        
         }else{            
             
             response.sendRedirect("/GameStore/page_not_found.jsp");
