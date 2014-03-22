@@ -91,6 +91,13 @@ public class Article {
     public String toStringSQL() {
         return "('" + nom + "','" + prix + "','" + description + "','" + urlImage + "')";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj.getClass()!=this.getClass()) return false;
+        Article a = (Article)obj;
+        return this.id==a.getId();
+    }
     
     
     
