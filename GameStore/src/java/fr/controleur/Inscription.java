@@ -38,7 +38,7 @@ public class Inscription{
         String prenom = request.getParameter("prenom");
         String adresse = request.getParameter("adresse");
         String sexe = request.getParameter("sexe");
-        String date_naissance = request.getParameter("jour_naissance")+" "+request.getParameter("mois_naissance")+" "+request.getParameter("annee_naissance");
+        String date_naissance = request.getParameter("jour_naissance")+"/"+request.getParameter("mois_naissance")+"/"+request.getParameter("annee_naissance");
         HttpSession session = request.getSession();
 
         Client client = new Client(identifiant,mdp,email,nom,prenom,adresse,date_naissance,sexe);
