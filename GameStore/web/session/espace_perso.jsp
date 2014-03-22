@@ -11,8 +11,8 @@
 
 <div class="Menu">
     <c:choose>
-        <c:when test="${requestScope.nom_utilisateur!=null}">
-            <p>Connecté en tant que <c:out value="${requestScope.nom_utilisateur}"/> </p>
+        <c:when test="${sessionScope.nom_utilisateur!=null}">
+            <p>Connecté en tant que <c:out value="${sessionScope.nom_utilisateur}"/> </p>
             </br>
             <a href=./controleur/profil>Profil</a>
             <a href=./controleur/panier>Mon Panier</a>
