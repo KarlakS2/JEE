@@ -59,6 +59,8 @@ public class Connexion {
                 connecte = true;
                 session.setAttribute("user_compte",admin);  
                 session.setAttribute("nom_utilisateur",admin.getIdentifiant());
+                boolean adminb = true;
+                session.setAttribute("administrateur", adminb);
             }
                        
         }else{

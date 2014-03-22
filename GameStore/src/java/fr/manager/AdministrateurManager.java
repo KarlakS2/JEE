@@ -54,7 +54,7 @@ public class AdministrateurManager {
         Administrateur admin=null;
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           PreparedStatement s = connection.prepareStatement("SELECT * FROM ADMINISTRATEUR WHERE IDENTIFIANT=?");
+           PreparedStatement s = connection.prepareStatement("SELECT * FROM ADMIN WHERE IDENTIFIANT=?");
            s.setString(1, id);
            
            ResultSet rs = s.executeQuery();

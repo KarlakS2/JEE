@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes","/controleur/ajouter_article","/controleur/diminuer_article","/controleur/enlever_article","/controleur/ajouter_categorie","/controleur/ajouter_article","/controleur/ajouter_administrateur","/controleur/admin","/connexion_admin"})
 public class ServletControleur extends HttpServlet {
     ArrayList<Categorie> categories =null;
     ArrayList<Article> articles = null;
@@ -222,27 +222,41 @@ public class ServletControleur extends HttpServlet {
           
             response.sendRedirect("/GameStore/admin/index.jsp");
             
-        }else if(page.equals("/controleur/connexion_admin")){ 
+        }else if(page.equals("/connexion_admin")){ 
             if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
-                
                 if(connexion.verifConnexionAdmin(request, response, administrateurManager)){
                     session.setAttribute("type_page","accueil");
+                    redirigerVersJSP(response);
                 }else{
-                    session.setAttribute("type_page","inscription");
+                    response.sendRedirect("/GameStore/admin/index.jsp");
                 }
-               redirigerVersJSP(response);
                 
             }else{
-                session.setAttribute("type_page","inscription");
-                redirigerVersJSP(response);
+                response.sendRedirect("/GameStore/admin/index.jsp");
             }
             
             
-        }else if(page.equals("")){
+        }else if(page.equals("/ajouter_categorie")){
             
+            Categorie categorie = categorieManager.getCategorie(request.getParameter("nomCategorie"));
+            if(categorie == null){
+                Categorie nouvelleCategorie = new Categorie(request.getParameter("nomCategorie"));
+                categorieManager.addCategorie(nouvelleCategorie);
+            }else{
+                
+            }
+            response.sendRedirect("/GameStore/admin/index.jsp");
             
+        }else if(page.equals("/ajouter_article")){
             
+        
+        }else if(page.equals("/ajouter_categorie")){
+        
+        
+        }else if(page.equals("/ajouter_categorie")){
+        
+        
         }else{            
             
             response.sendRedirect("/GameStore/page_not_found.jsp");

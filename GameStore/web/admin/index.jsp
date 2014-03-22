@@ -14,17 +14,24 @@
         <title>Game Store - Admin Page</title>
     </head>
     <header>
-            <a href="./controleur/accueil">
+            <a href=".././controleur/accueil">
                 <div id="Logo"></div>
                 <div id="reste_du_header">
+                    
                 </div>
             </a>
     </header>
     <body>
+         
+        
+                <c:choose>
+                    <c:when test="${sessionScope.administrateur==true}">
+                        
         <h1>Bienvenue sur la page d'administration!</h1>
+        <a href="/GameStore/controleur/deconnexion"><button value="deconnexion" type="submit">Deconnexion</button></a>
         
         
-        <form action="/ajouter_categorie" method="post">
+        <form action="/GameStore/ajouter_categorie" method="post">
             <fieldset>
                 <legend>Ajouter Categorie</legend>
                        <label for="nomCategorie" > Nom de la Catégorie </label> <input type="text" name="nomCategorie"/><br/>
@@ -32,7 +39,7 @@
             </fieldset> 
         </form>
         
-        <form action="/ajouter_article" method="post">
+        <form action="/GameStore/ajouter_article" method="post">
             <fieldset>
                 <legend>Ajouter Article</legend>
                        <label for="nomArticle" > Nom de l'article </label> <input type="text" name="nomArticle"/><br/>
@@ -44,7 +51,7 @@
             </fieldset> 
         </form>
         
-        <form action="/ajouter_administrateur" method="post">
+        <form action="/GameStore/ajouter_administrateur" method="post">
             <fieldset>
                 <legend>Ajouter Administrateur</legend>
                        <label for="identifiantAdmin" > Identifiant </label> <input type="text" name="identifiantAdmin"/><br/>
@@ -54,7 +61,7 @@
             </fieldset> 
         </form>
         
-        <form action="/supprimer_categorie" method="post">
+        <form action="/GameStore/supprimer_categorie" method="post">
             <fieldset>
                 <legend>Supprimer Categorie</legend>
                        <label for="nomCategorie" > Nom de la Catégorie </label> 
@@ -66,7 +73,19 @@
                        <input type="submit" value="OK"/>
             </fieldset> 
         </form>
-        
+        </c:when>
+           
+                    <c:otherwise>
+        <form action="/GameStore/connexion_admin" method="post">
+            <fieldset>
+                <legend>Connexion Admin</legend>
+                <input type="text" name="identifiant" placeholder="Identifiant"/><br/>
+                <input type="password" name="mdp" placeholder="Mot de passe"/><br/>
+                <input type="submit" value="OK"/>
+            </fieldset> 
+        </form>
+                    </c:otherwise>
+   </c:choose>
         
     </body>
 </html>
