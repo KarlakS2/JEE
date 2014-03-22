@@ -103,12 +103,11 @@ public class ServletControleur extends HttpServlet {
             ArrayList<Commande> commandes = null;
             if(session.getAttribute("nom_utilisateur") != null){
                 commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
-                session.setAttribute("liste_commandes",commandes);
+                session.setAttribute("commandes",commandes);
             }else{
             }
-            
-            session.setAttribute("type_page","commandes");
-            redirigerVersJSP(response);
+           
+            response.sendRedirect("/GameStore/session/commande.jsp");
             
         }else if(page.equals("/controleur/valider_commande")){
             
@@ -302,7 +301,7 @@ public class ServletControleur extends HttpServlet {
     private void redirigerVersJSP(HttpServletResponse resp)
     {
         try{
-        resp.sendRedirect("/GameStore/index.jsp");
+            resp.sendRedirect("/GameStore/index.jsp");
         }
         catch(Exception e)
         {
