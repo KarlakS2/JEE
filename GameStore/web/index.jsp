@@ -23,9 +23,12 @@
     </head>
     <body>
         <header>
-            <a href="./controleur/accueil"><img src="image/logo.png" class="Logo" id="Logo"></img></a>
-        
+            <a href="./controleur/accueil">
+                <div id="Logo"></div>
+            </a>
+            <div id="reste_du_header">
              <jsp:include page="session/espace_perso.jsp"/>
+            </div>
         </header>
              
         <jsp:include page="categories/categories.jsp"/>
@@ -52,6 +55,9 @@
                     </c:when>
                     <c:when test="${sessionScope.type_page=='articles'}">
                         <jsp:include page="contenu/articles.jsp"/>
+                    </c:when>
+                    <c:when test="${sessionScope.type_page=='article'}">
+                        <jsp:include page="contenu/article.jsp"/>
                     </c:when>
                     <c:otherwise>
                         <jsp:include page="page_not_found.jsp"/>

@@ -13,7 +13,6 @@
     <c:choose>
         <c:when test="${sessionScope.nom_utilisateur!=null}">
             <p>Connecté en tant que <c:out value="${sessionScope.nom_utilisateur}"/> </p>
-            </br>
             <a href=./controleur/profil>Profil</a>
             <a href=./controleur/panier>Mon Panier</a>
             <a href=./controleur/commandes>Mes Commandes</a>

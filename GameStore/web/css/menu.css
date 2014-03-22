@@ -13,12 +13,14 @@ and open the template in the editor.
     border: 1px solid black;
     float: right;
     float:top;
-    background-color: red;
+    background-color: #0099FF;
+    display: inline;
     
 }
 
 .Menu a
 {
+    margin-left:5px;
     text-decoration: none;
     display: block;
     color: black;
@@ -26,6 +28,11 @@ and open the template in the editor.
 
 .Menu a:hover
 {
-    background-color: yellow;
+    background-color:#0066FF;
     color: black;
+}
+
+.Menu p
+{
+    display: inline;
 }
