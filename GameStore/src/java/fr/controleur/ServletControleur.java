@@ -28,7 +28,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
 public class ServletControleur extends HttpServlet {
-
+    ArrayList<Categorie> categories =null;
+    ArrayList<Article> articles = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,12 +42,15 @@ public class ServletControleur extends HttpServlet {
     private ClientManager clientManager;
     private CategorieManager categorieManager;
     private ArticleManager articleManager;
+    private Panier panier;
     
    @Override
     public void init(ServletConfig config) throws ServletException{
         categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        panier = new Panier();
+        
         try{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         }
@@ -62,13 +66,13 @@ public class ServletControleur extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String page = request.getServletPath();
-        Panier panier = new Panier();
+        String page = request.getServletPath(); 
         HttpSession session = request.getSession(true);
-
+        
+                
       System.out.println(page);
         if(page.equals("/controleur/")){
-            ArrayList<Categorie> categories = categorieManager.getAllCategorie();
+            categories = categorieManager.getAllCategorie();
             
             session.setAttribute("panier", panier);
             
@@ -115,8 +119,7 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/controleur/categorie")){
             
                 String nom_categorie = request.getParameter("nom_categorie");
-                ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
-                ArrayList<Article> liste_articles = articleManager.getAllArticleByCategorie(nom_categorie);
+                articles = articleManager.getAllArticleByCategorie(nom_categorie);
                 
                 session.setAttribute("type_page","articles");
                 session.setAttribute("liste_articles",articles);
@@ -148,31 +151,27 @@ public class ServletControleur extends HttpServlet {
             }
             
             
-        }else if(page.equals("/controleur/recherche")){ //affichage de la page associé à la requete
-            session.setAttribute("recherche", request.getParameter("recherche"));
-            redirigerVersJSP(response);
-            
         }else if(page.equals("/controleur/panier")){
                 
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_article")){
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
             panier.addArticle(article);
             
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/diminuer_article")){
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
             panier.reduceArticle(article);      
             
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/enlever_article")){
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            Article article = articleManager.getArticle((int)session.getAttribute("id_article"));
             panier.deleteArticle(article);
             
             session.setAttribute("type_page","panier");
@@ -183,7 +182,7 @@ public class ServletControleur extends HttpServlet {
             session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
         }
-        else if(page.contains("/controleur/article"))
+        else if(page.equals("/controleur/article"))
         {
             Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             session.setAttribute("article", article);
@@ -192,9 +191,11 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/controleur/ajouter_panier")){
             
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            Article article = new Article();
+            article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.addArticle(article);
             session.setAttribute("type_page","panier");
+            
             redirigerVersJSP(response);
             
         }else if(page.equals("")){
@@ -204,17 +205,11 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("")){ //ajouter bdd
             
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
-            panier.addArticle(article);
-            session.setAttribute("type_page","panier");
-            redirigerVersJSP(response);
             
-        }else if(page.equals("/controleur/ajouter_panier")){
             
-            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
-            panier.addArticle(article);
-            session.setAttribute("type_page","panier");
-            redirigerVersJSP(response);
+        }else if(page.equals("")){
+            
+            
             
         }else{            
             
