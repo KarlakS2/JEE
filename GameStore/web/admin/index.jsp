@@ -28,7 +28,7 @@
         <h1>Bienvenue sur la page d'administration!</h1>
         
         
-        <form action="/ajouter_categorie" method="post">
+        <form action="/GameStore/ajouter_categorie" method="post">
             <fieldset>
                 <legend>Ajouter Categorie</legend>
                        <label for="nomCategorie" > Nom de la Catégorie </label> <input type="text" name="nomCategorie"/><br/>
@@ -36,7 +36,7 @@
             </fieldset> 
         </form>
         
-        <form action="/ajouter_article" method="post">
+        <form action="/GameStore/ajouter_article" method="post">
             <fieldset>
                 <legend>Ajouter Article</legend>
                        <label for="nomArticle" > Nom de l'article </label> <input type="text" name="nomArticle"/><br/>
@@ -48,7 +48,7 @@
             </fieldset> 
         </form>
         
-        <form action="/ajouter_administrateur" method="post">
+        <form action="/GameStore/ajouter_administrateur" method="post">
             <fieldset>
                 <legend>Ajouter Administrateur</legend>
                        <label for="identifiantAdmin" > Identifiant </label> <input type="text" name="identifiantAdmin"/><br/>
@@ -58,7 +58,7 @@
             </fieldset> 
         </form>
         
-        <form action="/supprimer_categorie" method="post">
+        <form action="/GameStore/supprimer_categorie" method="post">
             <fieldset>
                 <legend>Supprimer Categorie</legend>
                        <label for="nomCategorie" > Nom de la Catégorie </label> 
@@ -73,7 +73,7 @@
         </c:when>
            
                     <c:otherwise>
-        <form action="/connexion_admin" method="post">
+        <form action="/GameStore/connexion_admin" method="post">
             <fieldset>
                 <legend>Connexion Admin</legend>
                 <input type="text" name="identifiant" placeholder="Identifiant"/><br/>
