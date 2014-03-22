@@ -160,7 +160,8 @@ public class ServletControleur extends HttpServlet {
             }else if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
                 if(connexion.verifConnexionAdmin(request, response, administrateurManager)){
-                    response.sendRedirect("/GameStore/admin/index.jsp");
+                    session.setAttribute("type_page","accueil");
+                    redirigerVersJSP(response);
                 }else{
                     session.setAttribute("type_page","inscription");
                     redirigerVersJSP(response);
