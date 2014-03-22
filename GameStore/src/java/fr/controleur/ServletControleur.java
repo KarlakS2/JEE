@@ -63,12 +63,16 @@ public class ServletControleur extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String page = request.getServletPath();
+        Panier panier = new Panier();
         HttpSession session = request.getSession(true);
 
       System.out.println(page);
         if(page.equals("/controleur/")){
             ArrayList<Categorie> categories = categorieManager.getAllCategorie();
-           session.setAttribute("categories", categories);
+            
+            session.setAttribute("panier", panier);
+            
+            session.setAttribute("categories", categories);
             session.setAttribute("type_page","accueil");
             
             redirigerVersJSP(response);
@@ -139,15 +143,13 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/panier")){
-            
-            
-            
+                
             session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_article")){
-            
-            
+            //new Article(request.getParameter("nom_article"));
+           // panier.addArticle();
             
             session.setAttribute("","");
             redirigerVersJSP(response);
