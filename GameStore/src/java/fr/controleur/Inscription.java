@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import fr.entite.Client;
+import fr.manager.AdministrateurManager;
 import fr.manager.ClientManager;
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +30,7 @@ public class Inscription{
         
     }
         
-    public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
+    public boolean inscrireClient(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager, AdministrateurManager administrateurManager){
     
         String identifiant = request.getParameter("identifiant");
         String mdp = request.getParameter("mdp");
@@ -42,8 +43,8 @@ public class Inscription{
         HttpSession session = request.getSession();
 
         Client client = new Client(identifiant,mdp,email,nom,prenom,adresse,date_naissance,sexe);
-        System.out.println("hello");
-        if(!clientManager.presenceClient(identifiant)){
+
+        if(!clientManager.presenceClient(identifiant) && !administrateurManager.presenceAdministrateur(identifiant)){
             if(!clientManager.presenceClientByMail(email)){
                 if(clientManager.addClient(client)){
                     session.setAttribute("inscription","");

@@ -55,6 +55,7 @@ public class CategorieManager {
         Categorie categorie=null;
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           
            PreparedStatement s = connection.prepareStatement("SELECT * FROM CATEGORIE WHERE NOM=?");
            s.setString(1, nom);
            ResultSet rs = s.executeQuery();
@@ -108,7 +109,11 @@ public class CategorieManager {
         
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           
+           ArticleManager a = new ArticleManager(bdd,user,mdp);
+           for(Article art : a.getAllArticleByCategorie(nom))
+           {
+               a.deleteArticle(art.getId());
+           }
            String sql = "DELETE FROM CATEGORIE WHERE NOM=?";
            PreparedStatement s = connection.prepareStatement(sql);
            s.setString(1, nom);

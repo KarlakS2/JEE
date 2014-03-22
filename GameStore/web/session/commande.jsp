@@ -10,46 +10,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css">
-            .commande{
-                background-color: #CCFFFF;
-            }
-            
-            .icone_delete{
-                display: inline-block;
-                height: 40px;
-                width:40px;
-                background-image: url("/GameStore/image/delete.png");
-            }
-            
-        </style>
+                   
         <title>Mes commandes</title>
     </head>
     <body>
         <c:choose>
             <c:when test="${sessionScope.user_compte!=null}">
-                <table class="commande">
-                    
-                    <TR> 
-                        <TH> Numero Commande </TH> 
-                        <TH> Article </TH> 
-                        <TH> Prix </TH> 
-                        <TH> Annuler </TH> 
-                    </TR>
+                <div id="bloc_panier">   
+                <h1 id="titre_panier">Mes Commandes</h1>
+                
+                <table class="table_pres">
+                    <tr>
+                       <th>Numéro commande</th>
+                       <th>Article</th>
+                       <th>Prix</th>
+                       <th>Annuler</th>
+                    </tr>
                     
                     <c:forEach var="commande" items="${sessionScope.commandes}">  
+                        
+                        
                         <TR> 
                             <TD> <c:out value="${commande.getId()}"/> </TD> 
                             <TD> <c:out value="${commande.getArticle().getNom()}"/> </TD> 
-                            <TD> <c:out value="${commande.getClient.getNom()}"/> </TD> 
+                            <TD> <c:out value="${commande.getArticle().getPrix()}"/>€ </TD> 
                             <TD> 
-                            <a href="/GameStore/controleur/enlever_commande?id_commande=${requestScope.commande.getId()}">
+                            <a href="/GameStore/controleur/enlever_commande?id_commande=<c:out value="${commande.getId()}"/>">
                             <div class="icone_delete"></div></a> 
                             </TD> 
                          </TR>
                      </c:forEach> 
                      
                 </table>
+                </div>
             </c:when> 
             <c:otherwise>
                 
