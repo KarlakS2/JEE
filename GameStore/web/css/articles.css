@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : Valdanial
 */
 
+#titre_liste_articles
+{
+    text-align:center;
+}
+
 #bloc_liste_articles
 {
     display: inline-block;
@@ -21,8 +26,6 @@ and open the template in the editor.
 
 .icone_panier
 {
-    float:left;
-    margin-top: 2px;
     height: 40px;
     width:40px;
     display: block;
@@ -37,4 +40,16 @@ and open the template in the editor.
 .prix_article
 {
     margin-left: 50px;
+}
+
+.icone_panier_wrap
+{
+    height: 40px;
+    width:40px;
+    padding-left: 20px;
+}
+
+.tableau_sans_pretention td:hover
+{
+    
 }

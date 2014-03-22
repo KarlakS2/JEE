@@ -29,22 +29,22 @@ and open the template in the editor.
     background-color: #8FCEDF
 }
 
-.table_pres tr
+.table_pres tr:not(.normal)
 {
     text-align: center;
 }
 
-.table_pres tr td
+.table_pres tr td:not(.normal)
 {
     background-color: #A7D6FF
 }
 
-.table_pres tr th
+.table_pres tr th:not(.normal)
 {
     background-color: #97C6FF
 }
 
-.table_pres tr td:hover
+.table_pres tr td:hover:not(.normal)
 {
     background-color: #8FCEDF
 }

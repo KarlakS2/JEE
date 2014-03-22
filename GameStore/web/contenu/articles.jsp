@@ -10,20 +10,47 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div id="bloc_liste_articles">
-<ul>
-        <c:forEach var="article" items="${sessionScope.liste_articles}">
-            <a href="/GameStore/controleur/article?id_article=${article.getId()}">
-                <img class="miniature_article" src="${article.getUrlImage()}"></img>
-            </a>
-            <a href="/GameStore/controleur/ajouter_panier?id_article=${article.getId()}">
-                <div class="icone_panier"/></div>
-            </a>
-                <h3 class="prix_article">
-                    <c:out value="${article.getPrix()}"/>€
-                </h3>
+    <table class="table_pres">
+        <tr><th colspan="9">
+            <h3 id="titre_liste_articles">Catégorie: ${sessionScope.liste_articles.get(0).getCategorie().getNom()}</h3>
+        </th></tr>
+            <tr>
                 
-        </c:forEach>  
-</ul>
+                    <c:set var="i" value="1"/>
+                    <c:forEach var="article" items="${sessionScope.liste_articles}">
+                        <td>
+                        <a href="/GameStore/controleur/article?id_article=${article.getId()}">
+                            <img class="miniature_article" src="${article.getUrlImage()}"></img>
+                        </a>
+                        
+                        <table><tr><td class="normal">
+                        <div class="icone_panier_wrap">
+                            <a href="/GameStore/controleur/ajouter_panier?id_article=${article.getId()}">
+                            <div class="icone_panier"/></div>
+                            </a>
+                        </div></td>
+                        <td class="normal">
+                                <h3 class="prix_article">
+                                    <c:out value="${article.getPrix()}"/>€
+                                </h3>
+                        </td>
+                            </tr></table>
+                        
+                            
+                            </td>
+                            <c:set var="i" value="${i}1"/>
+                            <c:if test="${i=='1111111111'}">
+                                </tr><tr>
+                                <c:set var="i" value="0"/>
+                            </c:if>
+                            <c:if test="${i!='1111111111'}">
+                                
+                            </c:if>
+
+                    </c:forEach>
+                
+            </tr>
+    </table>
 </div>
 
     
