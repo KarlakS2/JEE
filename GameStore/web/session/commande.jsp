@@ -11,7 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css">
-            .commande{
+            .commande, .commande *{
+                border: 2px solid;
+                vertical-align: middle;
                 background-color: #CCFFFF;
             }
             
@@ -20,6 +22,10 @@
                 height: 40px;
                 width:40px;
                 background-image: url("/GameStore/image/delete.png");
+            }
+            
+            .icone_delete, .commande a{
+                border: none;
             }
             
         </style>
@@ -41,7 +47,7 @@
                         <TR> 
                             <TD> <c:out value="${commande.getId()}"/> </TD> 
                             <TD> <c:out value="${commande.getArticle().getNom()}"/> </TD> 
-                            <TD> <c:out value="${commande.getClient.getNom()}"/> </TD> 
+                            <TD> <c:out value="${commande.getArticle().getPrix()}"/>€ </TD> 
                             <TD> 
                             <a href="/GameStore/controleur/enlever_commande?id_commande=${requestScope.commande.getId()}">
                             <div class="icone_delete"></div></a> 
