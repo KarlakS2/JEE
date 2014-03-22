@@ -24,7 +24,7 @@
                 <p>Date de Naissance : <c:out value="${sessionScope.user_compte.getNaissance()}"></c:out></p>
                 <p>Sexe : <c:out value="${sessionScope.user_compte.getSexe()}"></c:out></p>
 
-                <a href=""><button type="submit">Se désinscrire</button></a>
+                <a href="/GameStore/controleur/Desinscription"><button type="submit">Se désinscrire</button></a>
             </c:when> 
             <c:otherwise>
                 
