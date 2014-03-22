@@ -81,6 +81,16 @@ public class ServletControleur extends HttpServlet {
             session.setAttribute("type_page","connexion");
             redirigerVersJSP(response);
             
+        }else if(page.equals("/controleur/profil")){
+            
+            session.setAttribute("type_page","profil");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/commandes")){
+            
+            session.setAttribute("type_page","commandes");
+            redirigerVersJSP(response);
+            
         }else if(page.equals("/controleur/deconnexion")){
             DeconnexionControleur deco = new DeconnexionControleur();
             deco.deconnecte(session);
@@ -151,21 +161,21 @@ public class ServletControleur extends HttpServlet {
             Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.addArticle(article);
             
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/diminuer_article")){
             Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.reduceArticle(article);      
             
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/enlever_article")){
             Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             panier.deleteArticle(article);
             
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/accueil"))
@@ -178,6 +188,25 @@ public class ServletControleur extends HttpServlet {
             Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
             session.setAttribute("article", article);
             session.setAttribute("type_page","article");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/ajouter_panier")){
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("")){
+          
+            session.setAttribute("type_page","admin");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("")){ //ajouter bdd
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_panier")){
