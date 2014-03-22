@@ -11,8 +11,9 @@
 
     
     <div id="bloc_panier">
-        <h1 id="titre_panier">Mon panier</h1>
+        
         <table id="table_panier" class="table_pres">
+            <tr><th colspan="5"><h1 id="titre_panier">Mon panier</h1></th></tr>
             <tr>
                <th>Nom du jeu</th>
                <th>Quantité</th>
@@ -58,7 +59,7 @@
                         ${sessionScope.panier.getPrixTotal()}€
                     </td>
                     <td>
-                        <c:if test="${sessionScope.administrateur==false}"> > 
+                        <c:if test="${sessionScope.administrateur==false}">
                         <a id="lien_acheter_panier" href="/GameStore/controleur/valider_commande">
                             <div id="image_acheter_panier"></div>
                         </a>
