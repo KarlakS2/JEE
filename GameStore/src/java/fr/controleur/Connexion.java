@@ -28,19 +28,21 @@ public class Connexion {
    
    public boolean verifConnexion(HttpServletRequest request, HttpServletResponse response, ClientManager clientManager){
        boolean connecte = false;
-        Client client = null;
-        client = clientManager.getClient(champ_id);
+       
+       
+        Client client = clientManager.getClient(request.getParameter(champ_id));
         HttpSession session = request.getSession(true);
-        
+        System.out.println(client.getIdentifiant());
         if(client != null){
             if(client.getMdp().equals(request.getParameter(champ_mdp))){
-                
                 connecte = true;
-                session.setAttribute("user_compte",client);    
+                session.setAttribute("user_compte",client);  
+                session.setAttribute("nom_utilisateur",client.getIdentifiant());
             }
                        
         }else{
             session.setAttribute("user_compte",null);
+            session.setAttribute("nom_utilisateur",null);
             connecte = false;
         }        
         return connecte;
