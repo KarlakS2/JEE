@@ -220,8 +220,7 @@ public class ServletControleur extends HttpServlet {
             
         }else if(page.equals("/controleur/admin")){
           
-            session.setAttribute("type_page","admin");
-            redirigerVersJSP(response);
+            response.sendRedirect("/GameStore/admin/index.jsp");
             
         }else if(page.equals("/controleur/connexion_admin")){ 
             if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
