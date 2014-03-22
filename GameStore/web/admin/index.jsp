@@ -80,7 +80,7 @@
             <fieldset>
                 <legend>Connexion Admin</legend>
                 <input type="text" name="identifiant" placeholder="Identifiant"/><br/>
-                <input type="text" name="mdp" placeholder="Mot de passe"/><br/>
+                <input type="password" name="mdp" placeholder="Mot de passe"/><br/>
                 <input type="submit" value="OK"/>
             </fieldset> 
         </form>
