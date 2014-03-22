@@ -16,6 +16,11 @@ public class Panier {
         listeArticle = new HashSet<>();
         nombreParArticle = new HashMap<>();
     }
+    
+    public HashSet<Article> getListeArticle()
+    {
+        return listeArticle;
+    }
 
     public void addArticle(Article a)
     {
