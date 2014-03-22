@@ -208,8 +208,11 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/controleur/desinscription")){
                 
             Client client = (Client)session.getAttribute("user_compte");
-            clientManager.deleteClient(client.getIdentifiant());
             commandeManager.deleteCommandeByClient(client.getIdentifiant());
+            clientManager.deleteClient(client.getIdentifiant());  
+            
+            DeconnexionControleur deco= new DeconnexionControleur();
+            deco.deconnecte(session);
             session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
             
