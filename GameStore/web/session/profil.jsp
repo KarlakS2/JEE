@@ -13,18 +13,24 @@
     </head>
     <body>
         
-        
-        <p>Indentifiant : <c:out value="${sessionScope.user_compte.getIdentifiant()}"></c:out></p>
-        <p>E-mail : <c:out value="${sessionScope.user_compte.getMail()}"></c:out></p>
-        <br/>
-        <p>Nom : <c:out value="${sessionScope.user_compte.getNom()}"></c:out></p>
-        <p>Prenom : <c:out value="${sessionScope.user_compte.getPrenom()}"></c:out></p>
-        <p>Adresse : <c:out value="${sessionScope.user_compte.getAdresse()}"></c:out></p>
-        <p>Date de Naissance : <c:out value="${sessionScope.user_compte.getNaissance()}"></c:out></p>
-        <p>Sexe : <c:out value="${sessionScope.user_compte.getSexe()}"></c:out></p>
-        
-        <a href=""><button type="submit">Se désinscrire</button></a>
-        
+        <c:choose>
+            <c:when test="${sessionScope.user_compte!=null}">
+                <p>Indentifiant : <c:out value="${sessionScope.user_compte.getIdentifiant()}"></c:out></p>
+                <p>E-mail : <c:out value="${sessionScope.user_compte.getMail()}"></c:out></p>
+                <br/>
+                <p>Nom : <c:out value="${sessionScope.user_compte.getNom()}"></c:out></p>
+                <p>Prenom : <c:out value="${sessionScope.user_compte.getPrenom()}"></c:out></p>
+                <p>Adresse : <c:out value="${sessionScope.user_compte.getAdresse()}"></c:out></p>
+                <p>Date de Naissance : <c:out value="${sessionScope.user_compte.getNaissance()}"></c:out></p>
+                <p>Sexe : <c:out value="${sessionScope.user_compte.getSexe()}"></c:out></p>
+
+                <a href=""><button type="submit">Se désinscrire</button></a>
+            </c:when> 
+            <c:otherwise>
+                
+                <jsp:include page="../page_not_found.jsp"/>
+            </c:otherwise>
+        </c:choose>
         
     </body>
 </html>

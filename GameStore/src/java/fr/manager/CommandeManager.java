@@ -140,4 +140,28 @@ public class CommandeManager {
        }
         return false;
     }
+    
+    public Boolean deleteCommandeByClient(String id)
+    {
+        
+        try{
+           Connection connection = DriverManager.getConnection(bdd, user, mdp);
+           
+           String sql = "DELETE FROM COMMANDE WHERE ID_CLIENT=?";
+           PreparedStatement s = connection.prepareStatement(sql);
+           s.setString(1, id);
+           
+           
+           s.executeUpdate();
+           s.close();
+           connection.close();
+           return true;
+                      
+       } 
+       catch(SQLException e)
+       {
+           System.out.println("Erreur deleteCommande "+e.getLocalizedMessage()+":"+e.getMessage());
+       }
+        return false;
+    }
 }
