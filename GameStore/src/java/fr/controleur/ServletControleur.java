@@ -148,22 +148,22 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_article")){
-            //new Article(request.getParameter("nom_article"));
-           // panier.addArticle();
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
             
             session.setAttribute("","");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/diminuer_article")){
-            
-            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.reduceArticle(article);      
             
             session.setAttribute("","");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/enlever_article")){
-            
-            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.deleteArticle(article);
             
             session.setAttribute("","");
             redirigerVersJSP(response);
