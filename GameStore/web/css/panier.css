@@ -17,3 +17,39 @@ and open the template in the editor.
 {
     margin-left: auto;
 }
+
+.icone_add
+{
+    height: 40px;
+    width:40px;
+    background-image: url("/GameStore/image/add.png");
+}
+
+.icone_add:hover
+{
+    background-image: url("/GameStore/image/add_hover.png");
+}
+
+.icone_minus
+{
+    height: 40px;
+    width:40px;
+    background-image: url("/GameStore/image/minus.png");
+}
+
+.icone_minus:hover
+{
+    background-image: url("/GameStore/image/minus_hover.png");
+}
+
+.icone_delete
+{
+    height: 40px;
+    width:40px;
+    background-image: url("/GameStore/image/delete.png");
+}
+
+.icone_delete:hover
+{
+    background-image: url("/GameStore/image/delete_hover.png");
+}
