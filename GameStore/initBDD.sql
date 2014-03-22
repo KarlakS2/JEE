@@ -1,3 +1,10 @@
+DROP TABLE "ADMIN";
+DROP TABLE "COMMANDE";
+DROP TABLE "ARTICLE";
+DROP TABLE "CATEGORIE";
+DROP TABLE "CLIENT";
+
+
 CREATE TABLE "CATEGORIE"
 (
     "NOM" VARCHAR(45) not null primary key
@@ -42,7 +49,7 @@ CREATE TABLE "COMMANDE"
     FOREIGN KEY("ID_ARTICLE") REFERENCES ARTICLE("ID")
 );
 
-INSERT INTO ADMINISTRATEUR(IDENTIFIANT,MDP,MAIL)
+INSERT INTO ADMIN(IDENTIFIANT,MDP,MAIL)
         VALUES ('admin','admin','admin@mail.fr');
 
 
@@ -285,6 +292,14 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 255,
                 'Pokémon Rouge est un jeu de rôle sorti sur Gameboy. Dirigez un dresseur de Pokémons qui doit devenir le meilleur d''entre tous. Pour cela, capturez des créatures et faites-les évoluer pour qu''elles deviennent de plus en plus fortes et qu''elles puissent remporter la ligue Pokémon.',
                 'image/miniatureArticle/pokerougemini.jpg',
+                'GameBoy'
+                );
+
+INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
+        VALUES ('Pokemon Cristal',
+                15,
+                'Pokémon Version Cristal est un jeu de rôle sorti sur Gameboy. Dirigez un dresseur de Pokémons qui doit devenir le meilleur d''entre tous. Pour cela, capturez des créatures et faites-les évoluer pour qu''elles deviennent de plus en plus fortes afin de battre la ligue Pokémon.',
+                'image/miniatureArticle/cristalmini.jpg',
                 'GameBoy Color'
                 );
 
@@ -293,7 +308,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 255,
                 'Pokémon Bleu est un jeu de rôle sorti sur Gameboy. Dirigez un dresseur de Pokémons qui doit devenir le meilleur d''entre tous. Pour cela, capturez des créatures et faites-les évoluer pour qu''elles deviennent de plus en plus fortes et qu''elles puissent remporter la ligue Pokémon.',
                 'image/miniatureArticle/pokebleumini.jpg',
-                'GameBoy Color'
+                'GameBoy'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
