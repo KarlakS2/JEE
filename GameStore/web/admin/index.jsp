@@ -19,14 +19,14 @@
                 <div id="reste_du_header">
                     <c:choose>
                     <c:when test="${sessionScope.administrateur==true}">
-                        <button value="deconnexion" type="submit"/>
+                        <a href="/GameStore/controleur/deconnexion"><button value="deconnexion" type="submit">Deconnexion</button></a>
                     </c:when>
                     </c:choose>
                 </div>
             </a>
     </header>
     <body>
-        
+         
         
                 <c:choose>
                     <c:when test="${sessionScope.administrateur==true}">
