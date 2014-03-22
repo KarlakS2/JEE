@@ -45,12 +45,11 @@ public class Inscription{
         System.out.println("hello");
         if(!clientManager.presenceClient(identifiant)){
             if(!clientManager.presenceClientByMail(email)){
-                System.out.println("hello2");
                 if(clientManager.addClient(client)){
-                    session.setAttribute("inscription","un champ ne convient pas");
+                    session.setAttribute("inscription","");
                     return true;
                 }else{
-                    session.setAttribute("inscription","");
+                    session.setAttribute("inscription","un champ ne convient pas");
                     return false;
                 }
             }else{
@@ -58,7 +57,6 @@ public class Inscription{
                 return false;
             }
         }else{
-            System.out.println("bye");
             session.setAttribute("inscription","identifiant déjà utilisé");
             return false;
         }       

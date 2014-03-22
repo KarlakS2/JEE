@@ -32,7 +32,6 @@ public class Connexion {
        
         Client client = clientManager.getClient(request.getParameter(champ_id));
         HttpSession session = request.getSession(true);
-        System.out.println(client.getIdentifiant());
         if(client != null){
             if(client.getMdp().equals(request.getParameter(champ_mdp))){
                 connecte = true;

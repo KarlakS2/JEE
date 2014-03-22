@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -89,6 +89,12 @@ public class ServletControleur extends HttpServlet {
             session.setAttribute("type_page","connexion");
             redirigerVersJSP(response);
             
+        }else if(page.equals("/controleur/deconnexion")){
+            DeconnexionControleur deco = new DeconnexionControleur();
+            deco.deconnecte(session);
+            session.setAttribute("type_page","acceuil");
+            redirigerVersJSP(response);
+            
         }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
             if(clientManager.presenceClient(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
@@ -145,6 +151,30 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/panier")){
+            
+            
+            
+            session.setAttribute("","");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/panier")){
+            
+            
+            
+            session.setAttribute("","");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/panier")){
+            
+            
+            
+            session.setAttribute("","");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/panier")){
+            
+            
+            
             session.setAttribute("","");
             redirigerVersJSP(response);
             
