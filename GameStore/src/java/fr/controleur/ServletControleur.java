@@ -288,16 +288,19 @@ public class ServletControleur extends HttpServlet {
             response.sendRedirect("/GameStore/admin/index.jsp");
             
         }else if(page.equals("/ajouter_article")){
-            String nom = request.getParameter("nomArticle");
-            int prix = Integer.parseInt(request.getParameter("prixArticle"));
-            String description = request.getParameter("descriptionArticle");
-            String url = request.getParameter("imageArticle");
-            Categorie NomCategorie = categorieManager.getCategorie(request.getParameter("categorieArticle"));
-            Article nouvelArticle = new Article(0,nom,prix,description,url,NomCategorie);
-            articleManager.addArticle(nouvelArticle);
-            
+            try{
+                String nom = request.getParameter("nomArticle");
+                int prix = Integer.parseInt(request.getParameter("prixArticle"));
+                String description = request.getParameter("descriptionArticle");
+                String url = request.getParameter("imageArticle");
+                Categorie NomCategorie = categorieManager.getCategorie(request.getParameter("nomCategorie"));
+
+                Article nouvelArticle = new Article(0,nom,prix,description,url,NomCategorie);
+                articleManager.addArticle(nouvelArticle);
+            }catch(Exception e){
+                response.sendRedirect("/GameStore/admin/index.jsp");
+            }
             response.sendRedirect("/GameStore/admin/index.jsp");
-            
         }else if(page.equals("/ajouter_administrateur")){
             String id = request.getParameter("identifiantAdmin");
             String mdp = request.getParameter("mdpAdmin");
