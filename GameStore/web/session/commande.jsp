@@ -10,40 +10,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css">
-            .commande, .commande *{
-                border: 2px solid;
-                vertical-align: middle;
-                background-color: #CCFFFF;
-            }
-            
-            .icone_delete{
-                display: inline-block;
-                height: 40px;
-                width:40px;
-                background-image: url("/GameStore/image/delete.png");
-            }
-            
-            .icone_delete, .commande a{
-                border: none;
-            }
-            
-        </style>
+                   
         <title>Mes commandes</title>
     </head>
     <body>
         <c:choose>
             <c:when test="${sessionScope.user_compte!=null}">
-                <table class="commande">
-                    
-                    <TR> 
-                        <TH> Numero Commande </TH> 
-                        <TH> Article </TH> 
-                        <TH> Prix </TH> 
-                        <TH> Annuler </TH> 
-                    </TR>
+                <table class="table_pres">
+                    <tr>
+                       <th>Numéro commande</th>
+                       <th>Article</th>
+                       <th>Prix</th>
+                       <th>Annuler</th>
+                    </tr>
                     
                     <c:forEach var="commande" items="${sessionScope.commandes}">  
+                        
+                        
                         <TR> 
                             <TD> <c:out value="${commande.getId()}"/> </TD> 
                             <TD> <c:out value="${commande.getArticle().getNom()}"/> </TD> 
