@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- *
  * @author Karlak
  */
 public class Panier {
@@ -33,15 +32,31 @@ public class Panier {
         
     }
     
-    public void deleteArticle(Article a)
+    public void reduceArticle(Article a)
     {
         if(listeArticle.contains(a))
         {
             int i = nombreParArticle.get(a);
-            if(i-1<=0)
+            if(i-1<=0){
                 listeArticle.remove(a);
+                nombreParArticle.remove(a);
+            }
             else
             nombreParArticle.put(a,new Integer(i-1));
+        }
+        else
+        {
+            
+        }
+        
+    }
+    
+     public void deleteArticle(Article a)
+    {
+        if(listeArticle.contains(a))
+        {
+                listeArticle.remove(a);
+                nombreParArticle.remove(a);
         }
         else
         {
