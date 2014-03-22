@@ -49,7 +49,7 @@
                             <TD> <c:out value="${commande.getArticle().getNom()}"/> </TD> 
                             <TD> <c:out value="${commande.getArticle().getPrix()}"/>€ </TD> 
                             <TD> 
-                            <a href="/GameStore/controleur/enlever_commande?id_commande=${requestScope.commande.getId()}">
+                            <a href="/GameStore/controleur/enlever_commande?id_commande=<c:out value="${commande.getId()}"/>">
                             <div class="icone_delete"></div></a> 
                             </TD> 
                          </TR>
