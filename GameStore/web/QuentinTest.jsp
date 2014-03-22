@@ -1,62 +1,50 @@
 <%-- 
-    Document   : inscription.jsp
-    Created on : 20 mars 2014, 15:54:57
+    Document   : panier
+    Created on : 20 mars 2014, 16:07:06
     Author     : Valdanial
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="/GameStore/css/panier.css" />
 <!DOCTYPE html>
-<div id="Formulaire">
-    <form action="/GameStore/controleur/valider_inscription">
-        <label>Nom d'utilisateur:</label> <input class="element_formulaire" type='text' name='identifiant' placeholder="Nom d'utilisateur" required></br>
-        <label>Mot de passe:</label> <input class="element_formulaire" type='password' name='mdp' placeholder="Mot de passe" required></br>
-        <label>Email:</label> <input class="element_formulaire" type='email' name='mail' placeholder="Adresse email" required></br>
-        <label>Nom:</label> <input class="element_formulaire" type='text' name='nom' placeholder="Nom"></br>
-        <label>Prénom:</label> <input class="element_formulaire" type='text' name='prenom' placeholder="Prénom"></br>
-        <label>Date de naissance:</label>
-        
-        <label for="jour_naissance">Jour</label>
-        <select name='jour_naissance' id="jour_naissance">
-        
-            <c:forEach var="i" begin="1" end="31" step="1">
-                
-                <option value=<c:out value="${i}"/>><c:out value="${i}"/></option>}
-            </c:forEach>
-            
-        </select>
-        
-        <label for="mois_naissance">Mois</label>
-        <select name='mois_naissance' id="mois_naissance">
-        
-                <option value="1">Janvier</option>}
-                <option value="2">Février</option>}
-                <option value="3">Mars</option>}
-                <option value="4">Avril</option>}
-                <option value="5">Mai</option>}
-                <option value="6">Juin</option>}
-                <option value="7">Juillet</option>}
-                <option value="8">Août</option>}
-                <option value="9">Septembre</option>}
-                <option value="10">Octobre</option>}
-                <option value="11">Novembre</option>}
-                <option value="12">Décembre</option>}
-                
-            
-        </select>
-        
-        <label for="annee_naissance">Année</label>
-        <select name='annee_naissance' id="annee_naissance">
-        
-            <c:forEach var="i" begin="1900" end="2014" step="1">
-                
-                <option value=<c:out value="${i}"/>><c:out value="${i}"/></option>}
-            </c:forEach>
-            
-        </select>
-        </br>
-        <label>Sexe:</label><input class="element_formulaire" type='radio' name='sexe' value="H" checked id="sexe_homme"> <label for="sexe_homme">Homme</label></br>
-        <input class="element_formulaire" type='radio' name='sexe' id="sexe_femme"> <label for="sexe_femme">Femme</label>
-        <input type ="submit" class="element_formulaire" value="Terminer l'inscription">
-    </form>
+
+<h1 id="titre_panier">Mon panier</h1>
+<div id="bloc_panier">
+    <table id="table_panier">
+        <tr>
+           <th>Nom du jeu</th>
+           <th>Quantité</th>
+           <th>Prix unité</th>
+           <th>Prix total</th>
+           <th>Action</th>
+        </tr>
+        <c:forEach var="element_panier" items="${sessionScope.panier.getListeArticle()}">
+            <tr>
+                <td><img src="${element_panier.getUrlImage()}"/>element_panier.getNom()</td>
+                <td>${sessionScope.panier.getNombreArticle(element_panier)}</td>
+                <td>${element_panier.getPrix()}€</td>
+                <td>${sessionScope.panier.getPrixParArticle(element_panier)}€</td>
+                <td>
+                    <a href="/GameStore/controleur/ajouter_article?id_article=${element_panier.getId()}">add
+                        <div class="icone_add">
+                            
+                        </div>
+                    </a>
+                    <a href="/GameStore/controleur/diminuer_article?id_article=${element_panier.getId()}">dim
+                        <div class="icone_minus">
+                            
+                        </div>
+                    </a>
+                    <a href="/GameStore/controleur/enlever_article?id_article=${element_panier.getId()}">del
+                        <div class="icone_delete">
+                            
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+    
+    
 </div>
