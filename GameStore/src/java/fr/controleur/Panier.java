@@ -99,4 +99,10 @@ public class Panier {
             return 0;
         }
     }
+    
+    public void viderPanier()
+    {
+        listeArticle.clear();
+        nombreParArticle.clear();
+    }
 }
