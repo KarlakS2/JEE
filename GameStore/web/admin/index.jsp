@@ -14,13 +14,17 @@
         <title>Game Store - Admin Page</title>
     </head>
     <header>
-            <a href="./controleur/accueil">
+            <a href=".././controleur/accueil">
                 <div id="Logo"></div>
                 <div id="reste_du_header">
                 </div>
             </a>
     </header>
     <body>
+        
+        
+                <c:choose>
+                    <c:when test="${sessionScope.administrateur==true}">
         <h1>Bienvenue sur la page d'administration!</h1>
         
         
@@ -66,7 +70,19 @@
                        <input type="submit" value="OK"/>
             </fieldset> 
         </form>
-        
+        </c:when>
+           
+                    <c:otherwise>
+        <form action="/connexion_admin" method="post">
+            <fieldset>
+                <legend>Connexion Admin</legend>
+                <input type="text" name="identifiant" placeholder="Identifiant"/><br/>
+                <input type="text" name="mdp" placeholder="Mot de passe"/><br/>
+                <input type="submit" value="OK"/>
+            </fieldset> 
+        </form>
+                    </c:otherwise>
+   </c:choose>
         
     </body>
 </html>
