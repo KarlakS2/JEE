@@ -60,9 +60,9 @@
                     </td>
                     <td>
                         <c:if test="${sessionScope.administrateur==false}">
-                        <a id="lien_acheter_panier" href="/GameStore/controleur/valider_commande">
-                            <div id="image_acheter_panier"></div>
-                        </a>
+                                <a id="lien_acheter_panier" href="/GameStore/controleur/valider_commande">
+                                    <div id="image_acheter_panier"></div>
+                                </a>    
                         </c:if>
                     </td>
                 </tr>
