@@ -84,7 +84,7 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/controleur/deconnexion")){
             DeconnexionControleur deco = new DeconnexionControleur();
             deco.deconnecte(session);
-            session.setAttribute("type_page","acceuil");
+            session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
