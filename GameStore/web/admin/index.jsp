@@ -46,7 +46,11 @@
                        <label for="prixArticle" > Prix de l'article (€) </label> <input type="text" name="prixArticle"/><br/>
                        <label for="descriptionArticle" > Description de l'article </label> <textarea type="text" name="descriptionArticle"></textarea><br/>
                        <label for="imageArticle" > Image de l'article </label> <input type="text" name="imageArticle"/><br/>
-                       <label for="categorieArticle" > Categorie de l'article </label> <input type="text" name="categorieArticle"/><br/>
+                       <label for="categorieArticle" > Categorie de l'article </label> <select name='nomCategorie' >
+                            <c:forEach var="categorie" items="${sessionScope.categories}">
+                                <option value=<c:out value="${categorie.getNom()}"/>><c:out value="${categorie.getNom()}"/></option>}
+                            </c:forEach>
+                        </select><br/>
                        <input type="submit" value="OK"/>
             </fieldset> 
         </form>
