@@ -20,6 +20,7 @@
             <a href=./controleur/deconnexion>Se deconnecter</a>
         </c:when>
         <c:otherwise>
+            <a href="./controleur/inscription">Inscription</a>
             <a href="./controleur/connexion">Se connecter</a>
             
         </c:otherwise>
