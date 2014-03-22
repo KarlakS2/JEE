@@ -210,6 +210,9 @@ public class ServletControleur extends HttpServlet {
             Client client = (Client)session.getAttribute("user_compte");
             clientManager.deleteClient(client.getIdentifiant());
             commandeManager.deleteCommandeByClient(client.getIdentifiant());
+            
+            DeconnexionControleur deco= new DeconnexionControleur();
+            deco.deconnecte(session);
             session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
             
