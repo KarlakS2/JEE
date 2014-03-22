@@ -119,6 +119,7 @@ public class ServletControleur extends HttpServlet {
                     Commande nCommande = new Commande(0,client,article);
                     commandeManager.addCommande(nCommande);
                 }
+                panier = new Panier();
                 session.setAttribute("type_page","commande_effectuee"); // commande effectuée
                 redirigerVersJSP(response);
             }else{
