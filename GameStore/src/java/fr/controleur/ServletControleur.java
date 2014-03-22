@@ -225,14 +225,13 @@ public class ServletControleur extends HttpServlet {
         }else if(page.equals("/connexion_admin")){ 
             if(administrateurManager.presenceAdministrateur(request.getParameter("identifiant"))){
                 Connexion connexion = new Connexion();
-                
+                System.out.println("coucou");
                 if(connexion.verifConnexionAdmin(request, response, administrateurManager)){
                     session.setAttribute("type_page","accueil");
                     redirigerVersJSP(response);
                 }else{
                     response.sendRedirect("/GameStore/admin/index.jsp");
                 }
-               redirigerVersJSP(response);
                 
             }else{
                 response.sendRedirect("/GameStore/admin/index.jsp");
