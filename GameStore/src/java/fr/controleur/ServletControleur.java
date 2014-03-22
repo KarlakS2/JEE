@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Haynner
  */
-@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
+@WebServlet(name = "ServletControleur", urlPatterns = {"/ServletControleur","/controleur/ajouter_panier", "/controleur/categorie/*", "/controleur/deconnexion", "/controleur/connexion","/controleur/accueil","/controleur/", "/controleur/valider_connexion","/controleur/valider_inscription","/controleur/ajouter_panier","/controleur/article","/controleur/inscription","/controleur/deconnexion","/controleur/profil","/controleur/panier","/controleur/commandes"})
 public class ServletControleur extends HttpServlet {
 
     /**
@@ -81,10 +81,20 @@ public class ServletControleur extends HttpServlet {
             session.setAttribute("type_page","connexion");
             redirigerVersJSP(response);
             
+        }else if(page.equals("/controleur/profil")){
+            
+            session.setAttribute("type_page","profil");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/commandes")){
+            
+            session.setAttribute("type_page","commandes");
+            redirigerVersJSP(response);
+            
         }else if(page.equals("/controleur/deconnexion")){
             DeconnexionControleur deco = new DeconnexionControleur();
             deco.deconnecte(session);
-            session.setAttribute("type_page","acceuil");
+            session.setAttribute("type_page","accueil");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/valider_connexion")){ //vérification présence dans bdd + affichage page perso
@@ -106,7 +116,7 @@ public class ServletControleur extends HttpServlet {
             
                 String nom_categorie = request.getParameter("nom_categorie");
                 ArrayList<Article> articles = articleManager.getAllArticleByCategorie(nom_categorie);
-                
+                ArrayList<Article> liste_articles = articleManager.getAllArticleByCategorie(nom_categorie);
                 
                 session.setAttribute("type_page","articles");
                 session.setAttribute("liste_articles",articles);
@@ -148,24 +158,24 @@ public class ServletControleur extends HttpServlet {
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/ajouter_article")){
-            //new Article(request.getParameter("nom_article"));
-           // panier.addArticle();
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
             
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/diminuer_article")){
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.reduceArticle(article);      
             
-            
-            
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/enlever_article")){
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.deleteArticle(article);
             
-            
-            
-            session.setAttribute("","");
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/accueil"))
@@ -175,17 +185,38 @@ public class ServletControleur extends HttpServlet {
         }
         else if(page.contains("/controleur/article"))
         {
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            session.setAttribute("article", article);
             session.setAttribute("type_page","article");
             redirigerVersJSP(response);
-        }
-        else if(page.contains("/controleur/ajouter_panier"))
-        {
-            String article = request.getParameter("nom_article");
             
-            session.setAttribute("type_page","article");
+        }else if(page.equals("/controleur/ajouter_panier")){
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
             redirigerVersJSP(response);
-        }
-        else{            
+            
+        }else if(page.equals("")){
+          
+            session.setAttribute("type_page","admin");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("")){ //ajouter bdd
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
+            redirigerVersJSP(response);
+            
+        }else if(page.equals("/controleur/ajouter_panier")){
+            
+            Article article = articleManager.getArticle(Integer.parseInt(request.getParameter("id_article")));
+            panier.addArticle(article);
+            session.setAttribute("type_page","panier");
+            redirigerVersJSP(response);
+            
+        }else{            
             
             response.sendRedirect("/GameStore/page_not_found.jsp");
         }
