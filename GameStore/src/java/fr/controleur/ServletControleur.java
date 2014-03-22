@@ -106,8 +106,9 @@ public class ServletControleur extends HttpServlet {
                 session.setAttribute("commandes",commandes);
             }else{
             }
-           
-            response.sendRedirect("/GameStore/session/commande.jsp");
+            
+            session.setAttribute("type_page","commande");
+            redirigerVersJSP(response);
             
         }else if(page.equals("/controleur/valider_commande")){
             
