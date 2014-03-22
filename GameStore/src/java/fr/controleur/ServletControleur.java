@@ -42,12 +42,15 @@ public class ServletControleur extends HttpServlet {
     private ClientManager clientManager;
     private CategorieManager categorieManager;
     private ArticleManager articleManager;
+    private Panier panier;
     
    @Override
     public void init(ServletConfig config) throws ServletException{
         categorieManager = new CategorieManager("jdbc:derby://localhost:1527/GameStore","game","store");
         clientManager = new ClientManager("jdbc:derby://localhost:1527/GameStore","game","store");
         articleManager = new ArticleManager("jdbc:derby://localhost:1527/GameStore","game","store");
+        panier = new Panier();
+        
         try{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         }
@@ -63,8 +66,7 @@ public class ServletControleur extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String page = request.getServletPath();
-        Panier panier = new Panier();
+        String page = request.getServletPath(); 
         HttpSession session = request.getSession(true);
         
                 
