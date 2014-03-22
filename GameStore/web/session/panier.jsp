@@ -5,13 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="/GameStore/css/panier.css" />
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<h1 id="titre_panier">Mon panier</h1>
+<div id="bloc_panier">
+    <table id="table_panier">
+        <tr>
+           <th>Nom du jeu</th>
+           <th>Quantité</th>
+           <th>Prix unité</th>
+           <th>Prix total</th>
+        </tr>
+        <tr>
+            <td><img src="/GameStore/image/miniatureArticle/mgs1mini.jpg"/></td>
+            <td>1</td>
+            <td>20€</td>
+            <td>20€</td>
+        </tr>
+    </table>
+    
+    
+</div>
