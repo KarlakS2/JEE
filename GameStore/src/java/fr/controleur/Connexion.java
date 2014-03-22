@@ -6,7 +6,9 @@
 
 package fr.controleur;
 
+import fr.entite.Administrateur;
 import fr.entite.Client;
+import fr.manager.AdministrateurManager;
 import fr.manager.ClientManager;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -37,6 +39,26 @@ public class Connexion {
                 connecte = true;
                 session.setAttribute("user_compte",client);  
                 session.setAttribute("nom_utilisateur",client.getIdentifiant());
+            }
+                       
+        }else{
+            session.setAttribute("user_compte",null);
+            session.setAttribute("nom_utilisateur",null);
+            connecte = false;
+        }        
+        return connecte;
+    }
+   
+   public boolean verifConnexionAdmin(HttpServletRequest request, HttpServletResponse response, AdministrateurManager administrateurManageur){
+       boolean connecte = false;
+       
+        Administrateur admin = administrateurManageur.getAdmin(request.getParameter(champ_id));
+        HttpSession session = request.getSession(true);
+        if(admin != null){
+            if(admin.getMdp().equals(request.getParameter(champ_mdp))){
+                connecte = true;
+                session.setAttribute("user_compte",admin);  
+                session.setAttribute("nom_utilisateur",admin.getIdentifiant());
             }
                        
         }else{
