@@ -90,7 +90,8 @@ public class ArticleManager {
     {
         try{
            Connection connection = DriverManager.getConnection(bdd, user, mdp);
-           
+           CommandeManager m = new CommandeManager(bdd, user, mdp);
+           m.deleteCommandeByArticle(id);
            String sql = "DELETE FROM ARTICLE WHERE ID=?";
            PreparedStatement s = connection.prepareStatement(sql);
            s.setInt(1, id);
