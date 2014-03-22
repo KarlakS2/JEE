@@ -54,10 +54,10 @@ INSERT INTO ADMIN(IDENTIFIANT,MDP,MAIL)
 
 
 INSERT INTO CATEGORIE(NOM) VALUES ('PC');
-INSERT INTO CATEGORIE(NOM) VALUES ('Playsation 4');
-INSERT INTO CATEGORIE(NOM) VALUES ('Playsation 3');
-INSERT INTO CATEGORIE(NOM) VALUES ('Playsation 2');
-INSERT INTO CATEGORIE(NOM) VALUES ('Playsation');
+INSERT INTO CATEGORIE(NOM) VALUES ('Playstation 4');
+INSERT INTO CATEGORIE(NOM) VALUES ('Playstation 3');
+INSERT INTO CATEGORIE(NOM) VALUES ('Playstation 2');
+INSERT INTO CATEGORIE(NOM) VALUES ('Playstation');
 INSERT INTO CATEGORIE(NOM) VALUES ('Xbox One');
 INSERT INTO CATEGORIE(NOM) VALUES ('Xbox 360');
 INSERT INTO CATEGORIE(NOM) VALUES ('Xbox');
@@ -78,7 +78,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 42,
                 'Metal Gear Solid est un jeu dinfiltration sorti sur PlayStation. Dans cet opus, Solid Snake doit infiltrer Shadow Moses, une base militaire en Alaska, afin de sauver des otages. Le joueur trouve tout au long de laventure de nouvelles armes et nouveaux équipements tout en alternant dialogues, séquences dinfiltration et combats contre les boss. Le scénario hollywoodien allié à de nombreuses cinématiques en font un jeu très cinématographique.',
                 'image/miniatureArticle/mgs1mini.jpg',
-                'Playsation'
+                'playstation'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -86,7 +86,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 44,
                 'Tekken est un jeu de combat sur Playstation qui propose différents personnages possédant tous un style de combat différent du jeet kune do au karaté en passant par le muay thai. Côté modes de jeu on retrouve l''Arcade, l''Histoire, le Contre-la-montre, le mode Survie ainsi que deux nouveaux totalement inédits, le Tekken Force mode et le combat en équipe. Vous avez aussi la possibilité daffronter un ami via le mode Versus.',
                 'image/miniatureArticle/tekkenmini.jpg',
-                'Playsation'
+                'playstation'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -94,7 +94,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 149,
                 'Final Fantasy IX est un jeu de rôle sur Playstation. Neuvième volet de la série, il se distingue de ses prédécesseurs par de nouveaux graphismes plus jolis, des cinématiques à couper le souffle et un univers pittoresque. Parcourez le vaste monde du titre pour découvrir une histoire riche en rebondissements et en magie.',
                 'image/miniatureArticle/ffixmini.jpg',
-                'Playsation'
+                'playstation'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -102,7 +102,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 80,
                 'Crash Bandicoot sur Playstation est un jeu de plates-formes dans lequel vous incarnez un animal peu commun et complètement loufoque. L''ami Crash, c''est son petit nom, va devoir traverser 32 niveaux répartis en trois îles pour lutter contre l''infâme Dr Neo Cortex. Affrontez les ennemis en tournoyant sur vous-même comme une toupie et ramassez les diamants de chaque tableau.',
                 'image/miniatureArticle/bandicootmini.jpg',
-                'Playsation'
+                'playstation'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -110,7 +110,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 51,
                 'MGS2 : Sons of Liberty est un jeu dinfiltration/action sorti sur PS2. Dans cet opus le joueur incarne Snake puis Raiden dans une lutte contre la prolifération du Metal Gear. Equipé de divers armes et gadgets, il doit sinfiltrer pour arriver au but, mais libre à lui dutiliser la manière forte. Senchaînent alors phases dinfiltration, daction, de boss. Le scénario dense comte de nombreuses cinématiques pour un jeu très proche du 7ème art.',
                 'image/miniatureArticle/mgs2mini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -118,7 +118,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 70,
                 'Kingdom Hearts sur Playstation 2 est un jeu de rôle/action qui se déroule dans un univers où fusionnent Square Enix et Disney. Vous incarnez Sora, un jeune garçon, accompagné de Donald et Dingo, à la recherche de votre amie enlevée ainsi que du roi Mickey. Pour cela, vous allez traverser une multitude de niveaux reprenant les classiques de Walt Disney et les succès de Squaresoft, dont Final Fantasy.',
                 'image/miniatureArticle/kingdommini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -126,28 +126,28 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 20,
                 'Kingdom Hearts II sur PS2 fait suite au premier opus et garde l''ambiance action/aventure de son prédécesseur. Incarnez Roxas et Sora, toujours accompagné de Donald et Dingo et levez le mystère sur l''Organisation XIII et la disparition du roi Mickey. Rencontrez les personnages des dessins animés de Walt Disney et des jeux de Squaresoft (notamment Final Fantasy) dans une aventure pleine de poésie.',
                 'image/miniatureArticle/kingdom2mini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
         VALUES ('Final Fantasy X',
                 55,
                 'Final Fantasy X est un jeu de rôle sorti sur Playstation 2. Le monde de Spira vit dans la crainte d''une entité maléfique nommée Sin. Vous incarnez une équipe menée par le jeune Tidus dans une quête pour libérer la terre de l''oppression, uniquement possible au prix d''une invocation finale...',
                 'image/miniatureArticle/ffxmini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
         VALUES ('Final Fantasy X-2',
                 60,
                 'Final Fantasy X-2 est un jeu de rôle sur PS2 dans lequel vous évoluez dans un scénario sous forme de missions. Alors que le monde de Spira est en plein bouleversements, vous allez devoir faire face à de nouveaux dangers. Suite de Final Fantasy X, découvrez les mystères qui se cachent derrière l''histoire de Yuna.',
                 'image/miniatureArticle/ffx2mini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
         VALUES ('Grand Theft Auto San Andreas',
                 12,
                 'GTA : San Andreas sur PS2 est un jeu d''action dans lequel vous dirigez Carl Johnson, une petite frappe revenue dans sa ville natale. Vous découvrez que la dure loi des gangs règne et il vous faut vous créer un nom et une réputation pour gagner en respect. La zone de jeu est immense et se compose de trois grandes villes pour accomplir des missions. Meurtres, corruption, vols, trahison... Trouvez votre place à Los Santos !',
                 'image/miniatureArticle/gtasamini.jpg',
-                'Playsation 2'
+                'playstation 2'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -155,7 +155,15 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 51,
                 'MGS3 sorti sur PS2 se déroule avant les autres épisodes de la saga. Sur fond de guerre froide, le joueur y incarne Naked Snake et doit infiltrer le territoire russe pour rapatrier un scientifique. Explorant la jungle, les montagnes et autres complexes militaires, Snake a à sa disposition tout un panel darmes et de gadgets. Outre ces phases dinfiltration/action, le travail et la présence des scénaristes relèvent des plus grandes montures hollywoodiennes.',
                 'image/miniatureArticle/mgs3mini.jpg',
-                'Playsation 2'
+                'playstation 2'
+                );
+
+INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
+        VALUES ('Metal Gear Solid 4',
+                51,
+                'Quatrième épisode de la saga Metal Gear Solid, Guns of the Patriots reprend sur PS3 les mécanismes des anciens opus en mélangeant action et infiltration. Répondant à toutes les questions laissées en suspens, cet ultime segment fait une fois de plus la part belle aux cinématiques hollywoodiennes mettant en avant un casting haut de gamme.',
+                'image/miniatureArticle/mgs3mini.jpg',
+                'playstation 3'
                 );
 
 
@@ -164,7 +172,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 19,
                 'Heavy Rain sur Playstation 3 est un jeu d''aventure. Vous incarnez 4 personnages différents ayant tous un lien avec le tueur à l''Origami. Chacun tente d''enquêter sur l''identité du criminel. Le jeu se présente sous la forme de phases d''exploration et d''actions durant lesquelles le joueur doit réaliser des actions contextuelles pour effectuer ses actions. Le titre autorise un choix conséquent d''actions ce qui permet quasiment d''agir dans le jeu comme dans la réalité.',
                 'image/miniatureArticle/heavyrainmini.jpg',
-                'Playsation 3'
+                'playstation 3'
                 );
 
  INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -172,7 +180,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 37,
                 'Dans Grand Theft Auto V sur PS3, jeu en monde ouvert, le joueur enchaîne braquages et missions en incarnant alternativement ou simultanément 3 personnages pour la première fois dans l''histoire de la série : Michael, Trevor et Franklin. L''histoire se passe à Los Santos, l''une des villes de la région de San Andreas. Le jeu propose aussi un mode multijoueur en univers persistant pouvant accueillir jusqu''à 16 utilisateurs dans des modes coopératifs ou compétitifs.',
                 'image/miniatureArticle/gtavmini.jpg',
-                'Playsation 3'
+                'playstation 3'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -180,7 +188,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 60,
                 'Watch Dogs est un jeu d''action à la troisième personne sur PS4. Dans un univers moderne et ouvert où tout est connecté à un système de contrôle central appartenant à des sociétés privées, le joueur incarne un groupe de hackeurs et d''assassins capables de manipuler et de pirater les systèmes électroniques.',
                 'image/miniatureArticle/watchdogmini.jpg',
-                'Playsation 4'
+                'playstation 4'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
@@ -188,7 +196,7 @@ INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE)
                 20,
                 'MGS V - Ground Zeroes sur PlayStation 4 est le prologue de The Phantom Pain. Le titre est vendu séparément et plonge le joueur dans l''introduction du 5ème épisode de la saga. En plus de la mission principale scénarisée, on retrouve 5 missions annexes visant à faire découvrir aux joueurs les subtilités du gameplay.',
                 'image/miniatureArticle/mgs5mini.jpg',
-                'Playsation 4'
+                'playstation 4'
                 );
 
 INSERT  INTO ARTICLE(NOM,PRIX,DESCRIPTION,URLIMAGE,CATEGORIE) 
