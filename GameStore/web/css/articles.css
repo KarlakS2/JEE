@@ -20,12 +20,12 @@ and open the template in the editor.
     height: 40px;
     width:40px;
     display: block;
-    background-image: url(/GameStore/image/icone_panier.png);
+    background-image: url(/GameStore/image/icone_ajout_panier.png);
 }
 
 .icone_panier:hover
 {
-    background-image: url(/GameStore/image/icone_panier_survole.png);
+    background-image: url(/GameStore/image/icone_ajout_panier_hover.png);
 }
 
 .prix_article

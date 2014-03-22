@@ -23,7 +23,7 @@
     </head>
     <body>
         <header>
-            <a href="./controleur/accueil">
+            <a href="/GameStore/controleur/accueil">
                 <div id="Logo"></div>
             </a>
             <div id="reste_du_header">

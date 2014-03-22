@@ -6,7 +6,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/GameStore/css/panier.css" />
 <!DOCTYPE html>
 
 
@@ -23,7 +22,10 @@
             </tr>
             <c:forEach var="element_panier" items="${sessionScope.panier.getListeArticle()}">
                 <tr>
-                    <td><div class="bloc_image_jeu_panier"><img class="image_jeu_panier" src="${element_panier.getUrlImage()}"/><div>
+                    <td>
+                        <div class="bloc_image_jeu_panier">
+                            <a href="/GameStore/controleur/article?id_article=${element_panier.getId()}"><img class="image_jeu_panier" src="${element_panier.getUrlImage()}"/></a>
+                        </div>
                         <div class="panier_nom_article">${element_panier.getNom()}</div>
                     </td>
                     <td>${sessionScope.panier.getNombreArticle(element_panier)}</td>
@@ -48,6 +50,19 @@
                     </td>
                 </tr>
             </c:forEach>
+                <tr>
+                    <td colspan="3">
+                        <h3>Total</h3>
+                    </td>
+                    <td>
+                        ${sessionScope.panier.getPrixTotal()}€
+                    </td>
+                    <td>
+                        <a id="lien_acheter_panier" href="/GameStore/controleur/valider_commande">
+                            <div id="image_acheter_panier"></div>
+                        </a>
+                    </td>
+                </tr>
         </table>
 
 
