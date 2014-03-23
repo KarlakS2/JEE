@@ -11,9 +11,9 @@
        
        <form action="/GameStore/controleur/valider_connexion" method="post">
            <label for="identifiant"></label>
-           <input type="text" name="identifiant" id="identifiant" placeholder="Identifiant"/>
+           <input type="text" name="identifiant" id="identifiant" placeholder="Identifiant" required/>
            <label for="mdp"></label></br>
-           <input type="password" name="mdp" id="mdp" placeholder="Mot de passe"/>
+           <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required/>
            <input type="submit" value="Valider">
        </form>       
 
