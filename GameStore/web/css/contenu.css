@@ -12,3 +12,9 @@ and open the template in the editor.
 {
     margin-left: 150px;
 }
+
+#image_page_not_found
+{
+    margin-left: 25px;
+    position:absolute;
+}
