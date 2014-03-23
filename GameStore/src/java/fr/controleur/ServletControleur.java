@@ -6,6 +6,7 @@
 
 package fr.controleur;
 
+import fr.manager.Panier;
 import fr.entite.Administrateur;
 import fr.entite.Article;
 import fr.entite.Categorie;

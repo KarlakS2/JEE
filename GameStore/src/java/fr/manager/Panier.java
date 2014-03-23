@@ -1,4 +1,4 @@
-package fr.controleur;
+package fr.manager;
 
 import fr.entite.Article;
 import java.util.HashMap;
