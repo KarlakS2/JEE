@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Ce n'est pas le Sith que vous recherchez!</h1>
-        <img src='image/page_not_found.jpg'></img>
         </br>La page que vous recherchez n'existe plus ou a été déplacée.
+        <div id="image_page_not_found"> <img src='image/page_not_found.jpg'></img></div>
+        
     </body>
 </html>
