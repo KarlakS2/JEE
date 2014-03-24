@@ -41,7 +41,7 @@
                             <c:set var="i" value="${i}1"/>
                             <c:if test="${i=='1111111111'}">
                                 </tr><tr>
-                                <c:set var="i" value="0"/>
+                                <c:set var="i" value="1"/>
                             </c:if>
                             <c:if test="${i!='1111111111'}">
                                 
