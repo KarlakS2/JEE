@@ -118,8 +118,10 @@ public class ServletControleur extends HttpServlet {
             if(client != null){
                 //ajout commande à la bdd
                 for(Article article : panier.getListeArticle()){
-                    Commande nCommande = new Commande(0,client,article);
-                    commandeManager.addCommande(nCommande);
+                    for(int i=0;i<panier.getNombreArticle(article);i++){
+                        Commande nCommande = new Commande(0,client,article);
+                        commandeManager.addCommande(nCommande);
+                    }
                 }
                 panier = new Panier();
                 commandes = commandeManager.getAllCommandeByClient((String)session.getAttribute("nom_utilisateur"));
